@@ -19,7 +19,7 @@ After reading this chapter you should be able to apply the following concepts.
 
 Economic variables can be classified as either flow or  stock variables.  We can illustrate the difference between these two types using a bathtub as in Figure \@ref(fig:baththub). The water level in the bathtub at a given point in time is a stock variable. The amount of water that has flown into the tub over a period of time is a flow variable.
 ```{r baththub, echo=FALSE, out.width = '90%',fig.align='center',fig.cap="A bathtub with water illustrating flows and stocks"}
-knitr::include_graphics("./_resources/chapter_people/flowbathtub.png")
+knitr::include_graphics("./resources/chapter_people/flowbathtub.png")
 ```
 
 An easy way  to distinguish between flow and stock variables is that a flow variable is measured over a *period* of time while stock variable is measured at a specific *point* of time. 
