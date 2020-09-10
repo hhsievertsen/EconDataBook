@@ -6,7 +6,7 @@
 Figure \@ref(fig:fig1) shows a line chart of annual levels of economic activity per person in the United Kingdom based on data from the Maddison Project Database (MPD) 2018. 
 
 ```{r fig1, echo=FALSE, out.width = '95%',fig.align='center',fig.cap="GDP per capita in the United Kingdom. Source: Maddison Project Database (MPD) 2018."}
-knitr::include_graphics("_resources/chapter_introduction/fig1.png")
+knitr::include_graphics("./_resources/chapter_introduction/fig1.png")
 ```
 
 The chart is a good illustration of the core topics of this book:

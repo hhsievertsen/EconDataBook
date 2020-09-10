@@ -1,0 +1,361 @@
+
+# Getting Access to Excel
+
+This section contains detailed descriptions on how to get access to Microsoft Excel. You can skip this section if you already have access to Microsoft Excel or if you already know how to access it. 
+
+
+## Installing Microsoft Excel 
+
+#### Video guide   {-}
+
+Below is a video guide (without sound) on installing Microsoft Excel. You can skip this video if you prefer following the step-by-step guide below. 
+
+<div align="center">
+   <iframe width="560" height="315" src="https://www.youtube.com/embed/VtbghPs1O1s" frameborder="0" allowfullscreen>
+   </iframe>
+</div>
+
+
+
+#### Step 1: Go to office.com  {-}
+ 
+Go to [www.office.com](https://www.office.com) using a browser like Google Chrome, Safari, or Microsoft Edge.
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/ch1/fig1.png")
+```
+
+#### Step 2: Sign in  {-}
+
+Click on "Sign in".
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/ch1/fig2.png")
+```
+
+#### Step 3: Use your university e-mail to log in  {-}
+
+Use your *University of Bristol e-mail* to sign in. 
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/ch1/fig3.png")
+```
+
+#### Step 4: Enter your password  {-}
+
+You should now see the University of Bristol logo.  Use your *University of Bristol* password to complete the sign-in. 
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/ch1/fig4.png")
+```
+
+#### Step 5: Respond to saving details  {-}
+
+You will be asked whether you want the browser to remember your username and password. It is highly recommended that you **select No** if you are using a  shared computer. 
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/ch1/fig5.png")
+```
+
+#### Step 6: Logged-in  {-}
+
+You are now logged in to your University of Bristol office account. 
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/ch1/fig6.png")
+```
+
+#### Step 7: Installing Microsoft Ofice   {-}
+
+Click "Install Office"
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/ch1/fig17.png")
+```
+
+#### Step 3: Installing Microsoft Ofice   {-}
+
+Select Office 365
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/ch1/fig18.png")
+```
+
+#### Step 4: Installing Microsoft Ofice   {-}
+
+And follow the instructions to install Microsoft Office (including Excel, Word, and PowerPoint).
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/ch1/fig19.png")
+```
+
+
+##  Student Remote Desktop
+
+The University of Bristol offers you to access a university computer remotely. Follow the steps below to log on. 
+
+#### Step 1: Go to UoB IT support {-}
+
+Go to [www.bristol.ac.uk/students/support/it/](https://www.bristol.ac.uk/students/support/it/) using a browser like Google Chrome, Safari, or Microsoft Edge.
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/remote_access/fig_r1.png")
+```
+
+#### Step 2: Locate the student remote desktop {-}
+
+Scroll to the bottom of the page and find the two (identical) links to the student remote desktop. Click on one of these links (or the link  [here](https://uob.sharepoint.com/sites/itservices/SitePages/student-remote-desktop.aspx)).
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/remote_access/fig_r2.png")
+```
+
+#### Step 3: Enter your university e-mail address and follow the steps to log in (this process is similar to the process for installing Office, explained above). {-}
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/remote_access/fig_r4.png")
+```
+
+#### Step 4: Student remote desktop website{-}
+
+You should now be at the website for the student remote desktop. It should look like the below. You now have two options. A solution for fast internet connections and a solution for slow connections. Both should work fine. The site also includes details on using the student remote desktop for Mac users. 
+
+Click on one of the two blue boxes to download the shortcut for the remote desktop. 
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/remote_access/fig_r5.png")
+```
+
+#### Step 5: Download the RDP file {-}
+
+You will download a RDP file. An RDP file contains the information for a connection to a remote server. Click download if the file is not downloaded automatically. 
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/remote_access/fig_r6.png")
+```
+
+#### Step 6: Open the downloaded file {-}
+
+Click on the downloaded file (or double click, depending on the system) with the mouse. Windows includes a program to handle the RDP files. This is not the case for Mac users (see step 4 above).
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/remote_access/fig_r7.png")
+```
+
+#### Step 7: Connect to the remote seriver {-}
+
+You will likely see a message like the one below. Click on Connect.
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/remote_access/fig_r8.png")
+```
+
+#### Step 8: Enter your university credentials {-}
+
+Enter your credentials again. Note that the program already knows that it should connect to the University of Bristol (that is seen by the Domain pointing to UoB). You therefore only have to enter the first part of the e-mail address until (and not including) the "@" (like in the example below).
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/remote_access/fig_r9.png")
+```
+
+#### Step 9: Yet another box {-}
+
+You will likely also see a box like the one below. Click Yes".
+
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/remote_access/fig_r10.png")
+```
+
+#### Step 10: Connecting {-}
+
+You should now be connecting to the remote desktop.
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/remote_access/fig_r11.png")
+```
+
+#### Step 11: You have  arrived  - almost {-}
+
+You should now see a blue screen with some details about how the remote desktop work. Read the text and click "OK".
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/remote_access/fig_r12.png")
+```
+
+#### Step 12: You have arrived.  {-}
+
+Congratulations. You have now arrived at a University of Bristol computer. Your screen should look like the below. You now basically opened another computer within your computer. You can use this computer just like any other computer.
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/remote_access/fig_r14.png")
+```
+
+#### Step 13: The remote desktop bar {-}
+
+You use the blue bar at the top (see picture below) navigate back and forth between your own computer and the remote your computer. You can minimize the remote desktop by clicking the third icon from the right (the white line). Click on the cross to close the remote desktop. 
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/remote_access/fig_r13.png")
+```
+
+#### Step 15: You can now use the remote computer {-}
+
+Click on the Windows icon in the lower left corner to open the menu. Type "Excel" to find Excel 2016 and click on the icon to start using Microsoft Excel. 
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/remote_access/fig_r15.png")
+```
+
+#### Step 16: Saving files remotely {-}
+
+Note that since you are working on a UoB computer, you cannot save and create files everywhere. For example, you cannot save file sto the desktop. However, you can save files on the "O:" drive (see below) and you can also access your own local computer (see "C on IT..." under This PC on the left). However, saving and loading files on the local computer takes  a bit longer because you essentially have to download and upload the documents every time.
+
+Note that you also can use the browser within the remote desktop. You van therefore also log on to your email account and send and receive files on the remote desktop.
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/remote_access/fig_r16.png")
+```
+
+
+
+## Microsoft Excel in the cloud  
+
+#### Video guide {-}
+
+Below is a video guide (without sound) on accessing Microsoft Excel in the cloud. You can skip this video if you prefer following the step-by-step guide below. 
+
+<div align="center">
+   <iframe width="560" height="315" src="https://www.youtube.com/embed/DSKhvWIfchc" frameborder="0" allowfullscreen>
+   </iframe>
+</div>
+
+#### Step 1: Go to office.com  {-}
+ 
+Go to [www.office.com](https://www.office.com) using a browser like Google Chrome, Safari, or Microsoft Edge.
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/ch1/fig1.png")
+```
+
+#### Step 2: Sign in  {-}
+
+Click on "Sign in".
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/ch1/fig2.png")
+```
+
+#### Step 3: Use your university e-mail to log in  {-}
+
+Use your *University of Bristol e-mail* to sign in. 
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/ch1/fig3.png")
+```
+
+#### Step 4: Enter your password  {-}
+
+You should now see the University of Bristol logo.  Use your *University of Bristol* password to complete the sign-in. 
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/ch1/fig4.png")
+```
+
+#### Step 5: Respond to saving details  {-}
+
+You will be asked whether you want the browser to remember your username and password. It is highly recommended that you **select No** if you are using a  shared computer. 
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/ch1/fig5.png")
+```
+
+#### Step 6: Logged-in  {-}
+
+You are now logged in to your University of Bristol office account. 
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/ch1/fig6.png")
+```
+
+#### Step 7:  Open Excel {-}
+
+Click on the Microsoft Excel icon to start Microsoft Excel in the cloud. 
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/ch1/fig7.png")
+```
+
+#### Step 8: Select document{-}
+
+You can now either open a new blank document, open a template, or open an existing document. 
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/ch1/fig8.png")
+```
+
+
+#### Step 9: Open a new workbook {-}
+
+Select "New blank workbook" to create a new empty Excel document.
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/ch1/fig9.png")
+```
+
+
+#### Step 10: You have arrived! {-}
+
+Congratulations. You have now opened Microsoft Excel in the cloud and you can start working. 
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/ch1/fig10.png")
+```
+
+#### Step 11: Uploading a document.  {-}
+
+You might have downloaded a document that you want to open in Microsoft Excel. Because you are working in the cloud, you first have to upload the document to the cloud. Click "File"
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/ch1/fig11.png")
+```
+
+#### Step 12: Uploading a document continued {-}
+
+Once you've opened the "File" menu, select "Open". 
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/ch1/fig12.png")
+```
+
+#### Step 13: Uploading a document continued {-}
+
+Look for "More on OneDrive for Business" at the bottom of the list (you might have to scroll down).
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/ch1/fig13.png")
+```
+
+#### Step 14: Uploading a document continued {-}
+
+You should now be viewing your University of Bristol OneDrive folder. This is a good place to store files that you want to work on. You can access these files from anywhere and share them with fellow students. 
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/ch1/fig14.png")
+```
+
+#### Step 15: Uploading a document continued {-}
+
+Select "Upload" to upload a document from your local computer. After you've uploaded the document you should see it in your OneDriver folder. You can then open it by clicking on it. 
+
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/ch1/fig15.png")
+```
+
+#### Step 16: Returning to our Excel document {-}
+
+Note that we can return to our Microsoft Excel document by clicking on the tab. 
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="90%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/ch1/fig16.png")
+```

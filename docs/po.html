@@ -82,10 +82,9 @@
 <li class="chapter" data-level="8" data-path="prices.html"><a href="prices.html"><i class="fa fa-check"></i><b>8</b> Prices</a></li>
 <li class="chapter" data-level="9" data-path="money.html"><a href="money.html"><i class="fa fa-check"></i><b>9</b> Money</a></li>
 <li class="chapter" data-level="" data-path="part-ii-data-sources-and-tools.html"><a href="part-ii-data-sources-and-tools.html"><i class="fa fa-check"></i>Part II: Data sources and tools</a></li>
-<li class="chapter" data-level="10" data-path="where-data-comes-from.html"><a href="where-data-comes-from.html"><i class="fa fa-check"></i><b>10</b> Where data comes from</a></li>
-<li class="chapter" data-level="11" data-path="how-data-is-stored.html"><a href="how-data-is-stored.html"><i class="fa fa-check"></i><b>11</b> How data is stored</a></li>
-<li class="chapter" data-level="12" data-path="decribing-changes.html"><a href="decribing-changes.html"><i class="fa fa-check"></i><b>12</b> Decribing changes</a></li>
-<li class="chapter" data-level="13" data-path="data-visualization-basics.html"><a href="data-visualization-basics.html"><i class="fa fa-check"></i><b>13</b> Data visualization basics</a></li>
+<li class="chapter" data-level="10" data-path="how-data-is-stored.html"><a href="how-data-is-stored.html"><i class="fa fa-check"></i><b>10</b> How data is stored</a></li>
+<li class="chapter" data-level="11" data-path="decribing-changes.html"><a href="decribing-changes.html"><i class="fa fa-check"></i><b>11</b> Decribing changes</a></li>
+<li class="chapter" data-level="12" data-path="data-visualization-basics.html"><a href="data-visualization-basics.html"><i class="fa fa-check"></i><b>12</b> Data visualization basics</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -124,7 +123,7 @@
 <h3><span class="header-section-number">2.2.1</span> What are flow and stock variables?</h3>
 Economic variables can be classified as either flow or stock variables. We can illustrate the difference between these two types using a bathtub as in Figure <a href="po.html#fig:baththub">2.1</a>. The water level in the bathtub at a given point in time is a stock variable. The amount of water that has flown into the tub over a period of time is a flow variable.
 <div class="figure" style="text-align: center"><span id="fig:baththub"></span>
-<img src="_resources/chapter_people/flows_stocks/flowbathtub.png" alt="A bathtub with water illustrating flows and stocks" width="90%" />
+<img src="_resources/chapter_people/flowbathtub.png" alt="A bathtub with water illustrating flows and stocks" width="90%" />
 <p class="caption">
 Figure 2.1: A bathtub with water illustrating flows and stocks
 </p>
@@ -214,7 +213,7 @@ For example the number of people residing in the UK at January 1, 2018.
 <p><strong>Note</strong> that 1. above is a flow variable and 2. and 3. are stock variables. When calculating fertility rates we divide a flow variable with a stock variable. It is therefore important to pay attention to the timing of the measurement. Should the population levels (2. and 3.) be measured at the beginning, at the middle, or at the end of the year?</p>
 <p>We can obtain such data from statistical agencies such as Eurostat. In Figure <a href="po.html#fig:death1">2.2</a>) we show the Total Fertility Rate and General Fertility Rate for the United Kingdom over the last five decades using data from Eurostat. We observe how the two lines representing respectively the General Fertility Rate and the Total Fertility Rate follow each other closely, although they are measured at very different scales. In 1970 a women in the UK gave birth to on average more than 2.3 children, given the age specific fertility rates in that year. Today that number has dropped to less than 2. There are considerable fluctuations in these rates. The lowest fertility rates were observed around 2000, where the the General Fertility Rate dropped to around 1.8.</p>
 <div class="figure" style="text-align: center"><span id="fig:death1"></span>
-<img src="_resources/chapter_people/fertility/fig10.png" alt="Fertility rates for the United Kingdom. Data source: Eurostat. Note: Only births of women aged 15-45 are included." width="70%" />
+<img src="_resources/chapter_people/fig10.png" alt="Fertility rates for the United Kingdom. Data source: Eurostat. Note: Only births of women aged 15-45 are included." width="70%" />
 <p class="caption">
 Figure 2.2: Fertility rates for the United Kingdom. Data source: Eurostat. Note: Only births of women aged 15-45 are included.
 </p>
@@ -490,7 +489,7 @@ Figure 2.2: Fertility rates for the United Kingdom. Data source: Eurostat. Note:
 </table>
 <p>Table <a href="po.html#tab:deatht">2.2</a> shows a subset of a life table for the United Kingdom using data from Eurostat and the recipe outlined in Table <a href="po.html#tab:deatht2">2.3</a>. The table shows that the life expectancy at birth is 81 years. Conditional surviving to age 99, the life expectancy is 0.125 years. However, the life expectancy at higher ages are highly influenced by assumption that all individuals die at a given age. In this case it is by age 100 years. In Figure <a href="po.html#fig:death2">2.3</a> we plot the variable <span class="math inline">\(e_x\)</span> against <span class="math inline">\(x\)</span> from the life table and life.</p>
 <div class="figure" style="text-align: center"><span id="fig:death2"></span>
-<img src="_resources/chapter_people/lifeexp/fig11.png" alt="Life expectancy by age in years (left) and survival probabilities (right). Data source: Eurostat. " width="90%" />
+<img src="_resources/chapter_people/fig11.png" alt="Life expectancy by age in years (left) and survival probabilities (right). Data source: Eurostat. " width="90%" />
 <p class="caption">
 Figure 2.3: Life expectancy by age in years (left) and survival probabilities (right). Data source: Eurostat.
 </p>
