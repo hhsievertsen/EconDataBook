@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Economic Activity | Economic Data for UoB students</title>
+  <meta name="description" content="Chapter 4 Economic Activity | Economic Data for UoB students" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Economic Activity | Economic Data for UoB students" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="hhsievertsen/excelintro" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Economic Activity | Economic Data for UoB students" />
+  
+  
+  
+
+<meta name="author" content="Hans Henrik Sievertsen" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="the-labour-market.html"/>
+<link rel="next" href="limits-to-gdp-alternative-measures.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Economic Data  for UoB Students</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="" data-path="part-i-working-with-economic-data.html"><a href="part-i-working-with-economic-data.html"><i class="fa fa-check"></i>Part I: Working with Economic Data</a></li>
+<li class="chapter" data-level="2" data-path="po.html"><a href="po.html"><i class="fa fa-check"></i><b>2</b> People</a></li>
+<li class="chapter" data-level="3" data-path="the-labour-market.html"><a href="the-labour-market.html"><i class="fa fa-check"></i><b>3</b> The labour market</a></li>
+<li class="chapter" data-level="4" data-path="activity.html"><a href="activity.html"><i class="fa fa-check"></i><b>4</b> Economic Activity</a></li>
+<li class="chapter" data-level="5" data-path="limits-to-gdp-alternative-measures.html"><a href="limits-to-gdp-alternative-measures.html"><i class="fa fa-check"></i><b>5</b> Limits to GDP &amp; alternative measures</a></li>
+<li class="chapter" data-level="6" data-path="inequality.html"><a href="inequality.html"><i class="fa fa-check"></i><b>6</b> Inequality</a></li>
+<li class="chapter" data-level="7" data-path="poverty.html"><a href="poverty.html"><i class="fa fa-check"></i><b>7</b> Poverty</a></li>
+<li class="chapter" data-level="8" data-path="prices.html"><a href="prices.html"><i class="fa fa-check"></i><b>8</b> Prices</a></li>
+<li class="chapter" data-level="9" data-path="money.html"><a href="money.html"><i class="fa fa-check"></i><b>9</b> Money</a></li>
+<li class="chapter" data-level="" data-path="part-ii-data-sources-and-tools.html"><a href="part-ii-data-sources-and-tools.html"><i class="fa fa-check"></i>Part II: Data sources and tools</a></li>
+<li class="chapter" data-level="10" data-path="where-data-comes-from.html"><a href="where-data-comes-from.html"><i class="fa fa-check"></i><b>10</b> Where data comes from</a></li>
+<li class="chapter" data-level="11" data-path="how-data-is-stored.html"><a href="how-data-is-stored.html"><i class="fa fa-check"></i><b>11</b> How data is stored</a></li>
+<li class="chapter" data-level="12" data-path="decribing-changes.html"><a href="decribing-changes.html"><i class="fa fa-check"></i><b>12</b> Decribing changes</a></li>
+<li class="chapter" data-level="13" data-path="data-visualization-basics.html"><a href="data-visualization-basics.html"><i class="fa fa-check"></i><b>13</b> Data visualization basics</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Economic Data for UoB students</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="activity" class="section level1" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Economic Activity</h1>
+<div id="what-this-chapter-is-about" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> What this chapter is about</h2>
+<p>This chapter is about economic activity. Along with the unemployment rate, economic activity is one of the most used economic concepts in policy discussions. What what is it? What does it capture? And importantly, what does it not capture?</p>
+<p>Economic activity is measured in the System of National Accounts (SNA) and conceptualized by the Gross Domestic Product, (GDP). We will not cover the SNA in detail.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> The System of National Accounts is is basically big book keeping of economic transactions in a region over a given period of time. The SNA includes a set of rules and instructions that have been agreed internationally to ensure that measures of economic activity are comparable across countries. In this chapter we will go through some of the key <em>aggregates</em> of the SNA, for example Gross Domestic Product, a measure of economic activity. An aggregate is a measure that <em>aggregates</em> several underlying variables. This chapter is mainly about the GDP, but we will also briefly touch upon other aggregates of the SNA as well as what the GDP is used for.</p>
+<div id="intended-learning-outcomes" class="section level3" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Intended learning outcomes</h3>
+<p>After reading this chapter you should be able to:</p>
+<ul>
+<li>Explain what the gross domestic product (GDP) is and calculate it.</li>
+<li>Explain the three ways to measure GDP
+<ol style="list-style-type: decimal">
+<li>The Income Approach</li>
+<li>The Expenditure Approach</li>
+<li>The Output approach.</li>
+</ol></li>
+<li>Explain what The gross national income (GNI) is and calculate it.</li>
+<li>Calculate GDP per person and productivity.</li>
+<li>Visualize data on economic activity.</li>
+</ul>
+</div>
+</div>
+<div id="a-super-brief-history-of-gdp" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> A super brief history of GDP</h2>
+<p>Most texts about the history of GDP start around the Great Depression in the 1930ies United States. The US Congress realised that the economy was not doing as well as it could, but had a hard time quantifying how bad the situation actually was. To the “rescue” came the economist Simon Kuznets who provided a report on the “National Income, 1929-1935” for the Congress (see <a href="activity.html#fig:gdp1">4.1</a>), where he presented the idea of capturing the entire production, income and expenditure of the economy. And so the modern concept of GDP was born. However, measures of economic activity have existed in many years.</p>
+<div class="figure" style="text-align: center"><span id="fig:gdp1"></span>
+<img src="_resources/chapter_gdp/kusnetz.png" alt="Kuznets' report for the U.S. Congress, 1934. Source:  [Fraser St. Louis FED](fraser.stlouisfed.org/title/971)." width="65%" />
+<p class="caption">
+Figure 4.1: Kuznets’ report for the U.S. Congress, 1934. Source: <a href="fraser.stlouisfed.org/title/971">Fraser St. Louis FED</a>.
+</p>
+</div>
+<p>The idea of quantifying the size of the economy probably goes back to at least the 17th century. The exact definition of GDP has since then been redefined and adjusted. It is actually continuously adjusted. More on that later. Giving Simon Kuznets a lot of credit for the GDP is not completely wrong. He refined the concept a lot and his report made it prominent. However, it wasn’t until much later that it became the “statistic to rule them all”.</p>
+<p>The GDP as a concept is critisized a lot. The most prominent critisism is probably the “Report by the Commission on the Measurement of Economic Performance and Social Progress” published in Autumn 2009 by the economists Joseph Stiglitz, Amartya Sen and Jean-Poul Fitoussi. What is the key critisism of GDP? The main problem with the GDP is not so much the GDP itself, but more the use and policy focus on GDP as a measure of well-being or welfare. Simon Kuznets was actually already aware of some of these issues and the potential misuse of GDP. Figure <a href="activity.html#fig:gdp1">4.1</a> shows a small section of the 273 page long report by Kuznets.</p>
+<p>Figure <a href="activity.html#fig:gdp2">4.2</a> shows extracts of pages 5-7 in Kuznets original report <span class="citation">(Kusnets 1934)</span>. Kuznets made several points that are at the heat of the disucssion today, for example that “With quantitative measurements especially, the definiteness of the result suggests, often misleadingly, a precision and simplicity in the outlines of the object measured.” and “Economic welfare cannot be adequately measured unless the personal distribution of income is known. And no income measurement undertakes to estimate the reverse side of income, that is, the intensity and unpleasantness of effort going into the earning of income.”</p>
+<div class="figure" style="text-align: center"><span id="fig:gdp2"></span>
+<img src="_resources/chapter_gdp/kusnetz2.png" alt="Page 5-7 in 'National Income, 1929–1932'. 73rd US Congress, 2d session, Senate document no. 124, 1934. Source:  [Fraser St. Louis FED](fraser.stlouisfed.org/title/971). " width="70%" />
+<p class="caption">
+Figure 4.2: Page 5-7 in ‘National Income, 1929–1932’. 73rd US Congress, 2d session, Senate document no. 124, 1934. Source: <a href="fraser.stlouisfed.org/title/971">Fraser St. Louis FED</a>.
+</p>
+</div>
+<p>So why should we care about GDP if it is no good? Actually it is a reasonably good of market economic activity. But it is simply a measure of economic activity. We will return to the criticism of GDP in later chapters, but here we will discuss what it actually captures. When we know what the GDP measures, we can say more about what it doesn’t measure and how we should and should not use it.</p>
+</div>
+<div id="the-economy-of-microcountry" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> The Economy of Microcountry</h2>
+<div id="ordinary-business-of-life-in-microcountry" class="section level4 unnumbered" number="">
+<h4>“…ordinary business of life” in Microcountry</h4>
+<p>Let me introduce a very small country. It is not my home country, Denmark, but a country that is even smaller: Microcountry. Microcountry is just next to Neighbourcountry. Microcountry is so small that I can explain all economic activity in this country to you i a few paragraphs.</p>
+<p>In Microcountry we have one farm that produces flour. The farm sells the flour to a bakery for 10 £. To produce the flour, the farm has workers, and these workers earn a wage of 8 £. Finally, the farm pays a tax to the government of 2 £.</p>
+<p>The bakery produces bread based on labor inputs in terms workers and the flour bought from the farm. The workers at the bakery receive 14 £ in wages, and the government receives 2 £ in taxes from the bakery. The bakery sells bread for 18 £ to the households in Microcountry. The households of Neighbourcountry buy bread from the bakery in Microcountry for 9 £, and the bakery in Microcountry is actually owned by residents of Neighbourcountry.</p>
+<p>The households in Microcountry work for the bakery, the farm and for the government. They pay 1 £ in taxes to the government, and buy bread for 18 £ at the bakery. The households also import cheese from Neighbourcountry for a value of in total 8 £. The Government provides health service and a school for the residents of Microcountry and spend 5 £ in wages to teachers and health providers to be able to supply this service.</p>
+</div>
+<div id="quantifying-economic-activity-in-microcountry" class="section level4 unnumbered" number="">
+<h4>Quantifying economic activity in Microcountry</h4>
+<p>So we know that the people in Microcountry go to work at a farm, in a bakery, in a school or in health services. We know that they buy bread and cheese. These activities are just examples of “…ordinary business of life” (from Alfred Marshal’s quote <em>“[…] economics is a study of mankind in the ordinary business of life”</em> in The Principles of Economics). How can we quantify these economic activities?</p>
+<p>What is economic activity? Just think of when you are economically active:</p>
+<ol style="list-style-type: decimal">
+<li>When you go shopping and spend money.</li>
+<li>When you work and receive a wage income, and when you earn profits.</li>
+<li>When you create a product and sell it to someone.</li>
+</ol>
+<p>These three examples of how we as individuals are economically active actually capture the three ways we measure the Gross Domestic Product (GDP). The expenditure approach, the income approach and the output approach. Let us now discuss these approaches in detail. The GDP captures how much is spend, how much is produced or how much is earned within a period. It is therefore a flow variable.</p>
+<p>You know basically know ho to measure GDP. Just consider the sum of all expenditures in Microcountry. Or the sum of all income generated. Or the sum of of all output created. All these approaches give the same value. Try it on the Microcountry above. You will probably realise that it is slightly more complicated. We will therefore cover this in more detail below.</p>
+<p>Before we turn to the description of the measurement approaches, here is a short video of what the GDP is, created by the UK Treasury.</p>
+<div class="figure" style="text-align: center"><span id="fig:whatisgdp"></span>
+<iframe src="https://www.youtube.com/embed/UOuzPLjwkMc" width="70%" height="400px">
+</iframe>
+<p class="caption">
+Figure 4.3: What is GDP?. Source: HM Treasury.
+</p>
+</div>
+</div>
+</div>
+<div id="the-3-ways-to-measure-gdp" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> The 3 ways to measure GDP</h2>
+<div id="the-expenditure-approach" class="section level3 unnumbered" number="">
+<h3>The Expenditure Approach</h3>
+<p>The <em>expenditure</em> approach (called the spending approach in <a href="https://core-econ.org/the-economy/index.html">The Core</a>) measures the GDP in terms of expenditures by households and the Government, as well investments and net exports of goods and services (i.e. exports minus imports). All these expenditures are summarised by the following equation:
+<span class="math display">\[\begin{align}
+   \text{GDP}^{\text{E}} \text{=Y=C+G+I+X-M}
+\end{align}\]</span>
+where:</p>
+<ul>
+<li><strong>Y</strong> is the Gross Domestic Product (GDP).</li>
+<li><strong>C</strong> is final consumption of goods and services by households. It includes goods like food, cars, and clothing, as well as services such as hotel stays.</li>
+<li><strong>G</strong> is final consumption expenditure of goods and services by the government.</li>
+<li><strong>I</strong> is investments (also called gross capital formation) are investments in fixed assets such as machinery, buildings etc.</li>
+<li><strong>X</strong> is goods and services produced domestically but consumed abroad (Exports)</li>
+<li><strong>M</strong> is goods and services produced abroad and consumed domestically (Imports).</li>
+</ul>
+<p>Let us return to Microcountry and use the expenditure approach to calculate the economic activity of Microcountry.</p>
+<ul>
+<li><span class="math inline">\(C\)</span> household consumption:
+<ul>
+<li>The households buy bread at the bakery for 18£ and import goods from Neighbourcountry for 8£, <span class="math inline">\(C=8£+18£=26£\)</span>.</li>
+</ul></li>
+<li><span class="math inline">\(G\)</span> Government consumption:
+<ul>
+<li>The government spends 5£ on health services, <span class="math inline">\(G=5£\)</span>.</li>
+</ul></li>
+<li><span class="math inline">\(I\)</span> Investments:
+<ul>
+<li>There are no investments in this economy, <span class="math inline">\(I=0£\)</span>.</li>
+</ul></li>
+<li><span class="math inline">\(X\)</span> Exports:
+<ul>
+<li>The bakery exports bread to Neighbourcountry for 9£, $X=9£.</li>
+</ul></li>
+<li><span class="math inline">\(M\)</span> Imports:
+<ul>
+<li>Microcountry imports goods for the value of 8£ from Neigbourcountry, $M=8£.</li>
+</ul></li>
+</ul>
+<p>The GDP of Microcountry is therefore $Y=26£+5£+9£-8£=32£.</p>
+<p>Let’s now move to a real economy, the United Kingdom. In the following Table we show the expenditure approach to calculate GDP for the United Kingdom. Private consumption, that is our <span class="math inline">\(C\)</span>, constitutes for about two-thirds of the GDP. Government consumption, <span class="math inline">\(G\)</span>, constitutes for 18%, Investments, <span class="math inline">\(I\)</span>, constitute for 17%, and Net exports are only slightly negative (as Imports are larger than Exports).</p>
+<div class="figure" style="text-align: center">
+<img src="_resources/chapter_gdp/tab1.png" alt="Gross Domestic Product of the United Kingdom using the expenditure approach, in 2017.Data source: OECD. All values are in 2017 prices." width="80%" />
+<p class="caption">
+(#fig:gdpexp_)Gross Domestic Product of the United Kingdom using the expenditure approach, in 2017.Data source: OECD. All values are in 2017 prices.
+</p>
+</div>
+</div>
+<div id="the-income-approach" class="section level3 unnumbered" number="">
+<h3>The income approach</h3>
+<p>A second approach to measuring GDP is the income approach. The income approach measures the GDP in terms of the generated income in the economy. The income generated in an economy consists of all compensation to workers (wages, pension contributions etc.), operating surplus (profits and rents) and sales taxes minus subsidies.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<p><span class="math display">\[\begin{align}
+   \text{GDP}^{\text{I}} \text{=W+P+NT}
+\end{align}\]</span>
+where</p>
+<ul>
+<li><em>W</em> is worker compensation.</li>
+<li><em>P</em> is operating surplus.</li>
+<li><em>NT</em> is sales taxes minus subsidies.</li>
+</ul>
+<p>Let us return to Microcountry and use the income approach to calculate the economic activity of Microcountry.</p>
+<ul>
+<li><p><span class="math inline">\(W\)</span>,worker compensation:</p>
+<ul>
+<li>The farm workers receive a wage compensation of 8£, the bakery workers receive a wage compensation of 14£ and the health service workers receive a compensation of 5£. The total wage comensation is therefore <span class="math inline">\(W=8£+14£+5£=27\)</span>.</li>
+</ul></li>
+<li><p><span class="math inline">\(P\)</span>, operating surplus:</p>
+<ul>
+<li>The farm has zero profits, but the bakery has a profit of 1£, <span class="math inline">\(P=1£\)</span>.</li>
+</ul></li>
+<li><p><span class="math inline">\(NT\)</span>, taxes minus subsidies:</p>
+<ul>
+<li>The farm pay 2£ in taxes and the bakery pays 2£. There are subsidies. The taxes minus subsidies is therefore, <span class="math inline">\(NT=2£+2£=4£\)</span>.</li>
+</ul></li>
+</ul>
+<p>The GDP of Microcountry is therefore $Y=27£+4£+1£=32£.</p>
+<p>Let’s now move back to the real real economy of the United Kingdom. In the following Table we show the income approach to measure GDP for the United Kingdom. Compensation of employees, that is our <span class="math inline">\(W\)</span>, constitutes for about half of the GDP. Profits, <span class="math inline">\(P\)</span>, constitute for 38%, and the remaining 12% are net taxes.</p>
+<div class="figure" style="text-align: center">
+<img src="_resources/chapter_gdp/tab2.png" alt="Gross Domestic Product of the United Kingdom using the income approach, in 2017.Data source: OECD. All values are in 2017 prices." width="80%" />
+<p class="caption">
+(#fig:gdpexp_2)Gross Domestic Product of the United Kingdom using the income approach, in 2017.Data source: OECD. All values are in 2017 prices.
+</p>
+</div>
+</div>
+<div id="the-production-approach" class="section level3 unnumbered" number="">
+<h3>The production approach</h3>
+<p>The third and last approach to measuring GDP is the production approach (also known as the output approach). So far we have considered how much we’ve spend (the expenditure approach), the income generated (the income approach) and now we finally look at how much we produce. The production approach measures the GDP in terms of production or <em>value added</em>. The value added is the value of the output minus the costs of the intermediate goods. If a bakery buys flour for 15 £ and sells bread for 50 £, the value added by the bakery is 50-15=35 £. Intermediate goods are all goods used in the production process, such as raw materials, fuel, rental costs, cleaning and marketing costs.</p>
+<p>We typically distinguish between two types of outputs, market and non-market outputs. The market output are goods and services sold on the market, such as the bread sold by the bakery. In that case the value added is straightforward to calculate, as it is the sales price minus the price of the intermediate goods. However, not not all goods are necessarily sold, so we also include the change in inventories. For non-market output, such as health and defense, the output is the production costs, i.e. the cost of labor and intermediate goods (and depreciation in fixed assets). Finally, there is a distinction between value added in basic prices and value added in market prices. To obtain the latter we have to add sales tax and subtract subsidies.</p>
+<p><span class="math display">\[\begin{align}
+   \text{GDP}^{\text{P}} \text{=GVA+NT}
+\end{align}\]</span>
+where</p>
+<ul>
+<li><em>GVA</em> gross value added.</li>
+<li><em>NT</em> is taxes minus subsidies.</li>
+</ul>
+<p>Let us return to Microcountry and use the expenditure approach to calculate the economic activity of Microcountry.</p>
+<ul>
+<li><p><span class="math inline">\(GVA\)</span>, gross value added</p>
+<ul>
+<li><p>The farm sells flour for 10£ and pays 2£ in taxes. The gross value added of the bakery is therefore 8£. The bakery sells bread for 27£, pays a sales tax of 2£ and pays 10£ for the flour from the bakery. The gross value added of the bakery is therefore 15£. Finally, the public sector provides a health service. The value of public sector provision is typically estimated by means of the costs, which in this case is 5£. The total gross value added in Microcountry is therefore $GVA=8£+15£+5£=28£.</p></li>
+<li><p>The farm pay 2£ in taxes and the bakery pays 2£. There are subsidies. The sales taxes minus subsidies is therefore, <span class="math inline">\(NT=2£+2£=4£\)</span>.</p></li>
+</ul></li>
+</ul>
+<p>The GDP of Microcountry is therefore <span class="math inline">\(Y=28\)</span>+4£=32£.</p>
+<p>Finally, let’s now move back to the real real economy of the United Kingdom. In the Table below we show the production approach to measure GDP for the United Kingdom. In this example we show Gross Value Added separately by sector. This is one of the advantages of having several measures of GDP: We can decompose the GDP in different dimensions. In this example we observe that Public services and distributive trades are some of the largest elements of the UK GDP.</p>
+<div class="figure" style="text-align: center">
+<img src="_resources/chapter_gdp/tab3.png" alt="Gross Domestic Product of the United Kingdom using the production approach, in 2017.Data source: OECD. All values are in 2017 prices." width="80%" />
+<p class="caption">
+(#fig:gdpexp_3)Gross Domestic Product of the United Kingdom using the production approach, in 2017.Data source: OECD. All values are in 2017 prices.
+</p>
+</div>
+</div>
+<div id="what-is-included-in-the-gdp-measure" class="section level3" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> What is included in the GDP measure?</h3>
+<p>Measuring GDP also requires us to understand which activities we should include, and which we should not include. Based on the general principles described in the <a href="https://unstats.un.org/unsd/nationalaccount/sna.asp">ESA 2010</a>, the Office for National Statistics decides on an production boundary, which contains all economic activities that should be included in the GDP measurements. An activity is included in the boundaries if:</p>
+<ul>
+<li>The activity produces a meaningful output.</li>
+<li>The product or activity has a meaningful market value, or the market value can be imputed.</li>
+<li>The inclusion of the activity increases the meaningfulness of cross-country comparisons.</li>
+</ul>
+<p>Several activities are less clear-cut that you might think, for example activities where “production is forbidden by law; as long as all units involved in the transaction enter into it voluntarily” are included. Breeding of fish in fish farms is included, but breeding of fish in open seas is not included.</p>
+</div>
+<div id="gdp---why-3-approaches" class="section level3" number="4.4.2">
+<h3><span class="header-section-number">4.4.2</span> GDP - Why 3 approaches?</h3>
+<p>Note how all three approaches shown result in the same GDP. For simplicity, one might therefore argue that we should just stick to one approach and ignore the two other approaches. However, each approach has its own advantage. First, expenditure approach is very useful if you want to assess whether changes in GDP are driven by for example domestic consumption or exports. Moreover, we can decompose all approaches in more detail. We could for example identify which sector is contributing most to the value added using the production approach. While the three approaches in theory should lead to exactly the same number, we often observe small discrepancies in practice. These discrepancies are called “statistical discrepancy”.</p>
+<center>
+<div class="myblock">
+<center>
+<strong>Measuring GDP - an overview</strong>
+</center>
+<p>
+<em>1. The expenditure approach</em>
+</p>
+<ul>
+<li>
+The expenditure approach (called the spending approach in <span class="citation"><span class="citation">(The CORE Team 2017)</span></span>) measures the GDP in terms of expenditures by households and the Government, as well investments and net exports of goods and services (i.e. exports minus imports).
+</li>
+</ul>
+<p>
+<span class="math display"><span class="math display">\[\begin{align}
+  Y=C+G+I+X-M=C+G+I+NX
+\end{align}\]</span></span>
+</p>
+<ul>
+<li>
+<em>Y</em> is the Gross Domestic Product (GDP).
+</li>
+<li>
+<em>C</em> is final consumption of goods and services by households. It includes goods like food, cars, and clothing, as well as services such as hotel stays.
+</li>
+<li>
+<em>G</em> is final consumption expenditure of goods and services by the government.
+</li>
+<li>
+<em>I</em> is investments (also called gross capital formation) are investments in fixed assets such as machinery, buildings etc.
+</li>
+<li>
+<em>X</em> is goods and services produced domestically but consumed abroad (Exports)
+</li>
+<li>
+<em>M</em> is goods and services produced abroad and consumed domestically (Imports).
+</li>
+</ul>
+<p>
+<em>2. The income approach</em>
+</p>
+<ul>
+<li>
+The income approach measures the GDP in terms of the generated income in the economy.
+</li>
+</ul>
+<p>
+<span class="math display"><span class="math display">\[\begin{align}
+   Y=W+P+NT
+\end{align}\]</span></span>
+</p>
+<ul>
+<li>
+<em>W</em> is worker compensation.
+</li>
+<li>
+<em>P</em> is operating surplus.
+</li>
+<li>
+<em>NT</em> is sales taxes minus subsidies.
+</li>
+</ul>
+<p>
+<em>3. The production approach</em> (also known as the output approach)
+</p>
+<ul>
+<li>
+The production approach measures the GDP in terms of production or <em>gross value added</em>.
+</li>
+</ul>
+<p>
+<span class="math display"><span class="math display">\[\begin{align}
+  Y=GVA+NT
+\end{align}\]</span></span>
+</p>
+<ul>
+<li>
+<em>GVA</em> gross value added.
+</li>
+<li>
+<em>NT</em> is sales taxes minus subsidies.
+</li>
+</ul>
+</div>
+</center>
+</div>
+</div>
+<div id="gross-national-income-gni" class="section level2" number="4.5">
+<h2><span class="header-section-number">4.5</span> Gross National Income (GNI)</h2>
+<p>Gross national income (GNI) is the income received by residents of the domestic economy. The GNI is thus defined as the GDP plus the net property income from abroad. Where property income consists of interests, rent on land and income from corporations. The GDP and GNI can be very different. If for example most firms in the economy have foreign owners, the profits of these firms will be subtracted from the GDP, and the GNI will thus be considerably lower.</p>
+<p>Let’s look at Microcountry. We found a GDP of 32£ independent of how we measured GDP. However, because the bakery is owned by residents in Neighborcountry, the profits go abroad, and the Gross National Income is: $GNI=32£-1£=31£.</p>
+</div>
+<div id="what-we-use-gdp-for" class="section level2" number="4.6">
+<h2><span class="header-section-number">4.6</span> What we use GDP for</h2>
+<p>Now what do we need these measures for? The GDP is an important aspect in many policy makers evaluation of the condition of the economy. For example, during the Great Depression in the late 1920ies and early 1930ies the economy looked quite bad, but how bad was actually hard to describe. The United States congress therefore asked the economist Simon Kuznetz to quantify US economic activity. Kuznetz estimates gave the first insights in the magnitude of the Great Depression by showing the change in economic activity during the great depression. Let us just consider a few uses of GDP.</p>
+<div id="growth-rates" class="section level4 unnumbered" number="">
+<h4>1 Growth rates</h4>
+<p>As it was the case of the great depression, we are in general typically more interested in changes than in levels of GDP. It is maybe the most popular statistic of policy makers: the growth rates. To get from the level of GDP to the growth rates is straightforward, given that the levels are measured in <em>real</em> terms, that is at a constant price level (we will return to the issue of real and nominal terms in later chapters). We can use the following formula to calculate the growth rate in percent:</p>
+<p><span class="math display">\[\begin{align}
+\text{growth rate in percent}=100\times \left(\frac{GDP_t}{GDP_{t-1}}-1\right)
+\end{align}\]</span></p>
+<p>In this expression the letter <span class="math inline">\(t\)</span> refers to the time period. This could be a year, a quarter or a month. Figure <a href="activity.html#fig:gdp13">4.4</a> shows the GDP of the UK using a fixed price level and the annual growth rates. The yearly growth rates roughly correspond to the first derivative of the level, as they show the changes. Therefore, we are actually able to identify the large dip in 2009 even in the levels shown in the graphs above. However, identifying whether growth rates are 2 or 3 percent is difficult based on the levels, and bar charts of growth rates are therefore a very common way to visualize the economic conditions.</p>
+<div class="figure" style="text-align: center"><span id="fig:gdp13"></span>
+<img src="_resources/chapter_gdp/fig10.png" alt="Annual GDP growth rates for the UK, 2000-2018. Using a bar  chart. Source: OECD. The GDP level is measured in terms of the 2017 price level." width="80%" />
+<p class="caption">
+Figure 4.4: Annual GDP growth rates for the UK, 2000-2018. Using a bar chart. Source: OECD. The GDP level is measured in terms of the 2017 price level.
+</p>
+</div>
+</div>
+<div id="decompose-growth" class="section level4 unnumbered" number="">
+<h4>2 Decompose growth</h4>
+<p>We can use each of the GDP measurement approaches above to decompose the overall GDP growth. Using the expenditure approach, we could calculate the overall GDP growth as follows:</p>
+<p><span class="math display">\[\begin{align}
+growth\text{ }rate=&amp;I&#39;s growth\text{ }rate\times I&#39;s\text{ }initial\text{ }share\text{ }of\text{ }GDP\\
+                   &amp;+G&#39;s growth\text{ }rate\times G&#39;s\text{ }initial\text{ }share\text{ }of\text{ }GDP\\
+                   &amp;+C&#39;s growth\text{ }rate\times C&#39;s\text{ }initial\text{ }share\text{ }of\text{ }GDP\\
+                   &amp;+NX&#39;s growth\text{ }rate\times NX&#39;s\text{ }initial\text{ }share\text{ }of\text{ }GDP
+\end{align}\]</span>
+In words, the overall GDP growth is simply a weighted average of each components growth rates. The weights are the share of overall GDP in the initial period.</p>
+<p>Why is this useful? Say we wanted to know how household consumption <span class="math inline">\(C\)</span> contributed to GDP growth. <span class="math inline">\(C&#39;s\)</span> contribution is given by: <span class="math inline">\(growth\text{ }in\text{ }C\times C&#39;s\text{ }share\text{ }of\text{ }GDP\)</span>, which we can relate to the overall growth:</p>
+<p><span class="math display">\[\begin{align}
+C&#39;s\text{ }contribution\text{ }to\text{ }growth=\frac{growth\text{ }in\text{ }C\times C&#39;s\text{ }share\text{ }of\text{ }GDP}{overall\text{ }GDP\text{ }growth}
+\end{align}\]</span></p>
+</div>
+<div id="business-cycles" class="section level4 unnumbered" number="">
+<h4>3 Business cycles</h4>
+<p>Once we know the changes in economic activity, we can start characterizing periods by terms such as business cycles, booms, overheating and recessions. The actual definitions of these concepts are considerably less clear. The US National Bureau of Economic Research has a “Business Cycle Dating Committee” that specifies the chronology of the US business cycles. The committee does not have a fixed definition of recessions Instead the combine real GDP, with data on the labour market and data on income. However, their definitions of recessions often coincide with a definition based on two consecutive quarters of decline in real GDP.</p>
+<p>How exactly expansions and recessions are identified varies from country to country, but in the European Union we typically define a recession as two successive quarters of negative economic growth. A business cycle is typically defined as the period from a boom to recession and back to boom, in other words, from peak to peak. Figure <a href="#fig:gdp12"><strong>??</strong></a> shows annual levels, and we clearly see a drop in real output in 2008 and 2009. In terms of quarters, the growth rate was negative from the second quarter in 2008 to the second quarter in 2009.</p>
+<center>
+<div class="myblock">
+<center>
+<strong>GDP and business cycles</strong>
+</center>
+<ul>
+<li>
+An economic recession is the period from peak economic activity to the lowest level of economic activity.
+</li>
+<li>
+An economic expansion is the period from the lowest level of economic activity to the highest level of economic activity.
+</li>
+<li>
+The economic cycle of recessions and expansions is called business cycles.
+</li>
+<li>
+There is no general stringent definition of a recession, but two consecutive quarters of decline in real GDP is often seen as a sign of of a recession.
+</li>
+</ul>
+</div>
+</center>
+</div>
+<div id="gdp-per-capita" class="section level4 unnumbered" number="">
+<h4>4 GDP per capita</h4>
+<p>While GDP growth rates are used across time, we are sometimes also interested in comparing across regions or countries. First, we could be interested in identifying regional recessions and expansions. Second, we could be interested in comparing the level of economic activity per capita. To achieve the latter, we divide data on total GDP for each region or country and divide by the number of residents in the region or country. Figure <a href="activity.html#fig:gdp14">4.5</a> shows the economic activity per person in 2015. We have adjusted the price levels to be comparable across time and space. In this chart the values correspond to the price level of 2017 and we have adjusted all national values to the US price level and show the values in US dollars. To be clear, we do not simply use the exchange rate to translate the national currencies, but we also take differences in price levels across countries into account. Luxembourg has, by far, the highest level of economic activity per person, followed by Ireland and Switzerland. Of the OECD data with available data, Chile has the lowest GDP per person.</p>
+<div class="figure" style="text-align: center"><span id="fig:gdp14"></span>
+<img src="_resources/chapter_gdp/fig11.png" alt="GDP per capita for selected countries in 2015, measured in 2017 USD - PPP adjusted. Source: OECD. " width="80%" />
+<p class="caption">
+Figure 4.5: GDP per capita for selected countries in 2015, measured in 2017 USD - PPP adjusted. Source: OECD.
+</p>
+</div>
+<p>Figure <a href="activity.html#fig:gdp15">4.6</a> shows the relative change in real economic activity per person from 2000 to 2015. Most countries increased the output per person, but not all.</p>
+<div class="figure" style="text-align: center"><span id="fig:gdp15"></span>
+<img src="_resources/chapter_gdp/fig12.png" alt="Real change in GDP per capita for selected countries 2000-2015, real values measured  in 2017 USD - PPP adjusted. Source: OECD.  " width="80%" />
+<p class="caption">
+Figure 4.6: Real change in GDP per capita for selected countries 2000-2015, real values measured in 2017 USD - PPP adjusted. Source: OECD.
+</p>
+</div>
+</div>
+<div id="productivity" class="section level4 unnumbered" number="">
+<h4>Productivity</h4>
+<p>Productivity is a measure of how much we can produce relative to the resources used in the production. A higher productivity means that we produce more given resources (or produce the same with less resources).</p>
+<p>A very common approach is to measure the Gross Value Added per worker or per hours worked. A higher value then suggests that we can produce a greater value added with less labor inputs. However, we could also consider other inputs such as capital. However, the most simple approach is probably GDP per worker. This is closely related to GDP capita, which we discussed above, but in this approach we only consider the individuals who are on the labor market. Using this approach we can provide a crude but straightforward indicator for the labor productivity of a country. Changes in productivity are often the first step in understanding changes in economic activity.</p>
+</div>
+<div id="the-balance-of-trade" class="section level4 unnumbered" number="">
+<h4>The balance of trade</h4>
+<p>The balance of trade is the difference between exports and imports, also called net exports and denoted <span class="math inline">\(NX\)</span>:</p>
+<p><span class="math display">\[\begin{align}
+  NX=X-M
+\end{align}\]</span></p>
+<ul>
+<li><em>NX</em> is the balance of trade or net exports.</li>
+<li><em>X</em> is goods and services produced domestically but consumed abroad (Exports)</li>
+<li><em>M</em> is goods and services produced abroad and consumed domestically (Imports).</li>
+</ul>
+<p>If the balance of trade is positive it means that a country has a trade surplus, because it exports more than it imports. If a country imports more than it exports, in other words, when the trade balance is negative, the country has a trade deficit.</p>
+</div>
+<div id="balance-of-payments" class="section level3 unnumbered" number="">
+<h3>Balance of payments</h3>
+<p>The balance of payments (BoP) captures the overall transactions between a country and the rest of the world. The “balance” means that the sum of the current account, financial account and capital account has to be zero.</p>
+<ul>
+<li>The current account consists of the the balance of trade (as defined above) and the income balance (income earned abroad from domestic residents minus income earned by foreign residents).</li>
+<li>The capital account captures international capital transfers.</li>
+<li>The balancing item captures statistical inaccuracies.</li>
+</ul>
+<p><span class="math display">\[\begin{align}
+  \text{current account}+\text{capital account}+\text{balancing item}=0 
+\end{align}\]</span></p>
+<p>Let’s consider an example: If we go to Germany on holiday and spend 10£ in restaurants and hotels using our English credit card, we are causing a 10£ debit on the trade balance. Let’s say that we also export some English Breakfast tea for the value of 100£ to Germany. This is noted as a 100£ credit on the trade balance. The balance of trade is then <span class="math inline">\(100£-10£=+90£\)</span>. We don’t earn anything abroad and no foreigner earned something in England. The current account would then be <span class="math inline">\(+90£\)</span>.</p>
+<p>Now let us look at the capital account. The 10£ spent abroad using our English credit card will be recorded in our capital account as an investment. If we also buy some German stocks for say 15£, then these stocks will appear in debit as “portfolio investment”. However, because we use our English credit card to buy these stocks, the 15£ will also appear on our capital account as a credit (just like the hotel and restaurant shopping). Finally, the trade credit payment from the German tea buyer is recorded in the financial accounts as a debit. The net capital account is then <span class="math inline">\(25£-115£=-90£\)</span>. As expected, the sum of the current account plus the capital account is zero. This occurs by definition through the double entry accounting framework (each entry is entered both as a debit or a credit).</p>
+<p>It is common to separate out “financial account” from the capital account and use this extended definition:
+<span class="math display">\[\begin{align}
+  \text{current account}+\text{capital account}+\text{financial account}+\text{balancing item}=0
+\end{align}\]</span></p>
+</div>
+</div>
+<div id="further-readings" class="section level2" number="4.7">
+<h2><span class="header-section-number">4.7</span> Further readings</h2>
+<ul>
+<li><a href="https://www.ons.gov.uk/economy/grossdomesticproductgdp/articles/gdpandme/2017-03-20">GDP and Me by the ONS</a></li>
+<li><a href="https://www.ons.gov.uk/economy/grossdomesticproductgdp/articles/whatisgdp/2016-11-21">What is GDP by the ONS</a></li>
+<li><a href="https://www.bankofengland.co.uk/knowledgebank/what-is-gdp">What is GDP by the Bank of England</a></li>
+</ul>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>For details on the SNA, please visit the following <a href="https://unstats.un.org/unsd/nationalaccount/sna.asp">website</a><a href="activity.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Note that while the notation for the expenditure approach is fairly standard, the notation for the production and income approaches are less standardized.<a href="activity.html#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="the-labour-market.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="limits-to-gdp-alternative-measures.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

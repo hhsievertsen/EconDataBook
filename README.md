@@ -1,2 +1,1 @@
-# EconDataBook
- 
+Economic Data Book repository
