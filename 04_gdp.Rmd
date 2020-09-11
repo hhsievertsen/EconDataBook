@@ -110,7 +110,7 @@ Let us return to Microcountry and use the expenditure approach to calculate the 
     - There are no investments in this economy, $I=0£$.
   
 * $X$ Exports:
-    - The bakery exports bread to Neighbourcountry for 9£, $X=9£.
+    - The bakery exports bread to Neighbourcountry for 9£, $X=9£$.
   
 * $M$ Imports:
     - Microcountry imports goods for the value of 8£ from Neigbourcountry, $M=8£.
@@ -143,7 +143,7 @@ Let us return to Microcountry and use the income approach to calculate the econo
 
 * $W$,worker compensation:
 
-    - The farm workers receive a wage compensation of 8£, the bakery workers receive a wage compensation of 14£ and the health service workers receive a  compensation of 5£. The total wage comensation is therefore $W=8£+14£+5£=27$.
+    - The farm workers receive a wage compensation of 8£, the bakery workers receive a wage compensation of 14£ and the health service workers receive a  compensation of 5£. The total wage compensation is therefore $W=8£+14£+5£=27$.
     
 * $P$, operating surplus:
 
@@ -153,7 +153,7 @@ Let us return to Microcountry and use the income approach to calculate the econo
 
   - The farm pay 2£ in taxes and the bakery pays 2£. There are subsidies. The taxes minus subsidies is therefore, $NT=2£+2£=4£$.
   
-The GDP of Microcountry is therefore $Y=27£+4£+1£=32£.
+The GDP of Microcountry is therefore $Y=27£+4£+1£=32£$.
 
 
 Let's now move back to the real real economy of the United Kingdom. In the following Table we show the income approach to measure GDP for the United Kingdom.  Compensation of employees, that is our $W$,  constitutes for about half of the GDP. Profits, $P$, constitute for 38%, and the remaining 12% are net taxes. 
