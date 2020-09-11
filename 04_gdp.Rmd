@@ -116,7 +116,7 @@ Let us return to Microcountry and use the expenditure approach to calculate the 
     - Microcountry imports goods for the value of 8£ from Neigbourcountry, $M=8£.
   
 
-The GDP of Microcountry is therefore $Y=26£+5£+9£-8£=32£.
+The GDP of Microcountry is therefore $Y=26£+5£+9£-8£=32£$.
 
 
 Let's now move to a real economy, the United Kingdom. In the following Table we show the expenditure approach to calculate GDP for the United Kingdom.  Private consumption, that is our $C$,  constitutes for about two-thirds of the GDP. Government consumption, $G$, constitutes for 18%, Investments, $I$, constitute for 17%, and Net exports are only slightly negative (as Imports are larger than Exports).
