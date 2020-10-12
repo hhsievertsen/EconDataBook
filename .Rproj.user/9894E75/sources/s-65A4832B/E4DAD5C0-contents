@@ -1,0 +1,1268 @@
+---
+title: "My log"
+author: "Hans Henrik Sievertsen"
+output:
+  tufte::tufte_html:
+    tufte_features: ["fonts", "background"]
+    css: "style.css"
+  
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,cache = TRUE)
+setwd("C:\\Users\\hs17922\\Dropbox\\Log")
+library("tidyverse")
+library(lubridate)
+library("patchwork")
+library("tufte")
+library("tidylog")
+library("extrafont")
+#font_import()
+#loadfonts(device = "win")
+################################################
+# Cleaning 
+# Load data
+#df<-read_csv("progress.csv")
+# df<-df%>%
+#    mutate(updatenr=1)%>%
+#    mutate(date=Sys.Date(),progress=as.numeric(progress))%>%
+#    mutate(level=factor(level, ordered = TRUE,levels = c("Under Review","Working Paper","Presentation","Results", "Data work","Literature","Textbook","R tutorial","Excel intro","Admin", "Slides", "Tasks",
+#                                                         "Coursework")))%>%
+#    mutate(project=factor(project, ordered = TRUE,
+#           levels = c("Polaris","Crowding","Pareto","Strike","Grading","Antibiotics","CHX","IGM", "Grading Bias","Income Risk",
+#                      "School choice","Social housing", "Economic Data","Applied Economics")))
+#save("df",file="progress.RData")
+################################################
+# Define functions  
+# Update data function
+update_data<-function(p,l,us=1,ur=-1){
+   setwd("C:\\Users\\hs17922\\Dropbox\\Log")
+    load(file = "progress.RData")
+  temp<-df
+  # find most recent
+  update<-max(temp$updatenr)
+  temp<-temp%>%filter(updatenr==update)
+  # Update
+  if (us!=1){
+  temp<-temp%>%mutate(date=Sys.Date())%>%
+        mutate(progress=ifelse(project==p&level==l,progress*us,progress))%>%
+        mutate(updatenr=updatenr+1)
+  # append
+  dfnew<-rbind(df,temp)
+  # save
+  df<-dfnew
+  }
+  else if (ur!=-1) {
+     temp<-temp%>%mutate(date=Sys.Date())%>%
+        mutate(progress=ifelse(project==p&level==l,ur,progress))%>%
+        mutate(updatenr=updatenr+1)
+        # append
+        dfnew<-rbind(df,temp)
+        # save
+        df<-dfnew
+    
+  }
+ write_csv(df,"progress.csv")
+  save(df,file = "progress.RData")
+}
+
+
+# ResFig
+resfig<-function(mdate="2020-07-01",fontsize=19,goalsize=3){
+   setwd("C:\\Users\\hs17922\\Dropbox\\Log")
+  load(file = "progress.RData")
+  # select date
+  dfplot<-df%>%filter(date==as.Date(mdate))%>%filter(category=="research")
+  # select most recent
+  dfplot<-dfplot%>%filter(updatenr==max(dfplot$updatenr))
+  # find sum
+  dfsum<-dfplot%>%group_by(project)%>%summarise(total=round(100*sum(progress)/600),level="Results")
+  # Create Fig
+  fig1<-ggplot(dfplot%>%filter(),aes(x=project,y=progress,fill=level))+
+  geom_bar(stat="identity")+ coord_flip()+
+  theme_minimal()+labs(x=" ",y="Progress", fill=" ",title=paste("Research status: ", substr(mdate,6,15),sep=""))+
+  theme(legend.position = 'bottom')+ 
+scale_fill_brewer(palette="Dark2")+ylim(0,650)+
+    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+          axis.text.x = element_blank(),plot.background = element_rect(fill="#fffff8",colour = "#fffff8"),
+         text = element_text(size=goalsize),legend.background = element_rect(fill="#fffff8",colour = "#fffff8"),
+         panel.border = element_blank())+ 
+        theme(text = element_text(size=fontsize, colour = "black"),axis.text.y = element_text(colour="black"))+
+     theme(plot.title = element_text(hjust = 0.5))+
+    geom_text(dfsum,mapping=aes(x=project,y=640,label=paste(total,"%",sep="")),family="Palatino Linotype",size=4)+
+    theme(text=element_text(family="Palatino Linotype"))+
+    theme(axis.text.y = element_text(hjust = 0))
+  
+  fig1
+}
+# TeachFig
+teachfig<-function(mdate,fontsize=19,goalsize=3){
+    setwd("C:\\Users\\hs17922\\Dropbox\\Log")
+  load(file = "progress.RData")
+  # select date
+  dfplot<-df%>%filter(between(date,as.Date(mdate),as.Date(mdate)))%>%filter(category=="teaching")
+   # select most recent
+  dfplot<-dfplot%>%filter(updatenr==max(dfplot$updatenr))
+  # find sum
+  dfsum<-dfplot%>%group_by(project)%>%summarise(total=round(100*sum(progress)/600),level="Slides")
+   # Create Fig
+  fig1<-ggplot(dfplot%>%filter(),aes(x=project,y=progress,fill=level))+
+  geom_bar(stat="identity")+ coord_flip()+
+  theme_minimal()+labs(x=" ",y="Progress", fill=" ",title=paste("Teaching status: ", substr(mdate,6,15),sep=""))+
+  theme(legend.position = 'bottom')+guides(fill=guide_legend(nrow=3))+ 
+scale_fill_brewer(palette="Dark2",drop = TRUE)+ylim(0,430)+
+    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+          axis.text.x = element_blank(),plot.background = element_rect(fill="#fffff8",colour = "#fffff8"),
+         text = element_text(size=goalsize),legend.background = element_rect(fill="#fffff8",colour = "#fffff8"),
+         panel.border = element_blank())+ 
+        theme(text = element_text(size=fontsize, colour = "black"),axis.text.y = element_text(colour="black"))+
+     theme(plot.title = element_text(hjust = 0.5))+
+    geom_text(dfsum,mapping=aes(x=project,y=400,label=paste(total,"%",sep="")),family="Palatino Linotype",size=4)+
+    theme(text=element_text(family="Palatino Linotype"))+
+    theme(axis.text.y = element_text(hjust = 0))
+  fig1
+    
+}
+
+
+```
+
+```{r updatedata, include=FALSE}
+#update_data(p="Polaris",l="Working Paper",us=1.05)
+#update_data(p="Economic Data",l="Textbook",ur=90)
+# update_data(p="Economic Data",l="Tasks",ur=10)
+#update_data(p="Economic Data",l="R Tutorial",ur=90)
+#update_data(p="Economic Data",l="Excel intro",ur=99)
+# update_data(p="Economic Data",l="Excel intro",ur=99)
+#update_data(p="Applied Economics",l="R Tutorial",ur=5)
+#update_data(p="CHX",l="Results",ur=100)
+#update_data(p="CHX",l="Under Review",ur=100)
+#update_data(p="CHX",l="Polaris",ur=100)
+#update_data(p="Strike",l="Under Review",ur=100)
+#update_data(p="Grading Bias",l="Results",ur=60)
+# update_data(p="Grading Bias",l="Working paper",ur=50)
+# update_data(p="Grading Bias",l="Literature",ur=41)
+# update_data(p="Grading Bias",l="Presentation",ur=100)
+#update_data(p="Grading Bias",l="Literature",ur=40)
+#update_data(p="School choice",l="Data work",ur=15)
+#update_data(p="Grading Bias",l="Data work",us=1.05)
+#update_data(p="Economic Data",l="R Tutorial",ur=90)
+#update_data(p="Strike",l="Under Review",ur=90)
+#update_data(p="Strike",l="Working Paper",ur=100)
+#update_data(p="Excel intro",l="R Tutorial",ur=5)
+#update_data(p="Grading",l="Data work",us=1.05)
+```
+
+
+# Log
+
+
+`r tufte::margin_note('2020 achievements')`
+
+# Achievements in 2020
+
+- January
+
+	* Refereed for JPAM
+
+- February
+
+	* Refereed for the Economics of Education Review
+
+- March
+
+	* Finished results for Antibiotics
+	* Revised and resubmitted Polaris
+
+- April
+
+	* Finished the soltider app
+	* Reviewed for the Sociology of Education
+	* Wrote piece for IZA
+	* Wrote piece for VOX
+	* Wrote piece for Economics blog
+	* FSE grant application (rejected)
+	* Reviewed for JPuBE
+	* Reviewed for Empirical Econ
+
+
+- May
+
+  * VIVA for Abeer
+  * Revised and resubmitted crowding
+  * Wrote piece for the econ blog
+  * Wrote shiny program for 2way FE decompositon
+
+
+- June
+
+  * Submitted DFF grant application
+  * Refereed for JEBO
+  * Refereed for Economics of Edu Review
+
+
+- July
+
+  * Finished CHX draft and sent to coauthors
+  * Finished grading bias draft and submitted to workshop. 
+  * Refereed for Health Economics
+  * Refereed for RESTAT
+  * Prepared PhD VIVA
+  * Finished R Tutorial
+  * Refereed Econ of Edu Review
+  * Refereed Sociology of Education
+  
+- August
+
+  * PhD VIVA for Eva
+  * Finished R tutorial beginner
+  * Taster lecture
+  * Resubmitted JHE Crowding
+
+- September
+
+  * Finished Excel Tutorial
+  * Finished Econ Data Book
+  * Accepted paper JHE
+  * Resubmitted Polaris
+  * Resubmitted Pareto
+  * Presented at IZA
+  
+  
+  
+`r tufte::margin_note('October  4, 2020')`
+
+## October 4, 2020  
+
+Plan for the upcoming week
+
+- Mark 5 dissertations
+- Finish all prep for teaching in week 2 and 3
+- Text for Helen
+- Add more cohorts to grading bias
+- Polish chart for Gym Choice
+- Log on to social housing project and email Andy
+- Host talk
+- Applied Econ with R summary stat finished
+
+
+- Monday (Teaching Prep and Dissertation)
+
+  - Morning: 
+  
+    - Mark Palak
+    - Meet Toman
+    
+  - Afternoon: 
+    - Slides for lecture 1
+    - Prepare task 2
+    
+    
+- Tuesday (Research: Helen article)
+
+  - Helen text
+
+
+- Wednesday (Meetings and Teaching prep)
+
+  - Prepare slides
+  - Host Talk
+  - Applied Economics teaching
+  - Add cohorts to Grading
+  - Prepare lecture 2
+  - Prepare task 4
+
+- Thursday (Dissertations)
+
+  - Mark 4 dissertations
+  
+
+- Friday (Research)
+  
+  - Grading Bias pres
+  - Social Housing
+  - Polish gym choice
+  
+
+
+`r tufte::margin_note('September  30, 2020')`
+
+## September 30, 2020  
+
+Today I hosted a seminar and attended the school meeting. I also managed to create the first charts for the gym choice project. 
+
+```{r ,echo=FALSE, warning=FALSE, message=FALSE,fig.width=5,fig.height=4}
+resfig(mdate="2020-09-30",fontsize=12,goalsize=1.2)
+```
+
+`r tufte::margin_note('September  29, 2020')`
+
+## September 29, 2020    
+
+A very productive day. I finished a lot of teaching admin including an economic data meeting and a supervisor meeting. I got introduced to blackboard collaborate and saw the launch of CEPEO. 
+
+Importantly I also finalized my edits for the Pareto paper! Great and created a github repository with replication files. 
+
+Finally, I also finalized all the work for the FSE grant application. Brilliant!
+
+Only thing I missed is the economic data handbook. 
+
+
+`r tufte::margin_note('September 28, 2020')`
+
+
+## Plan for the week starting Sep 28, 2020 
+
+To do
+
+1. Finish Week 2 and 3 for Economic Data
+2. Finish handbook for Economic Data
+3. Applied Econ plan
+4. Contact admin about grant. 
+5. Economic Data meeting
+6. Finish grant my FSE
+7. Finish material for Beatrice
+8. Finish Pareto stuff
+
+
+Monday Sep 28
+
+DONE - Simon Letter
+
+Tue Sep 29
+
+DONE- 9-10: Email Simon about MG
+DONE - 9-10: Email about project
+DONE - 9-10: Respond Vibeke
+DONE - 9-10: Respond Steven Proud UG assessments
+DONE - 9-10: Contact admin about grant
+
+DONE - 9-10: Email Andreea meeting
+DONE - 9-10: Budget FSE
+DONE - 9-10: Prepare meeting at 10
+DONE - 10:00 Economic Data meeting 
+DONE - 11:00 Mariagrazia 
+DONE - 12-13: Respond Beatrice Grant
+DONE - 12-13: Upload FSE documents 
+DONE - 14-17: Pareto
+DONE- Video for Toman
+DONE - Mtid
+DONE - Collaborate meeting
+
+Wed Sep 30
+
+- Respond Christine
+- Empirical DIF Gym choice
+- Prepare Essen discussion
+- Seminar
+- School meeting
+
+Thu Oct 1
+
+- Economic Data handbook
+- Applied Econ status
+- Economic data week 1 finish (with everything)
+- Economic data week 2 finish (with everything)
+- Country allocation
+- Steven Proud Email
+
+DONE - Data science marking
+
+
+Fri Oct 2
+
+- Submit grant
+- ESSEN workshop
+
+Sat Oct 3
+
+_ Essen Workshop
+
+
+
+
+
+`r tufte::margin_note('September 12, 2020')`
+
+
+## Plan for the week starting Sep 13, 2020 
+
+To do
+
+1. Prepare questions for Eva
+2. Eva VIVA
+3. RR rerun data stuff
+4. RR chart on education shares
+5. Dentist
+6. Quiz
+7. Results grading bias
+8. Pres grading bias
+
+Monday: 
+
+  - On airplane: read Evas dissertation and prepare questions
+  - CPH checkin and stuff
+  - CPH: RR data replicate small sample
+  - CPH: Grading bias keep running
+  - Quiz
+  
+Tuesday:
+
+  - RR data
+  - Grading Bias results
+  - Dentist
+  
+Wednesday
+
+  - RR
+  - Presentation grading bias
+  
+Thursday
+
+  - RR
+  - Grading Bias
+  
+Friday
+  - Eva defence
+  - Grading Bias pres
+  
+
+Tuesday:
+
+
+
+
+`r tufte::margin_note('September 12, 2020')`
+
+
+## September 12, 2020 
+
+Awful week. Worked way too much. Too much unproductive work. Finished Excel Tutorial and Econ Data book, but Grading Bias results are still a bit tricky. Need to cool down.
+
+
+
+`r tufte::margin_note('September 7, 2020')`
+
+
+## September 7, 2020 
+
+I've neglected the blog for a while. Too bad. I've been to busy. Too bad! I have done good practice on the Excel tutorial. Let's finish this stuff!
+
+
+Goals of this week
+
+1. Finish Excel tutorial
+2. Finish Econ Data book
+3. Grad Bias Results
+4. A Swan results
+5. Seminar organisation
+6. Apply at VIVE
+
+
+
+
+`r tufte::margin_note('August 29, 2020')`
+
+## Auguet 29, 2020 
+
+Busy week and didn't get to update much. 
+
+*Economic Data* Updated Economic Data on Blackboard. Looks good. Asked Steven and Annika for feedback.
+
+*Crowding* Resubmitted Crowding to JHE. Fingers crossed.
+
+*Praise* Sent praise mail to the one with the brilliant NBER SI presentation.
+
+*Grading bias* Accepted at the IZA education workshop. Played around with the Fixed EFfects.
+
+`r tufte::margin_note('August 26, 2020')`
+
+## August 26, 2020  
+
+*Taster lecture* Delivered taster lecture. Worked well.
+
+*Teaching prep* I have to use the Blackboard template. I recorded two videos for youtube, but it they cannot access this in China, so I need to reorganise that. 
+
+*CHX* Read some papers on CHX implementation. Found the CHX tracker https://www.healthynewbornnetwork.org/chlorhexidine-dashboard/ 
+
+`r tufte::margin_note('August 25, 2020')`
+
+## August 25, 2020  
+
+Busy day. A few meetings. Gym status meeting. 
+
+  
+`r tufte::margin_note('August 24, 2020')`
+
+## August 24, 2020  
+
+*Reading a paper* I spent the morning reading Kalle and Eriks paper and gave some feedback. It was a nice paper on how investments in durables and nundarables have different reactions to unemployment risk.
+
+*IGM* I cleaned the data this afternoon and ran a new scrapping. I also created a file enabling us to identify the sample included in the Gordon Dahl paper. 
+
+*Teaching prep* I spent some time preparing the taster lecture. I think I am ready. 
+
+
+
+
+`r tufte::margin_note('August 21, 2020')`
+
+## August 21, 2020  
+
+*Data viz*  Created a nice chart. Learned a bit more about creating a factor and using case_when.
+
+Chart looks nice.
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="75%", fig.show='hold',echo=FALSE}
+knitr::include_graphics("./graphics/20200821_fig.png")
+```
+
+*Excel intro* Created videos and pictures for installing Excel and using the cloud solution. Looks good. 
+
+*Otherwise not very productive. 
+
+*Evaluating the week's goal*:
+
+1. DONE Grading new results
+2. DONE Excel draft
+3. DONE Applied Econ charts sum stat
+4. Insurance
+5. DONE Polaris finish
+6. DONE Meeting Simon
+7. DONE Meeting Beatrice
+8. Start econ data book.
+
+*Next week's goal (starting Aug 24)*
+
+1. Start econ data book.
+2. Excel first steps
+3. Grading bias new results
+4. Insert grading results if received
+5. CHX process
+6. Taster lecture
+7. Taster lecture slides
+8. IGM clean and start - send email to Sarah
+9. Read paper for Erik and Kalle
+
+
+`r tufte::margin_note('August 20, 2020')`
+
+## August 20, 2020 
+
+*Grading results* Finished results and asked Mette to download. Looks good! Sent update to Ulrik. Looking forward to finishing this!
+
+*Taster lecture 3* Drafted slides for lecture. Looking good in my view. Might add segregation example. But otherwise done.
+
+
+
+`r tufte::margin_note('August 19, 2020')`
+
+## August 19, 2020  
+
+*Heckman curve is dead* Read ths nice blog post:   https://statmodeling.stat.columbia.edu/2020/08/12/heckman-curve-update-update/. So apparaently Heckman never intended it to be about age.
+
+*Grading* Okay, I finished working grading using RAS spell data. The dates in the spells are very noisy. I tried different strategies to clean them. I get slightly different results, but the same overall pattern: Positive and large coefficients in first quarters that then drops. I also looked at effects on job changes, but found none. I also created a chart of month of start in second job. No clear story. And finally, I need to create a chart of month of graduation. Three charts to include. 
+
+I also finished the new heterogeniety analysis. Looking good! Nice new design. 
+
+*Other* Meeting with team about taster lecture. I need to create slides asap. Keywords
+
+
+1. Link to first lecture & Marshall quote
+
+2. Questions: effect of covid - cause and effect
+
+3. Link to COVID schooling
+
+4. Cause and effect Nepal
+
+`r tufte::margin_note('August 18, 2020')`
+
+## August 18, 2020  
+
+*Reading: Michaela Carlana "Implicit stereotypes: evidence from teachers' gender bias" (QJE, 2019)*.
+
+- RQ: whether exposure to teacher stereotypes, as measured by the Gender-Science Implicit Association Test, affects student achievement
+
+
+- Data: IAT survey linked to admin records with pupils include standardized test scores in math and reading,family background, high school track choice, teachers’ track recommendation and, for a subsample of students, a measure of self confidence in their abilities in different subjects.
+
+- Setting: Italy, middle age 12 to 14.
+
+- Identification: "as good as random assignment to teachers", class FE.
+
+- Result: 
+
+    1. "the gender gap in math performance increases by one-third (from 0.15 to 0.20 standard deviations) in classes assigned to a math teacher who implicitly associates boys with mathematics, compared with classes assigned to a teacher who as the opposite implicit associations."
+    
+    2. "teacher stereotypes have a substantial negative impact on girls’ self-confidence in math."
+    
+    3. Effects are smaller for students who actually took a test! Key for our paper. 
+
+
+- Quotes: 
+    
+    - "induce girls to underperform in math and self-select into less demanding high schools, following the track recommendation of their teachers"
+    
+    - "least partially driven by lower self-confidence on math ability of girls exposed to gender-biased teachers"
+    
+    - "There is a long-standing debate on whether the gender gap in math achievement arises from biologically based differences in brain functioning as opposed to culture and social conditioning (Baron-Cohen 2003; Nollenberger, Rodrıguez-Planas, and Sevilla 2016)."
+    
+    - "Cross-country evidence supports the latter idea: cultures in which gender stereotypes are weaker have a smaller gender gap in math performance, defined as the score of boys minus the score of girls in standardized tests (Guiso et al. 2008; Nosek et al. 2009; Else-Quest, Hyde, and Linn 2010).1"
+    
+    - "Without provision of further information about the candidates except their appearance, men are more likely to be hired for a mathematical task than are women (Reuben, Sapienza, and Zingales 2014), and both men and women are less willing to contribute ideas and have lower self confidence in fields that are not stereotypically associated with their own gender (Coffman 2014; Bordalo et al. 2018)."
+    
+    - "Teachers’ erroneous expectations may lead to a self-fulfilling prophecy whereby prior beliefs are self-confirming in equilibrium (Spencer, Steele, and Quinn 1999; Papageorge, Gershenson, and Kang 2018): biased teachers may set a lower bar for the learning of students from stigmatized groups or fail to encourage them to fulfil their potential (Rosenthal and Jacobson 1968; Cooper and Good 1983)."
+    
+    - "I document that implicit associations, measured by the IAT, reflect stereotypes based on the representativeness of genders at the top of the ability distribution for math and reading (Bordalo et al. 2016). In addition to IAT scores, I collected detailed information on teacher characteristics. I show that IAT scores correlate with observables, including gender, field of study, and gender norms in the place of birth, as measured by the World Value Survey. Furthermore, I find that IAT scores do not correlate with variables such as teachers’ experience or self-reported gender bias, which could arise either because they measure two different mental constructs or because there is social desirability bias in the explicit answers (Greenwald et al. 2009)."
+    
+    - "math teacher stereotypes induce girls to self-select into less demanding tracks, following the biased recommendation of their teachers. The estimates from a linear probability model suggest that a substantial part of the effect is driven by a higher likelihood to enroll in the vocational track for girls exposed to teachers with stronger implicit stereotypes"
+
+    - "The effect is driven by students at the bottom of the ability distribution or with missing data on test scores.4 These results provide a link between teacher stereotypes and teacher bias: they suggest that stronger male-math implicit associations of teachers interfere with their interaction with female students and their ability to be unbiased in the classroom, even unconsciously—for instance, when they recommend a high-school track to their students."
+
+
+`r tufte::margin_note('August 17, 2020')`
+
+## August 17, 2020  
+
+
+*R tutorial* added section on sample selection. Still needs some Stata example.
+
+*Grading bias project* Had meeting with Simon and Beatrice,
+
+*Peer feedback* had meeting with Stefania. 
+
+
+
+## August 13, 2020  
+`r tufte::margin_note('August 15, 2020')`
+
+## August 15, 2020
+
+*R tutorial for Applied Econ* Finished the loading and merging data section. Still need to figure out how to link to specific sections.
+
+
+`r tufte::margin_note('August 14, 2020')`
+
+## August 14, 2020
+
+*PhD Viva* We did the viva for Eva. Tough but good. Lot's of questions. She passed.
+
+*Grading* Started building new results. Turned out I had generated results on the wrong drive. Making progress.
+
+*Applied Econ R tool* I finished drafting the "Research question & data" section. I also simulated new data and uploading to github.
+
+*Evaluating the week's goal*:
+
+1. DONE Finish R tutorial
+2. DONE PhD Viva
+3. DONE Polaris finish my part
+4. DONE Grading new results
+5. Excel draft
+6. DONE Crowding draft
+7. DONE Beatrice FSE
+
+*Next week's goal (starting Aug 17)*
+
+1. Grading new results
+2. Excel draft
+3. Applied Econ charts sum stat
+4. Insurance
+5. Polaris finish
+6. Meeting Simon
+7. Meeting Beatrice
+8. Start econ data book.
+
+```{r ,echo=FALSE, warning=FALSE, message=FALSE,fig.width=5,fig.height=4}
+resfig(mdate="2020-08-14",fontsize=12,goalsize=1.2)
+```
+
+
+`r tufte::margin_note('August 13, 2020')`
+
+## August 13, 2020
+
+*Crowding* We received a second round RR on the crowding paper for JHE. Not many comments. I've created a new tables and updated a chart. 
+
+*CHX* I created a new event study and fixed some typos.
+
+*Applied economics* I started the R tutorial. I have a good structure. A lot of work to do.
+
+*Papers to read*
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), out.width="32%", fig.show='hold',echo=FALSE}
+knitr::include_graphics(c("./graphics/20200813_fig1.png","./graphics/20200813_fig2.png","./graphics/20200813_fig3.png"))
+```
+
+*Read paper on scaling*  Al-Ubaydli, Omar, John A. List, and Dana L. Suskind. "What can we learn from experiments? Understanding the threats to the scalability of experimental results." *American Economic Review* 107.5 (2017): 282-86. Useful listing of scalability issues
+
+1. Representativeness of sample
+2. Representativeness of the situation
+3. Econometric issues (Garden of forking paths)
+
+`r tufte::margin_note('August 12, 2020')`
+
+## August 12, 2020
+
+*R tutorial* I spent a lot of time getting the R tutorial deployed. See https://community.rstudio.com/t/including-code-block-with-error/76183 Remember updating all packages!
+
+
+
+`r tufte::margin_note('August 11, 2020')`
+
+## August 11, 2020
+
+
+*Goals for August 2020*
+
+1. Finish R tutorial
+2. Finish Excel tutorial
+3. Finish Grading WP
+4. Resubmit Polaris
+5. PhD VIVA
+
+`r tufte::margin_note('Goals August  2020')`
+
+*Goals for this week starting August 10, 2020*
+
+1. Finish R tutorial
+2. PhD Viva
+3. Polaris finish my part
+4. Grading new results
+5. Excel draft
+6. Crowding draft
+7. Beatrice FSE
+
+*R Tutorial* I added small icons and started proof reading. Should be ready for sharing tomorrow.
+
+*CHX* Discussed feedback from "friends" with Christine. I have to 
+
+1. Create a shorter event study chart
+
+2. Create an event study chart with interactions
+
+3. Read AER paper
+
+4. Correct typos.
+
+*Applied Economics* We discussed R and Stata and decided to go for a crash course. 
+
+
+`r tufte::margin_note('July 31, 2020')`
+
+## July 31, 2020
+
+Last day before break. I
+
+- Submitted the grading bias paper to the IZA Education Workshop
+- Refereed an Econ of Education paper
+- Explored event charts
+  
+* I still need to get a grasp on how fixed effects are estimated! But they deviate for those cells that have single periods!
+  
+- Created slides for event charts for Christine
+
+- Talked to VIVE about report release.
+
+
+
+`r tufte::margin_note('July 30, 2020')`
+
+## July 30, 2020
+
+```{r ,echo=FALSE, warning=FALSE, message=FALSE,fig.width=5,fig.height=4}
+resfig(mdate="2020-07-30",fontsize=12,goalsize=1.2)
+```
+
+*Project: Grading Bias* I worked a lot on the grading bias project and finished a first draft that I sent to Beatrice and Simon. We agreed on sending it to the IZA workshop. 
+A couple of issues:
+
+1.	Currently focus on gender. We might want to emphasize that in title etc. We might also want to look at other dimensions.
+2.	The leave out generosity rate is across everyone. It might make sense to do it gender specific.
+3. Currently we create high school program and exam allocation fixed effects using the 2.5% most popular units. However, this still leads to very small cells that we currently just delete. That is not ideal. We should discuss a better approach.
+4. I need to ask Daniel whether he wants to be included.  Daniel wrote a master thesis with me as a supervisor on a very related topic.
+5. We need to look much more at outcomes and treatments. My STEM indicator is too rough!
+6. There is a general issue of wording. 
+7.	Do we call it teacher discretion? 
+8.	Do we remain agnostic about the source of differences? 
+9.	How do we call the difference (boys vs girls) in assessments (teacher vs exam)
+10.	The variation by the lottery is only affected oral exams, so it is not blind!
+11.	The oral exam also includes the own teacher, but also an external examiner.
+12.	We need to describe the institutional setting in much more detail.
+13.	Hans needs to read many more papers.
+14.	We need to identify our exact contribution in more detail.
+15.	Should we include a link to covid-19?
+
+There are still a lot of weak ends. But I am really happy about this balancing chart:
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), echo=FALSE}
+knitr::include_graphics("./graphics/covariate_balance.png")
+```
+
+
+
+`r tufte::margin_note('July 28, 2020')`
+
+## July 28, 2020
+
+*Referee* I refereed a paper for Health Economics.
+
+*Project: Grading Bias* Drafted the paper structure and got the first results. Let's see whether it holds.
+
+*PhD assessment* I wrote my report for the PhD viva. Looks good.
+
+
+
+`r tufte::margin_note('July 24, 2020')`
+
+## July 24, 2020
+
+*Project CHX:* We finished the CHX draft and sent it to friends and coauthors for feedback. It is looking good. 
+
+*Project Grading Bias:* Finally made some progress on the specification. So the key idea is the following.
+
+1. Generate program identifiers: people who attend the same combination of subjects and levels.
+
+2. Generate exam identifiers: people who were assigned to the same set of exams
+
+3. Calculate the average exam performance for others assigned to the same exam combination. 
+
+3. Is our treatment variable.
+
+*Admin* Finished Abeer PhD revision. Got a few more names on the seminar schedule.
+
+*Other* Started to study event study charts with fixed effects. That is quite complicated. 
+
+
+```{r ,echo=FALSE, warning=FALSE, message=FALSE,fig.width=5,fig.height=4}
+resfig(mdate="2020-07-24",fontsize=12,goalsize=1.2)
+```
+
+*Evaluating the week*
+
+1. [Completed] Finish taster lecture
+2. [Missed] Referee Econ of Education
+3. [Completed] Finish R tutorial
+4. [Completed]Finish CHX draft and send to friends
+5. [Substantial progress] Draft results for grading bias 
+
+
+Next week
+
+1. Grading results. 
+2. Report for Aarhus
+3. Referee Econ of edu
+4. Referee Health econ
+5. Taster lecture
+6. Read Simon's paper
+
+
+`r tufte::margin_note('July 22, 2020')`
+
+## July 22, 2020
+
+*Excel tutorial* Outlined and created R files for the Excel book.
+
+*Project Grading Bias* I calculated the leave out exam difference rate. 
+
+- If I only do the leave out rate across all observations I get limited variation.
+
+- I get more variation if it is by education group, income, origin etc. But this leads to a correlation between these variables and the leave out rate.
+
+- As a placebo test I find no correlation between the leave out rate for the oral exams and the difference for the written exams.
+
+- But the leave out rate keeps being correlated with GPA9. I simply don't know why.
+
+*Project CHX*  I updated the heterogeneity tables. Tried to shorten the event study chart, but it changes the coefficients. Why?
+
+*Read PhD dissertation for VIVA in Aarhus*
+
+
+
+
+`r tufte::margin_note('July 21, 2020')`
+
+## July 21, 2020
+
+*R Tutorial* I spent all day finishing the R tutorial. The draft looks good now. I still need to:
+
+1) Proofread it
+
+2) Consider adding "symbols" indicating what type of block is coming.
+
+3) Test it and launch it.
+
+*Other* I also prepared the resit economic data and checked Stephanie's exam.
+
+`r tufte::margin_note('July 20, 2020')`
+
+Tomorrow: Finish Taster session. 
+
+## July 20, 2020
+
+*Project: CHX* I spent most of the day cleaning do files and completing the last issues on the to do list. I created a heterogeneity chart (below). But it wasn't very hepful. Overall we are close to ready to submit.
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), echo=FALSE}
+knitr::include_graphics("./graphics/fig_heterogeneity.png")
+```
+
+*Seminar* I saw Ellora Derenoncourt (Berkeley) present "Spillover Effects From Voluntary Employer Minimum Wages" looking at how mimum wages spill over in the local market. Very interesting!
+
+
+*R tutorial* I finished lecture 6 and did a lot of work lecture 7. I have to check global income shares, as they look odd. Topics I should check:
+
+- other chart types. 
+
+- commenting.
+
+`r tufte::margin_note('July 17, 2020')`
+
+## July 17, 2020
+
+*Teaching stuff* I spent the morning preparing the taster lesson for Jahir's India session. Made some drawings as well. Sent draft to Jahir and Babak. Babak things it is okay, let's wait for Jahir's response. 
+
+*Supervisor meeting* Simon and I met with Mariagrazia and talked about her new project ideas. She is working towards identifying interaction effects.
+
+*Project: CHX* I corrected a mistake in the event study chart where we had used the time since the first observed treated cell instead of the difference instead of the time since the policy was included. I also added bootstrapping to the event study chart. I created a table using actual home deliveries and a table using the sample of only home deliveries. These are all imprecisely estimated. 
+
+*Praise* Today's praise went to Olle Folke and Johanna Rickne. 
+
+*Seminar: education* attended the education seminar by Karthik on pre-edu intervention in India. 
+
+*Project: Grading bias* Presented preliminary results for Simon. 
+
+*Project: Grading* Finished the databuild and now ready to run the analysis.  
+
+
+*Evaluating the week*
+
+1. [Managed to chapter 6] Finish R tutorial
+2. [Completed] CHX Final data work and start writing. 
+3. [Completed] Grading Bias First results sent to Simon. 
+4. [Completed] Polaris To dos for Polaris
+5. [Completed] Draft lecture
+6. [Completed] Ref Restat
+7. [Completed] Athena Swan Figures
+
+Next week
+
+1. Finish taster lecture
+2. Referee Econ of Education
+3. Finish R tutorial
+4. Finish CHX draft and send to friends
+5. Draft results for grading bias 
+
+
+`r tufte::margin_note('July 16, 2020')`
+
+## July 16, 2020
+
+*Seminar organization* I have four confirmed speakers. All women. Great.  
+
+*Project: CHX* Yesterday I finished editing the manuscript. In doing so I realized the discrepancy in the sample selection. In the description we write that we drop 116 observations that are interviewed within the first month (which means we don't know whether the child died within the first month). However, I didn't do that in the data work and because we use these observations to predict home births, it will affect the results. We first decided to remove them and rerun all results, but later decided to go back and favour the strategy of using all the data we have. No need to delete observations. 
+
+We are getting close to having a draft. We have a small to do list and I need to update some stuff:
+
+
+1.	Hetero interactions based on what predicts home 
+
+2.	Event study chart bootstrapped! 
+
+3.	Main table on sample where we observe home births. [We don’t need to bootstrap that.]
+
+4.	Repeat main table using predicted home birth on the sample where we observe home births [needs bootstrapping]
+
+5.	Estimate main spec with place of birth as outcome (based on sample where we observe that) [We don’t need to bootstrap that.]
+
+6.	Check whether treatment is correlated with prenatal visits
+
+
+*Project: Grading Bias* I have a meeting with Simon about this tomorrow, so I created a set of slides using Xaringan. It was a nice way to summarise what I have done. We find evidence of stereotype marking (see also chart below). The next step is to conceptualize this.
+
+* Create a dummy/measure for friendly exam?
+* Leave out focal individual
+* Judge fixed effects instrument?
+
+Let's see what Simon says tomorrow
+
+```{r ,echo=FALSE, warning=FALSE, message=FALSE,fig.width=5,fig.height=4}
+resfig(mdate="2020-07-16",fontsize=12,goalsize=1.2)
+```
+
+*Project: Strike* We submitted Strike  AJE:AP yesterday. Fingers crossed. Update. desk rejected!
+
+*R tools*
+I created slides with Rmarkdown. To convert them to pdf I first install node.js, which enables me to use npm in command prompt and install decktape. I then use xaringan::decktape("gradbias.html", "gradbias.pdf") to convert html slides to pdf. Works really well.
+
+*R tutorial* I have created another lecture for the R tutorial. It is getting close to finished!. Hurray. 
+
+*Other* We had a department meeting yesterday. Mainly talked about new workload model. But also about teaching during covid19.
+
+`r tufte::margin_note('July 14, 2020')`
+
+
+## July 14, 2020
+
+
+*Grading Bias:* I've created basic charts and tables documenting the differences in teacher assessments and exams. We see substantial differences between marks and these differences vary across gender. Here is the basic chart:
+
+```{r,  include=TRUE, fig.align="center", fig.cap=c(" "), echo=FALSE}
+knitr::include_graphics("./graphics/fig_grad_bias.png")
+```
+
+*Athena Swan:* Pawel and I finished the draft report for Athena Swan. We use Rmarkdown and combine Python and R. I had some issues compiling the document, but it all turned out to be due to two different Anaconda installations (miniconda).
+
+*Admin:* I contacted 1st priority speakers for seminars. I sent emails to three MSc students to check their progress. 
+
+*R tutorial:* I completed the R tutorial chapter 4. Hurray! 
+
+## July 13, 2020
+
+*Grading Bias* Made first chart and first regression results. 
+
+*CHX* Finished results. Ready to write. 
+
+1)	Hetero interactions based on what predicts home births
+
+2)	Event study chart bootstrapped! 
+
+3)	Main table on sample where we observe home births. [We don’t need to bootstrap that.]
+
+4)  Repeat main table using predicted home birth on the sample where we observe home births [needs bootstrapping]
+
+5)	Estimate main spec with place of birth as outcome (based on sample where we observe that) [We don’t need to bootstrap that.]
+
+6)	Check whether treatment is correlated with prenatal visits
+
+**Goals for this week**
+
+1. Finish R tutorial
+2. CHX Final data work and start writing. 
+3. Grading Bias First results sent to Simon. 
+4. Polaris To dos for Polaris
+5. Draft lecture
+6. Ref Restat
+7. Athena Swan Figures
+
+
+`r tufte::margin_note('July 11, 2020')`
+
+
+## July 11, 2020
+
+
+*R Tutorial*: I added some new elements to the chapter 3. It is almost done. Need a summary and something about loading other external data.
+
+*CHX* Added some results and did some cleaning.
+
+*Other* Figured out that I could include a shiny object in a slide show using iframes. The example is saved as test.Rmd in the private doc folder. 
+
+
+
+`r tufte::margin_note('July 10, 2020')`
+
+## July 10, 2020
+
+
+*Grading Bias* I have finished the data work, created a selection table, a sum stat table and started to look at the descriptives. Some of the patterns look slightly odd. But it is worth remembering the selection into the group.
+
+*CHX* We are getting closer. We almost have all results, and we are just adding tiny things.
+
+*Athena Swan* I didn't get to creating the figures. Will do it asap.
+
+*Refereering* I finished 1 referee report this work. I also declined one referee request. 
+
+*Strike* We submitted strike to IZA DP and to JEEA. Fingers crossed. 
+
+*R Tutorial* It is going slower than expected, but it is going forward. 
+
+`r tufte::margin_note('Reviewing goals for week starting Jul 6')`
+
+1. [Only managed ch 1-2] Finish R tutorial
+2. [DONE] Submit Strike
+3. [DONE] Table 1 for grading bias
+4. [Almost] To dos for Polaris
+5. [-] Create a first chart for Athena Swan
+6. [DONE] Key things CHX to do.
+7. [DONE] Referee soc of education
+
+
+```{r ,echo=FALSE, warning=FALSE, message=FALSE,fig.width=5,fig.height=4}
+resfig(mdate="2020-07-10",fontsize=12,goalsize=1.2)
+```
+
+`r tufte::margin_note('July 7, 2020')`
+
+## July 7, 2020
+
+
+*Project CHX* Had a skype meeting with Christine. Most results are now up to date, but we added quite a few things to the to do list:
+
+
+1.	Create a table mimicking the main table, but with logit and add it to the appendix
+
+2.	Check why balancing table estimates are larger than in earlier versions.  Maybe because they were univariate.
+
+3.	Update the spec curve to exclude logit and interactions
+4.	Heterogeneity: interact young mothers with first born
+5.	Heterogeneity: more detailed/younger mothers
+6.	Event study chart lump last 50 observations
+7.	Event study chart increase pre periods. 
+8.	Event study chart showing coefficient relative to control mean
+9.	Create a specification curve for the sample predicted not to be born at home
+10.	F t-test for programs in balancing table
+11.	Estimate a specification using only pre data and test whether the lead indicator is insignificant
+12.	Estimate using only first year of post treatment and all pre data, and test whether treatment indicator is significant and of meaningful size.
+13.	Spec curve type heterogeneity chart
+
+I've updated the specification curve. It looks a bit noisy, but coefficients are still fine. All Monday (July 6) was spent on checking results. 
+
+*R tutorial* Made some process on lecture 2. Getting closer. Going well. But going slow.
+
+*Project Strike:* Working on Strike paper. Did some proofreading.
+
+*Polaris* Discussed with RR with Ulrik and Thorbjørn. My to do:
+
+1. Check use of language. Especially Segregation, polarisation and segmentation; as well as equity vs equality [I've sent an email to Simon, Steven and Helen]
+2. Check literature on school closures and school quality.
+3. Describe DD
+
+**Goals for the week starting Jul 6**:
+
+1. Finish R tutorial
+2. Submit Strike
+3. Table 1 for grading bias
+4. To dos for Polaris
+5. Create a first chart for Athena Swan
+6. Key things CHX to do.
+7. Referee soc of education
+
+`r tufte::margin_note('July 5, 2020')`
+
+## July 5, 2020
+
+*Reading papers for CHX* A cluster-randomised trial of CHX in Nepal (413 communities in Sarlahi)  shows a reduction in omphalitis (a cause of neonatal morbidity) by 75% & neonatal mortality by 24%.^[Mullany, Luke C., et al. "Topical applications of chlorhexidine to the umbilical cord for prevention of omphalitis and neonatal mortality in southern Nepal: a community-based, cluster-randomised trial." The Lancet 367.9514 (2006): 910-918.] 
+
+An editorial about CHX^[Mullany, Luke C. "Chlorhexidine cleansing of the umbilical cord in Nepal: leading by example and saving lives." Journal of Institute of Medicine 36.1 (2013).]. Lot's of useful quotes:
+
+> "Each year, approximately 3 million newborn babies die
+before their first month of life, and almost all of these occur
+in low resource settings"
+
+>"These analyses indicate that widespread use of chlorhexidine cord cleansing could save approximately 4,000 babies per year in Nepal
+and up to 500,000 babies worldwide each year"
+
+>`r tufte::quote_footer(' Mullany (2013)')`
+
+
+Gelano et al (2019)^[Gelano, Tilayie Feto, Yadeta Dassie Bacha, and Degu Abate. "Effect of chlorhexidine cord application on prevention of neonatal sepsis in developing countries: Systematic review and meta-analysis." International journal of health sciences 13.1 (2019): 40.] provides a meta analysis to assess the effect of chlorhexidine cord application on prevention of neonatal sepsis and mortality was assessed as compared to dry cord care.
+
+>"Pooled result of meta-analysis showed that chlorhexidine cord application reduces neonatal sepsis by 32% as compared to dry cord care"
+
+>"The current systematic review identified five cluster
+RCT studies which me"
+
+>`r tufte::quote_footer(' Gelano et al(2019)')`
+
+
+*R Tutorial* I updated the R tutorial to include Allison Horst artwork and a google font I selected: `Jost`.
+
+`r tufte::margin_note('July 4, 2020')`
+
+
+## July 4, 2020
+
+*Project: Grading Bias* I cleaned more of the data. It turns out that `grund2015` has not been delivered in the update. I've emailed the data manager at VIVE to ask about that. I also went through the do files and finished a first merge. The discrepancy for 2003-2007 is still a bit high, but many have no discrepancy. Almost ready for the first analysis. Next thing to do: Clean files and check for errors and then create table 1.
+
+`r tufte::margin_note('Project: Grading Bias. Data issues')`
+
+
+*R Tutorial* I updated the R tutorial to be fully functioning with the new design. Getting closer! Looks good, but still needs a bit more especially on the data loading and proofreading.
+
+`r tufte::margin_note('July 3, 2020')`
+
+## July 3, 2020
+
+*Project: Grading Bias* I translated the example diploma from Herlev Gymnasium. I found a mistake in the diploma (summing the weights). I translated into Excel and to English. I also confirmed that back in the days (2003ish) we copied annual teacher evaluations to exams if we did not attend the exam. That is not the case anymore. 
+
+We also received the updated data. But the variable `testtype` is unfortunately missing from *udgk*. I've asked the data manager about that. I converted the files to Stata and created new 10 percent samples. 
+
+
+*Project: Grading* I've cleaned a bunch of files. I am now done until file `13_identify_course_toughness` (or similar). 
+
+*Teaching stuff:* I met virtually with Monica Costa Dias and Matthew Pollison to talk about applied courses for the PhD program. They have very good plans. I spoke about the Doyle unit back in 2012. I also updated the R tutorial to incorporate layout by Allison Horst. Looks good!
+
+*Project: Strike* Going back and forth with Miriam and Jonas. We are getting close to submission! 
+*Project: CHX:* I updated the event study chart to have marker size that depends on the number of observations in the cell. The specification curve is still being generated.
+
+```{r ,echo=FALSE, warning=FALSE, message=FALSE,fig.width=5,fig.height=4}
+resfig(mdate="2020-07-03",fontsize=12,goalsize=1.2)
+```
+
+`r tufte::margin_note('July 2, 2020')`
+
+## July 2, 2020
+
+*Project: Grading Bias* I had a quick look at Simon Burgess' and Beatrice Rangvid's papers on grading bias to get a sense of what we need. It seems like the following would be a good strategy.
+
+1. Table 1: - Overall exam mark, TA vs Exam. -Split by oral and written. -Split by subject and level - Split by Gender/SES/Origin
+2. Table 2: - Regression analysis
+
+Questions: - Stereotype marking? - Exploiting 9th grade differences?- Weighting and COVID 19? I also received an email from the Data Manager saying that the data should be on its way.
+
+*Applied Econ Reading Group: Fuzzy DID:* In in today's applied econ reading group meeting we are discussing the paper: “Fuzzy Differences-in-Differences" by Clément de Chaisemartin & Xavier D'Haultfoeuille, published in *The Review of Economic Studies*, Volume 85, Issue 2, 1 April 2018, Pages 999–1028
+
+```{marginfigure, }
+“Fuzzy Differences-in-Differences" by Clément de Chaisemartin & Xavier D'Haultfoeuille, *The Review of Economic Studies*, Volume 85, Issue 2, 1 April 2018, Pages 999–1028.
+```
+The key problem addressed: is that in difference-in-differences settings where  we don't go from 0 to 1 in treated and 0 to 0 in control, but where the share of treated just increases by more in the control group, the "common trends assumption is not sufficient.  That is because we then use  WALD-DID, and scale the outcome by the change in treatment. But this relies on treatment effects being constant over time/groups. They authors propose alternative estimators. A key challenge:  find a control group where where exposure to treatment does not change over time. Also requires additional assumption (assumption 4'prime) of common trends on outcomes, across treatment groups.
+
+  
+  1. The time corrected Wald estimand.
+  2. The changes in changes Wald estimand.
+  
+```{marginfigure, }
+Allison Horst tutorial on Github https://allisonhorst.shinyapps.io/missingexplorer/. Check also the github repository I forked (dplyr tutorial).
+```
+
+*Preparing Economic Data:* Drafted first overview document and shared with Rumman and Stefania. Starting too look good. Found a really nice R tutorial online by Allison Horst. Really useful inspiration for `learnr`.
+
+`r tufte::margin_note('July 1, 2020')`
+
+## July 1, 2020
+
+*Project: Strike* I updated tables and charts to make them more compact. 
+
+*Working on teaching:* I attending a meeting about teaching planning for TB1 2020/21. I'll have 1h large group lecture and 1h small group labs per week for ehh students in economic data. I also wrote some sketches for the teaching outlines. 
+
+```{r ,echo=FALSE, warning=FALSE, message=FALSE,fig.margin = TRUE}
+teachfig(mdate="2020-07-01",fontsize=16,goalsize=3.5)
+```
+
+*Working on projects:* Okay, and I should now be able to create a figure showing my progress. Let's try it:
+
+```{r ,echo=FALSE, warning=FALSE, message=FALSE,fig.width=5,fig.height=4}
+resfig(mdate="2020-07-01",fontsize=12,goalsize=1.2)
+```
+
+
+*Updating R tutorial:* I updated the R tutorial by creating a new first chapter.
+
+* The first chapter is now simpler and shorter.
+* I figured out how to change the css (see css folder)
+* I figured out that codeblocks are often hidden when compiled. I have to delete the old files in the folder and compile it again to get it to work.
+* The first chapter now includes the `aewr` package. It should therefore be a bit faster.
+
+*GitHub Desktop update:*  I spent an hour trying to update an R package and couldn't get it to work. Realized that GitHub Desktop wasn't updating the files. I don't know why. 
+
+*Building packages with R and including data:* I updated my R package aewr, which includes four datasets. I learned that in order to include the datasets in the package I have to capitalize the "d" in "RData". Moreover in order to get lazy loading to work, I have to build the package before uploading it (ctrl+shift+b), 
+
+
+`r tufte::margin_note('June 30, 2020')`
+
+
+## June 30, 2020
+
+I will try to write a logbook. This is the first entry. I mainly worked on setting it up. Tomorrow I would like to finish the Strike revision and polish this logbook. Maybe also read a paper or two. Let's see. 
+
+
