@@ -151,7 +151,7 @@ Let us return to Microcountry and use the income approach to calculate the econo
 
 * $NT$, taxes minus subsidies:
 
-  - The farm pay 2£ in taxes and the bakery pays 2£. There are subsidies. The taxes minus subsidies is therefore, $NT=2£+2£=4£$.
+  - The farm pay 2£ in taxes and the bakery pays 2£. There are no subsidies. The taxes minus subsidies is therefore, $NT=2£+2£=4£$.
   
 The GDP of Microcountry is therefore $Y=27£+4£+1£=32£$.
 
@@ -185,7 +185,7 @@ Let us return to Microcountry and use the expenditure approach to calculate the 
     - The farm sells flour for 10£ and pays 2£ in taxes. The gross value added of the bakery is therefore 8£. The bakery sells bread for 27£, pays a sales tax of 2£ and pays 10£ for the flour from the bakery. The gross value added of the bakery is therefore 15£. Finally, the public sector provides  a health service. The value of public sector provision is typically estimated by means of the costs, which in this case is 5£. The total gross value added in Microcountry is therefore $GVA=8£+15£+5£=28£.
     
 
-  - The farm pay 2£ in taxes and the bakery pays 2£. There are subsidies. The sales taxes minus subsidies is therefore, $NT=2£+2£=4£$.
+  - The farm pay 2£ in taxes and the bakery pays 2£. There are no subsidies. The sales taxes minus subsidies is therefore, $NT=2£+2£=4£$.
   
 The GDP of Microcountry is therefore $Y=28$+4£=32£.
 
