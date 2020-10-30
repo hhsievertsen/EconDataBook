@@ -1,0 +1,11 @@
+#setwd("C:/Users/hs17922/Dropbox/Work/Teaching/Economic Data/quiz")
+library(shiny)
+library(aewr)
+library(dplyr)
+rm(list=ls())
+source("myui.R")
+source("myserver.R")
+
+
+shinyApp(ui,server)
+

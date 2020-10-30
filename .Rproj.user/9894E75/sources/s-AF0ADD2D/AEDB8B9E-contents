@@ -1,0 +1,29 @@
+# Generate questions
+  create_questions <- lapply(1:6, function(v) {
+    tabPanel(paste("Question",v),
+             h3(paste("Question ", v, sep="")),br(),
+             htmlOutput (paste("qq", v,sep="")),
+             textInput(paste("qa", v,sep=""), " ", ""),
+             actionButton(paste("qb", v,sep=""), "Check answer"),
+             textOutput(paste("qf", v,sep="")))
+    })
+
+# Setup UI
+ui <- pageWithSidebarui <- fluidPage(
+  #
+  theme = "style.css",
+  # App title ----
+  titlePanel("Economic Data 2020/21 - Quiz "),
+  # sidebar
+  fluidRow(column(7,do.call(navlistPanel,create_questions)),
+  column(5,
+  mainPanel(
+  # Intro
+  br("This is a quiz for Economic Data - EFIM 10016 - Univeristy of Bristol -  2020/21."),br(),
+  # Set seed
+   numericInput("studentid", "Change the value to generate a new set of questions.", 0, min = -1000000, max = 9000000),
+   width = 12
+ )))
+)
+
+

@@ -1,0 +1,77 @@
+# Question text
+GDP_generator<-reactive({
+  setseed()
+  ### GDP simulator
+  rm(list=ls())
+  # factory
+  factory_sales=sample(5:15,1)
+  factory_taxes=sample(1:(factory_sales-3),1)
+  factory_wages=sample(1:(factory_sales-factory_taxes),1)
+  factory_profit=factory_sales-factory_taxes-factory_wages
+  # supermarket
+  supermarket_sales=sample((factory_sales+10):50,1) # Low [15,25] High [50]
+  supermarket_wages=sample(2:(supermarket_sales-factory_sales-2),1) # Low [2] High [43]
+  supermarket_taxes=sample(2:(supermarket_sales-supermarket_wages-factory_sales),1) # Low [1] High [41]
+  supermarket_profit=supermarket_sales-supermarket_taxes-supermarket_wages-factory_sales # Low [0] High [39]
+  # household sector
+  taxes_wages<-sample(1:(factory_wages+supermarket_wages-2),1)
+  # public sector
+  public_sector=taxes_wages+factory_taxes+supermarket_taxes
+  # domestic demand
+  domestic_demand=sample(1:(factory_wages+supermarket_wages+public_sector-taxes_wages),1)
+  # Residual
+  exports=supermarket_sales-domestic_demand
+  imports=factory_wages+supermarket_wages+public_sector-domestic_demand-taxes_wages
+  ### Expenditure approach
+  c=imports+domestic_demand
+  g=taxes_wages+factory_taxes+supermarket_taxes
+  nx=exports-imports
+  i=0
+  gdp_e=c+g+nx
+  ### Output approach
+  gva_factory=factory_sales-factory_taxes
+  gva_supermarket=supermarket_sales-factory_sales-supermarket_taxes
+  gva_public=public_sector
+  nt_o=factory_taxes+supermarket_taxes
+  gdp_o=gva_factory+gva_supermarket+nt_o+gva_public
+  ### Income approach
+  wages=factory_wages+supermarket_wages+public_sector
+  profits=factory_profit+supermarket_profit
+  nt_i=factory_taxes+supermarket_taxes
+  gdp_i=wages+profits+nt_i
+  
+  part1<-paste("<b>Consider the following small economy:</b><br> <br> In this economy. we have one farm that produces flour. The farm sells the flour to a bakery for ", factory_sales,
+               "?. The farm employs workers who receive ", factory_wages, "? in wages. The farm pays ",
+               factory_taxes," ? in taxes to the Government. <br><br>Using the flour from the farm, the bakery workers create scones. The bakery sells scones for ",
+               domestic_demand,"? to the local inhabitants and exports scones for ", exports, "?. ",
+               "<br><br>The  bakery workers receive ", supermarket_wages, "? in wages, and the bakery pays ", supermarket_taxes,
+               "? in taxes. The public sector provides a health service and a school for all inhabitants. The Government pays the health workers and  teachers ",public_sector,
+               "? in wages. The public sector has no expenses beyond these wages. <br><br> The inhabitants of this economy pay ", taxes_wages, "? in taxes. They also import clotted cream from the neighbouring economy for ",
+               imports,"?. The bakery is owned by a woman in the neighbouring economy.<br><br> <b>What is the GDP of this economy?</b>", sep="")
+  
+  
+  return(list(part1,gdp_i))
+})
+# Output question
+observeEvent(input$studentid, {
+    output$qq1<-renderText(GDP_generator()[[1]])
+}
+)
+  
+# Give feedback
+observeEvent(input$qb1, {
+
+  answer<-as.numeric(input$qa1)
+  if (!is.numeric(answer)){
+    output$qf1 <- renderText({"The answer should be entered as a number."})
+  }
+  else if (is.na(answer)){
+    output$qf1 <- renderText({"The answer should be entered as a numeric value. "})
+  }
+  else if (answer==GDP_generator()[[2]]){
+    output$qf1 <- renderText({"The answer is correct!"})
+  }
+  else {
+    output$qf1 <- renderText({"The answer is not correct. Try again!"})
+  }
+})     
