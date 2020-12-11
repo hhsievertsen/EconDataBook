@@ -112,7 +112,7 @@ An example:
 As with interest rates, there are several exchange rates. The exchange rate is determined on the foreign exchange market (FOREX). It is mostly large banks and financial institutions that buy and sell on FOREX. When we individuals buy or sell foreign currencies, we typically just go to our local bank or to business that specialize in exchanging currencies. We rarely pay the same exchange rate as on the FOREX, because we also pay some sort of commission to the local bank or currency exchanger. 
 
 ### Ups and downs: appreciation and depreciations {-}
-When exchange rates go up or down we use the terms appreciation and depreciation. When a currency depreciates it loses value compared to the foreign currency. When a currency appreciates it gains value. Figure  \@ref(fig:money4) shows the price of one USD in EURO increased substantially in the beginning of 2015. In other words 1 EURO became less worth compared to the USD, so it depreciated. Vice versa in 2017, where the price of a USD in EURO went down, so that the EURO depreciated. 
+When exchange rates go up or down we use the terms appreciation and depreciation. When a currency depreciates it loses value compared to the foreign currency. When a currency appreciates it gains value. Figure  \@ref(fig:money4) shows the price of one USD in EURO increased substantially in the beginning of 2015. In other words 1 EURO became less worth compared to the USD, so it depreciated. Vice versa in 2017, where the price of a USD in EURO went down, so that the EURO appreciated. 
 
 
 ```{r money4, echo=FALSE, out.width = '70%',fig.align='center',fig.cap="Exchange rates: EURO, CHF, GBP to USD. Source: The IMF."}
