@@ -1,0 +1,13 @@
+setwd("C:/Users/hs17922/Dropbox/Work/Teaching/Economic Data/2020_2021/week 10/slides")
+library("tidyverse")
+df<-read_csv("coordinates.csv")
+
+UK <- map_data("world") %>%
+  filter(region == "UK" )
+
+
+ggplot(df,aes(x=X,y=Y))+
+  geom_polygon(UK,mapping=aes(x=long,y=lat, group = group),fill="white",colour="black",alpha=0.2)+
+  geom_point(alpha=0.1)+
+  coord_fixed(ratio=1.6)+
+  theme_void()
