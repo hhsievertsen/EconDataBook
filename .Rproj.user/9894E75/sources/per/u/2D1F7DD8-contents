@@ -1,6 +1,0 @@
-#install.packages("haven")
-library("haven")
-setwd("C:\\Users\\hs17922\\OneDrive - University of Bristol\\Desktop\\Lab for week 4 [Hans on Data management]")
-df<-read_sas("m_d_903.sas7bdat")
-library("tidyverse")
-write_csv(df,"1990census.csv")
