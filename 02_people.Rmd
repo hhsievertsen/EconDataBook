@@ -91,7 +91,7 @@ We use a number of specific definitions for descriptions of changes in child bir
     The  number of children  born per woman if she were to pass through the childbearing years (typically set to: 15-44y or 15-49y) bearing children according to a current  age-specific fertility rates.
  
    \begin{align}
-    Total Fertility Rate=\sum_{a=15}^{44}ASFR_a
+    \text{Total Fertility Rate}=\sum_{a=15}^{44}ASFR_a
   \end{align}
   
 * *General Fertility Rate (GFR)*
@@ -99,7 +99,7 @@ We use a number of specific definitions for descriptions of changes in child bir
   All live births per woman in the childbearing ages (also typically per 1000 women).
   
   \begin{align}
-    General Fertility Rate=\frac{\text{Number of births }}{\text{Number of  women in childbearing age} }
+    \text{General Fertility Rate}=\frac{\text{Number of births }}{\text{Number of  women in childbearing age} }
   \end{align}
   
 * *Crude Birth Rate (CBR)*  

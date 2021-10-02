@@ -1,0 +1,31 @@
+"0","require(""learnr"")"
+"2","Loading required package: learnr
+"
+"0","#require(tidyverse)"
+"0","require(""dplyr"")"
+"2","Loading required package: dplyr
+"
+"2","
+Attaching package: ‘dplyr’
+
+"
+"2","The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+"
+"2","The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+"
+"0","require(""ggplot2"")"
+"2","Loading required package: ggplot2
+"
+"0","require(""aewr"")"
+"2","Loading required package: aewr
+"
+"0","require(""readr"")"
+"2","Loading required package: readr
+"
+"0","knitr::opts_chunk$set(echo = FALSE,cache=FALSE)"
