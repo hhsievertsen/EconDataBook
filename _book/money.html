@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 Money | Economic Data for UoB students</title>
   <meta name="description" content="Chapter 9 Money | Economic Data for UoB students" />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 Money | Economic Data for UoB students" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="prices.html"/>
 <link rel="next" href="part-ii-data-sources-and-tools.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,10 +50,33 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -111,7 +135,7 @@
 <div id="what-this-chapter-is-about-5" class="section level2" number="9.1">
 <h2><span class="header-section-number">9.1</span> What this chapter is about</h2>
 <p>If you ask a bank to lend you money, they will probably charge you an interest rate. The interest rate is the price of money. This chapter is about the different types of interest rates, and the price of money in other currencies, the exchange rates.</p>
-<div id="intended-learning-outcomes-4" class="section level3 unnumbered" number="">
+<div id="intended-learning-outcomes-4" class="section level3 unnumbered">
 <h3>Intended learning outcomes</h3>
 <p>After reading this chapter</p>
 <ul>
@@ -122,7 +146,7 @@
 </div>
 <div id="interest-rates" class="section level2" number="9.2">
 <h2><span class="header-section-number">9.2</span> Interest rates</h2>
-<div id="the-basics-what-is-the-interest-rate-s" class="section level3 unnumbered" number="">
+<div id="the-basics-what-is-the-interest-rate-s" class="section level3 unnumbered">
 <h3>The basics: What is the interest rate? s</h3>
 <p>If you ask a friend whether you can borrow 2 GBP today, it is likely, that you have repaid your debt once you’ve repaid these 2 GBP. However, if you ask your bank whether you can borrow 10,000 GBP, it is likely that they will require you to repay more than 10,000 GBP. If the bank asks you to repay 10,500 GBP, the bank charged you an interest of 5 percent rate. Or in other words, the interest rate, <span class="math inline">\(i\)</span>, on your bank loan is 5 percent:</p>
 <p><span class="math display">\[\begin{align}
@@ -133,7 +157,7 @@
 <p>Why are interest rates important in economics? Imagine that you have a business idea, and that you need some funding, say 10,000 GBP. You go to your bank and ask for 10,000 GBP today. They might answer, sure just promise to give us 10,050 GBP in ten years. That is an interest rate of 0.5 percent (<span class="math inline">\(=100*((10,500/10,000)-1)\)</span>). Not a bad deal, and you might be inclined to accept it and start your own business. But imagine that the bank says, sure, just promise to give us 20,000 GBP in ten years. That is an interest rate of 100 percent (<span class="math inline">\(=100*((20,000/10,000)-1)\)</span>). Unless you have no other (cheaper) options to borrow money and you are very certain of your business idea, you will be probably reject this offer and not initiate your business idea. So the interest rate can affect the activity in the economy. A low interest rate means that it is cheap to borrow money. You can borrow money to start a new business, to buy a new car or to renovate your house. Buying new cars affects the auto mobile industry and renovating the house might affect jobs for carpenters and bricklayers.</p>
 <p>But a low interest rate might also discourage savings, because when interest rates are low, the return on saving money is low. If banks are offering loans for 0.5 percent they probably paid less than 0.5 percent to borrow the money themselves, so saving money is also less attractive. But what determines the interest rates? <span class="citation">(chapter 10 in The CORE Team 2017)</span> provides a nice introduction to the money and credit market. We will provide a brief and very simplified description of the different interest rates in the next section.</p>
 </div>
-<div id="three-interest-rates" class="section level3 unnumbered" number="">
+<div id="three-interest-rates" class="section level3 unnumbered">
 <h3>Three interest rates</h3>
 <p>Let us consider an extremely simplified version of the money market:</p>
 <ul>
@@ -147,14 +171,14 @@
 <li>If the bank does not have sufficient funds it will try to borrow money on the money market, either from the central bank or from other banks.</li>
 </ul>
 <p>You will most likely pay a higher interest rate than the bank is paying the central bank or other banks. Even though the interest rate you pay for a bank loan is not the same as the interest rate your bank pays on the interbank market, there is a relationship between these rates. When central banks lower the policy interest rates, it becomes cheaper for banks to borrow money and they can offer you a loan at a lower price. Given that there is competition in the commercial bank market, it is likely that they will lower the interest they charge you, if their costs are reduced. Figure <a href="money.html#fig:money1">9.1</a> shows a line chart of the policy interest rate and the commercial bank lending rate for the UK.</p>
-<div class="figure" style="text-align: center"><span id="fig:money1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:money1"></span>
 <img src="resources/chapter_money/ex4_2.png" alt="Policy interest rates and bank interest rates for the UK. Source: Bank of England. Series: IUMABEDR and IUMTLMV." width="70%" />
 <p class="caption">
 Figure 9.1: Policy interest rates and bank interest rates for the UK. Source: Bank of England. Series: IUMABEDR and IUMTLMV.
 </p>
 </div>
 <p>You clearly see in Figure <a href="money.html#fig:money1">9.1</a> that the policy interest rate by the Bank of England and the average interest rate charged by commercial banks (the bank lending rage) follow each other. When the price of money falls, ie. the policy interest rate falls, the price banks charge on mortgages also falls. However, note that after the financial crisis, the gap between these two interest rates has increased. Figure <a href="money.html#fig:money2">9.2</a> shows the gap (in percentage points) over the same time period. After the financial crisis the gap increased form approximately two percentage points to four percentage points. Why do you think this is the case?</p>
-<div class="figure" style="text-align: center"><span id="fig:money2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:money2"></span>
 <img src="resources/chapter_money/ex4_3.png" alt="The Gap between the policy interest rate and bank interest rate for the UK. Source: Bank of England. Series: IUMABEDR and IUMTLMV." width="70%" />
 <p class="caption">
 Figure 9.2: The Gap between the policy interest rate and bank interest rate for the UK. Source: Bank of England. Series: IUMABEDR and IUMTLMV.
@@ -162,7 +186,7 @@ Figure 9.2: The Gap between the policy interest rate and bank interest rate for 
 </div>
 <p>However, there is not only one commercial bank lending rate, there are many. The interest rate the bank charges you, not only depends on their direct costs, but also on the risk they are facing. Mortgages are secured in the property, such that if the loan is not repaid, the money lender can use the property as a compensation, for example by selling the property. This means that mortgages have a relatively high degree of security for the lender. However, some loans have almost no security, for example overdraft loans or credit card loans.
 Figure <a href="money.html#fig:money3">9.3</a> shows the average overdraft interest rate for the same period. There is no clear relationship between the interest rate on overdrafts and the interest rate and the policy interest rate. Why do you think this is the case?</p>
-<div class="figure" style="text-align: center"><span id="fig:money3"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:money3"></span>
 <img src="resources/chapter_money/ex4_1.png" alt="The policy interest rate, the  bank interest rate (mortgages) for the UK and the overdraft interest rates. Source: Bank of England. Series: IUMABEDR, IUMODTL and IUMTLMV.." width="70%" />
 <p class="caption">
 Figure 9.3: The policy interest rate, the bank interest rate (mortgages) for the UK and the overdraft interest rates. Source: Bank of England. Series: IUMABEDR, IUMODTL and IUMTLMV..
@@ -190,23 +214,23 @@ Figure 9.3: The policy interest rate, the bank interest rate (mortgages) for the
 </div>
 <div id="exchange-rates" class="section level2" number="9.3">
 <h2><span class="header-section-number">9.3</span> Exchange rates</h2>
-<div id="definition-of-exchange-ratess" class="section level3 unnumbered" number="">
+<div id="definition-of-exchange-ratess" class="section level3 unnumbered">
 <h3>Definition of exchange ratess</h3>
 <p>Exchange rates describe the value of one currency relative to another currency. Specifically it says how many units of one currency we can buy from one unit of another currency. This causes a lot of confusion, because the ordering of the units get mixed up. Importantly the currency that comes after the “to the” is always the currency that you consider one unit of. One way to remember this is to always add an “buy one unit of” between the “to” and the “the”:</p>
 An example:
 <p>As with interest rates, there are several exchange rates. The exchange rate is determined on the foreign exchange market (FOREX). It is mostly large banks and financial institutions that buy and sell on FOREX. When we individuals buy or sell foreign currencies, we typically just go to our local bank or to business that specialize in exchanging currencies. We rarely pay the same exchange rate as on the FOREX, because we also pay some sort of commission to the local bank or currency exchanger.</p>
 </div>
-<div id="ups-and-downs-appreciation-and-depreciations" class="section level3 unnumbered" number="">
+<div id="ups-and-downs-appreciation-and-depreciations" class="section level3 unnumbered">
 <h3>Ups and downs: appreciation and depreciations</h3>
 <p>When exchange rates go up or down we use the terms appreciation and depreciation. When a currency depreciates it loses value compared to the foreign currency. When a currency appreciates it gains value. Figure <a href="money.html#fig:money4">9.4</a> shows the price of 1 USD in EURO increased substantially in the beginning of 2015. In other words 1 EURO became less worth compared to the USD, so it depreciated. Vice versa in 2017, where the price of a USD in EURO went down, so that the EURO appreciated.</p>
-<div class="figure" style="text-align: center"><span id="fig:money4"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:money4"></span>
 <img src="resources/chapter_money/ex5.png" alt="Exchange rates: EURO, CHF, GBP to USD. Source: The IMF." width="70%" />
 <p class="caption">
 Figure 9.4: Exchange rates: EURO, CHF, GBP to USD. Source: The IMF.
 </p>
 </div>
 </div>
-<div id="summary-exchange-ratess" class="section level3 unnumbered" number="">
+<div id="summary-exchange-ratess" class="section level3 unnumbered">
 <h3>Summary: Exchange ratess</h3>
 <p><em>Definition</em>
 * The value of one currency relative to another currency: <strong>An exchange rate of Y currency a to (buy one unit of) the currency b</strong></p>
@@ -245,7 +269,6 @@ Figure 9.4: Exchange rates: EURO, CHF, GBP to USD. Source: The IMF.
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -264,6 +287,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -284,6 +308,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

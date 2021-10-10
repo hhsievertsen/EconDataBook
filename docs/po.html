@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 People | Economic Data for UoB students</title>
   <meta name="description" content="Chapter 2 People | Economic Data for UoB students" />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 People | Economic Data for UoB students" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="part-i-working-with-economic-data.html"/>
 <link rel="next" href="the-labour-market.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,10 +50,33 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -123,17 +147,17 @@
 <div id="what-are-flow-and-stock-variables" class="section level3" number="2.2.1">
 <h3><span class="header-section-number">2.2.1</span> What are flow and stock variables?</h3>
 Economic variables can be classified as either flow or stock variables. We can illustrate the difference between these two types using a bathtub as in Figure <a href="po.html#fig:baththub">2.1</a>. The water level in the bathtub at a given point in time is a stock variable. The amount of water that has flown into the tub over a period of time is a flow variable.
-<div class="figure" style="text-align: center"><span id="fig:baththub"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:baththub"></span>
 <img src="resources/chapter_people/flowbathtub.png" alt="A bathtub with water illustrating flows and stocks" width="90%" />
 <p class="caption">
 Figure 2.1: A bathtub with water illustrating flows and stocks
 </p>
 </div>
 <p>An easy way to distinguish between flow and stock variables is that a flow variable is measured over a <em>period</em> of time while stock variable is measured at a specific <em>point</em> of time.</p>
-<p>If someone asked you, “How much water flowed into the bathtub on September 4 at 4:40pm and 10 seconds?”, it would be very difficult to answer because it is difficult to measure the amount of water flowing at a specific second.</p>
-<p>However, if someone asked, “How much water was in the bathtub on September 4 at 4:40pm and 10 seconds?”, it would be quite easy to answer (given that you had some tool to measure the level of water). This is because the water level is a stock variable. A stock variable is measured at a point in time and “September 4, at 4:40pm and 10 seconds” is a point in time.</p>
-<p>On the other hand if someone asked “How much water flowed into the bathtub between September 4 between 4:40pm and 4:50pm?”, you would also be able to answer it, because you are now given a “period of time” (a period of 10 minutes) and flow variables are measured over a period.</p>
-<p>Let’s think about economic variables instead of water and bathtubs. An example of a stock variable would be wealth. We measure wealth at a “point in time”. For example my wealth at the end of the year. An example of a flow variable would be income. We measure income over a period of time. Can you think of other examples? Is consumption a flow or a stock variable? For example my monthly income.</p>
+<p>If someone asked you, “How much water flowed into the bathtub on September 4 at 4:40pm and 10 seconds?” it would be very difficult to answer because it is difficult to measure the amount of water flowing at a specific second.</p>
+<p>However, if someone asked, “How much water was in the bathtub on September 4 at 4:40pm and 10 seconds?” it would be quite easy to answer (given that you had some tool to measure the level of water). This is because the water level is a stock variable. A stock variable is measured at a point in time and “September 4, at 4:40pm and 10 seconds” is a point in time.</p>
+<p>On the other hand if someone asked “How much water flowed into the bathtub between September 4 between 4:40pm and 4:50pm?” you would also be able to answer it, because you are now given a “period of time” (a period of 10 minutes) and flow variables are measured over a period.</p>
+<p>Let’s think about economic variables instead of water and bathtubs. An example of a stock variable would be wealth. We measure wealth at a “point in time.” For example my wealth at the end of the year. An example of a flow variable would be income. We measure income over a period of time. Can you think of other examples? Is consumption a flow or a stock variable? For example my monthly income.</p>
 <center>
 <div class="myblock">
 <center>
@@ -168,7 +192,7 @@ For example the number of people residing in the UK at January 1, 2018.
 <li>the number of people who immigrated to the UK</li>
 <li>minus the number of people who left the UK (emigrated)</li>
 <li>plus the number of children born</li>
-<li>plus the number of people who died</li>
+<li>minus the number of people who died</li>
 </ol>
 <p>In this example the population level is a stock variable. It is measured at a point in time (January 1, 2002). The other variables are all flow variables that are measured over a period of time. For example the number of births from 1 January 2002 to 1 January, 2003.</p>
 <p>We could measure the number of people living in the UK on January 1, 2002 at five seconds and 3 milliseconds after 10:00AM, but how many children are born in exactly that millisecond? A child birth typically takes more than a second, so how do we allocate a birth a precise millisecond?</p>
@@ -213,7 +237,7 @@ For example the number of people residing in the UK at January 1, 2018.
 </ol>
 <p><strong>Note</strong> that 1. above is a flow variable and 2. and 3. are stock variables. When calculating fertility rates we divide a flow variable with a stock variable. It is therefore important to pay attention to the timing of the measurement. Should the population levels (2. and 3.) be measured at the beginning, at the middle, or at the end of the year?</p>
 <p>We can obtain such data from statistical agencies such as Eurostat. In Figure <a href="po.html#fig:death1">2.2</a>) we show the Total Fertility Rate and General Fertility Rate for the United Kingdom over the last five decades using data from Eurostat. We observe how the two lines representing respectively the General Fertility Rate and the Total Fertility Rate follow each other closely, although they are measured at very different scales. In 1970 a women in the UK gave birth to on average more than 2.3 children, given the age specific fertility rates in that year. Today that number has dropped to less than 2. There are considerable fluctuations in these rates. The lowest fertility rates were observed around 2000, where the the Total Fertility Rate dropped to around 1.8.</p>
-<div class="figure" style="text-align: center"><span id="fig:death1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:death1"></span>
 <img src="resources/chapter_people/fig10.png" alt="Fertility rates for the United Kingdom. Data source: Eurostat. Note: Only births of women aged 15-45 are included." width="70%" />
 <p class="caption">
 Figure 2.2: Fertility rates for the United Kingdom. Data source: Eurostat. Note: Only births of women aged 15-45 are included.
@@ -315,7 +339,7 @@ Figure 2.2: Fertility rates for the United Kingdom. Data source: Eurostat. Note:
 </ol>
 <p>The overall mortality over a period will increase if the mortality rates increase or if an age group with a higher mortality rate increases. A country can have a higher mortality rate than another country although all age-specific mortality rates are identical, because the age composition of the country differs. This comparison is just like comparing the General Fertility Rate (Or crude birth rate) across two countries.</p>
 <p>While the Total Fertility Rate is a measure of the expected number of children that a women will give birth to during her life, the Period Life Expectancy is a measure of the years a person can expect to live. However, although the intuition is the same, the computation of the Period Life Expectancy is slightly more complicated and we will therefore cover it in more detail.</p>
-<p>Life expectancy is often considered one of the most important measures of social progress and it is often used in the public debate. The term "Life expectancy seems quite intuitive. It answers an important question: how long can we expect to life?. But how is it calculated? Just like with the Total Fertility Rate we compute the age specific mortality rates and then sum these in a given year. The life expectancy is therefore the number of years one can expect to live if one experiences the age specific mortality rates from that given year. However, we can have several children, but we can only die once. We therefore don’t create a hypothetical person, but a hypothetical cohort to calculate life expectancy..</p>
+<p>Life expectancy is often considered one of the most important measures of social progress and it is often used in the public debate. The term “Life expectancy seems quite intuitive. It answers an important question: how long can we expect to life?. But how is it calculated? Just like with the Total Fertility Rate we compute the age specific mortality rates and then sum these in a given year. The life expectancy is therefore the number of years one can expect to live if one experiences the age specific mortality rates from that given year. However, we can have several children, but we can only die once. We therefore don’t create a hypothetical person, but a hypothetical cohort to calculate life expectancy..</p>
 <p>Note that there is an alternative measure of life expectancy called cohort life expectancy. In that measure we follow a cohort. The data requirements are considerably higher for this approach, as we need to follow cohorts for the full life. We will here just capture period life expectancy which is also the most widely used measure.</p>
 <div id="life-tables" class="section level3" number="2.4.1">
 <h3><span class="header-section-number">2.4.1</span> Life tables</h3>
@@ -489,7 +513,7 @@ Figure 2.2: Fertility rates for the United Kingdom. Data source: Eurostat. Note:
 </tbody>
 </table>
 <p>Table <a href="po.html#tab:deatht">2.2</a> shows a subset of a life table for the United Kingdom using data from Eurostat and the recipe outlined in Table <a href="po.html#tab:deatht2">2.3</a>. The table shows that the life expectancy at birth is 81 years. Conditional surviving to age 99, the life expectancy is 0.125 years. However, the life expectancy at higher ages are highly influenced by assumption that all individuals die at a given age. In this case it is by age 100 years. In Figure <a href="po.html#fig:death2">2.3</a> we plot the variable <span class="math inline">\(e_x\)</span> against <span class="math inline">\(x\)</span> from the life table and life.</p>
-<div class="figure" style="text-align: center"><span id="fig:death2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:death2"></span>
 <img src="resources/chapter_people/fig11.png" alt="Life expectancy by age in years (left) and survival probabilities (right). Data source: Eurostat. " width="90%" />
 <p class="caption">
 Figure 2.3: Life expectancy by age in years (left) and survival probabilities (right). Data source: Eurostat.
@@ -517,7 +541,6 @@ Figure 2.3: Life expectancy by age in years (left) and survival probabilities (r
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -536,6 +559,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -556,6 +580,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

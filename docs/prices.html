@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 8 Prices | Economic Data for UoB students</title>
   <meta name="description" content="Chapter 8 Prices | Economic Data for UoB students" />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 Prices | Economic Data for UoB students" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="poverty.html"/>
 <link rel="next" href="money.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,10 +50,33 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -111,7 +135,7 @@
 <div id="what-this-chapter-is-about-4" class="section level2" number="8.1">
 <h2><span class="header-section-number">8.1</span> What this chapter is about</h2>
 <p>We’ve we discussed how the Policy Interest Rate is set by the Bank of England. The Bank of England has one objective in mind when deciding on the interest rate, the inflation in the UK should be 2 percent. So if you had spend 100 GBP to buy a basket of goods last year, you should spend 102 GBP to buy the basket of goods this year, that gives you the same utility. If the price of the basket is now less than 101 or more than 103 the Bank of England is required to explain why. In other words, the Bank of England faces an inflation target of 2 percent, and deviations of more than one percentage point requires a public explanation. Now this all sounds simple and straightforward. However, the question is what baskets of goods should we compare? Should the basket this year contain exactly the same goods as the basket last year, in the same quantity and quality? What if a new product arrives on the market? We will discuss these issues in this chapter along with the concept of the Purchasing Power Parity, which concerns the comparison of prices across countries.</p>
-<div id="intended-learning-outcomes-3" class="section level3 unnumbered" number="">
+<div id="intended-learning-outcomes-3" class="section level3 unnumbered">
 <h3>Intended learning outcomes</h3>
 <p>After reading this chapter you should be able to</p>
 <ul>
@@ -124,11 +148,11 @@
 </div>
 <div id="price-indexes---in-theory" class="section level2" number="8.2">
 <h2><span class="header-section-number">8.2</span> Price indexes - in theory</h2>
-<div id="the-objective" class="section level3 unnumbered" number="">
+<div id="the-objective" class="section level3 unnumbered">
 <h3>The objective</h3>
 <p>Before we discuss how we measure changes in prices, let’s briefly discuss what our objective is. There are many different price indexes, such as the consumer price index, the producer price index, the house price index and the GDP deflator. They all track the development of prices, but they focus on the prices of slightly different goods. The consumer price index, which is the index central banks typically use in the inflation target, measures the development of prices over time. We would like to know, as a consumer, how much more expensive (in nominal terms) is it today compared to yesterday. But what comparison should we make? There are many goods and prices, and we need to combine their development in one overall number. We therefore compare the price of a basket of good over time. And what determines the composition of this basket? A fair comparison would be to compare two baskets that gives us the same utility. Unfortunately we do not observe people’s utility, and it is therefore not possible to make this comparison in practice. The price indexes discussed in the next section are therefore concerned in how we in practice can crate this basket of goods.</p>
 </div>
-<div id="a-simple-index" class="section level3 unnumbered" number="">
+<div id="a-simple-index" class="section level3 unnumbered">
 <h3>A simple index</h3>
 <p>Let us first consider the simple case of an index with one variable:</p>
 <p><span class="math display">\[\begin{align}
@@ -393,9 +417,9 @@ I_t^L&amp;=100\times \left(\frac{Q1_0 \times P1_t+Q2_0 \times P2_t}{Q1_0 \times 
    I_t^{Lo}&amp;=100\times \left(\frac{\sum^I_{i=1} Qi_r \times Pi_t}{\sum^I_{i=1}Qi_r \times Pi_0}\right)
     \label{eq12}
 \end{align}\]</span></p>
-<p>The Laspeyre price index is a special case of the Lowe price index, where <span class="math inline">\(r=0\)</span>, and the Paasche price index is a special case of the the Lowe price index, where <span class="math inline">\(r=t\)</span>. The Laspeyre and the Paasche indexes are therefore often called “Lowe type price indexes”.</p>
+<p>The Laspeyre price index is a special case of the Lowe price index, where <span class="math inline">\(r=0\)</span>, and the Paasche price index is a special case of the the Lowe price index, where <span class="math inline">\(r=t\)</span>. The Laspeyre and the Paasche indexes are therefore often called “Lowe type price indexes.”</p>
 </div>
-<div id="other-indexes" class="section level3 unnumbered" number="">
+<div id="other-indexes" class="section level3 unnumbered">
 <h3>Other indexes</h3>
 <p>There are many different price indexes, and the price indexes applied by statistical offices will often be modified versions of the standard formulas. One modification is chain-linking, which we will discuss in the next section. However, before we get there, it is worth mentioning a few more price indexes. The Finnish statistician Leo Törnqvist introduced an index (the Törnqvist index), where we instead of taking the mean between the Fisher and Paasche index, take the mean of the weights between the base year and the current year. However, the Törnqvist index also differs by using a weighted geometric mean instead of the weighted arithmetic mean.</p>
 <p>Also, another index worth mentioning is the Carli index, introduced by the Italian economist Gian Carli:</p>
@@ -405,7 +429,7 @@ I_t^L&amp;=100\times \left(\frac{Q1_0 \times P1_t+Q2_0 \times P2_t}{Q1_0 \times 
 \end{align}\]</span></p>
 <p>Note that the Carli index is unweighted. It is therefore called elementary, and it is typically only used when we are focusing on specific product types.</p>
 </div>
-<div id="chain-linked-vs.-unchained-indexes" class="section level3 unnumbered" number="">
+<div id="chain-linked-vs.-unchained-indexes" class="section level3 unnumbered">
 <h3>Chain-linked vs. unchained indexes</h3>
 <p>So far we’ve three solutions regarding product weights. One, we use the weights in the base year (Laspeyre); two, we use the weights in the current year (Paasche); three we use an average between the base year and the current year (Fisher/Tornqvist). An alternative strategy is to constantly update the base year of the weights. This is where the alternative specification in equation  becomes handy. Recall that the we could write the price index in year <span class="math inline">\(t\)</span> as the price index in year <span class="math inline">\(t-1\)</span> times the change from year <span class="math inline">\(t-1\)</span> to <span class="math inline">\(t\)</span>. In general terms, as a chain-linked Laspeyere index, this works as follows:</p>
 <p><span class="math display">\[\begin{align}
@@ -416,7 +440,7 @@ I_t^L&amp;=100\times \left(\frac{Q1_0 \times P1_t+Q2_0 \times P2_t}{Q1_0 \times 
    I_t^{CP}&amp;=I_{t-1}\times  \left(\frac{\sum^I_{i=1} Qi_{t} \times Pi_t}{\sum^I_{i=1}Qi_{t} \times Pi_{t-1}}\right)
 \end{align}\]</span></p>
 </div>
-<div id="summary-on-price-indexes" class="section level3 unnumbered" number="">
+<div id="summary-on-price-indexes" class="section level3 unnumbered">
 <h3>Summary on price indexes</h3>
 <p><em>Objective</em></p>
 <ul>
@@ -434,7 +458,7 @@ I_t^L&amp;=100\times \left(\frac{Q1_0 \times P1_t+Q2_0 \times P2_t}{Q1_0 \times 
 <li>Chain-linking: Continuously update the reference period.</li>
 </ul>
 </div>
-<div id="weigths" class="section level3 unnumbered" number="">
+<div id="weigths" class="section level3 unnumbered">
 <h3>Weigths</h3>
 <p>Before we turn to the actual price indexes, we will briefly discuss how these weights are computed, <span class="math inline">\(Q1\)</span> and <span class="math inline">\(Q2\)</span>. These weights could be obtained by various sources. In practice, most countries compute the weights based on total household final expenditure from the national accounts.</p>
 <p>However, some indexes use surveys to compute the weights. For the UK, the Living Costs and Food Survey is based on reported consumption over a two week period for thousands of households. This survey is used in some price indexes constructed by the ONS (for example the RPI). One advantage of using surveys to compute weights is that we have more information on the household, and we can thus rely on households that we believe are more representative.</p>
@@ -443,7 +467,7 @@ I_t^L&amp;=100\times \left(\frac{Q1_0 \times P1_t+Q2_0 \times P2_t}{Q1_0 \times 
 <div id="price-indexes---in-practice" class="section level2" number="8.3">
 <h2><span class="header-section-number">8.3</span> Price indexes - in practice</h2>
 <p>There is not only one price index. We might for example be interest in how costs for firms have developed. The typical consumption basket for firms is very likely to be different than the typical basket for households.</p>
-<div id="consumer-price-indexes" class="section level3 unnumbered" number="">
+<div id="consumer-price-indexes" class="section level3 unnumbered">
 <h3>Consumer Price Indexes</h3>
 <p>Let us first consider how the price level for consumers develops. The ONS publishes several consumer price indexes. Let us consider three of the most important ones:</p>
 <ul>
@@ -455,28 +479,28 @@ I_t^L&amp;=100\times \left(\frac{Q1_0 \times P1_t+Q2_0 \times P2_t}{Q1_0 \times 
 <p>The CPI and CPIH are chain-linked Laspeyres-type price indexes computed on a monthly basis. The RPI is (approximately) also a chain-linked Laspeyre type index, but based on annual data.</p>
 <p>Looking beyond the UK, the harmonised index of consumer prices (HICP), is the consumer price index by the European Union/ Eurostat, which is also a chain-linked Laspeyres-type price index. Both the CPI and CPIH use weights that are typically updated annually. For more details on the consumer price indexes, see <span class="citation">(Office for National Statistics 2014)</span> for the ONS and <span class="citation">(Eurostat 2018)</span> for the European level.</p>
 <p>There are various data sources for price indexes. Figure <a href="prices.html#fig:pricefig1">8.1</a> uses data from Eurostat to show the development in the price index for the UK and for the EURO area as a whole. Note that the index is based on 2015 as a reference year. This is slightly unusual, as we often prefer to have the first period as a reference.</p>
-<div class="figure" style="text-align: center"><span id="fig:pricefig1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pricefig1"></span>
 <img src="resources/chapter_prices/ex1_1.png" alt="The Consumer Price Index (HICP) for the EURO countries and the UK. Source: Eurostat. Notes: The index is constructed such that the 2015 average is 100." width="75%" />
 <p class="caption">
 Figure 8.1: The Consumer Price Index (HICP) for the EURO countries and the UK. Source: Eurostat. Notes: The index is constructed such that the 2015 average is 100.
 </p>
 </div>
 </div>
-<div id="producer-price-index-import-price-index-and-export-price-index" class="section level3 unnumbered" number="">
+<div id="producer-price-index-import-price-index-and-export-price-index" class="section level3 unnumbered">
 <h3>Producer Price Index, Import Price Index and Export Price Index</h3>
 <p>Firms typically have different weights than consumers. We typically distinguish between three indexes, the Producer Price Index (PPI), the Import Price Index (IPI) and Export Price Index (EPI). These indexes are all chain-linked Laspeyres-type price index, where weights are updated regularly, but typically less frequent than for consumer price indexes. The weights are constructed using sales data from different sources. For more details see <span class="citation">(Office for National Statistics 2018)</span> for the ONS and <span class="citation">(Eurostat 2012)</span> for the European level.</p>
 </div>
-<div id="other-indexes-1" class="section level3 unnumbered" number="">
+<div id="other-indexes-1" class="section level3 unnumbered">
 <h3>Other indexes</h3>
 <p>A couple of additional indexes also deserve mentioning. First, the GDP deflator. The GDP deflator is considerably broader than the other price indexes, as it covers the complete domestic economy. The National Accounts typically also use chain-linked Laspeyres type approach to be able to make monetary levels comparable across periods. For more details see <span class="citation">(Office for National Statistics 2016)</span>. Second, the House Price Index (HPI), again a chain-linked Laspeyre type index, with annual updating of weights. This index covers housing bought by households, such as flats, detached houses and terraced houses. Third, the Index of Private Housing Rental Prices (IPHRP) capturing the development in the price tenants face when renting residential housing.</p>
 </div>
 </div>
 <div id="across-time" class="section level2" number="8.4">
 <h2><span class="header-section-number">8.4</span> Across time</h2>
-<div id="inflation" class="section level3 unnumbered" number="">
+<div id="inflation" class="section level3 unnumbered">
 <h3>Inflation</h3>
 <p>As there are many price indexes, there are also many inflation measures. The Bank of England’s inflation target relates to the Consumer Price Index inflation. The ONS publishes both annual and monthly rates, where annual rates relate to the change in prices over a 12 month period, and monthly to a month to month change. As inflation shows the change in price levels, the inflation can be seen as the first derivative of the price index. In Figure <a href="prices.html#fig:pricefig2">8.2</a> we show the year-to-year change in price levels based on the price indexes shown in Figure <a href="prices.html#fig:pricefig1">8.1</a>.</p>
-<div class="figure" style="text-align: center"><span id="fig:pricefig2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pricefig2"></span>
 <img src="resources/chapter_prices/ex1_2.png" alt="Consumer Price Inflation for the EURO countries and the UK. {Source: Eurostat. Notes: The inflation relates to 12 month changes.}" width="75%" />
 <p class="caption">
 Figure 8.2: Consumer Price Inflation for the EURO countries and the UK. {Source: Eurostat. Notes: The inflation relates to 12 month changes.}
@@ -484,7 +508,7 @@ Figure 8.2: Consumer Price Inflation for the EURO countries and the UK. {Source:
 </div>
 <p>Note that the UK inflation is currently considerably higher than the inflation in the EURO area.</p>
 </div>
-<div id="real-vs.-nominal-values" class="section level3 unnumbered" number="">
+<div id="real-vs.-nominal-values" class="section level3 unnumbered">
 <h3>Real vs. nominal values</h3>
 <p>Price indexes are not only used to compute inflation measures. More than 100 years ago, in 1905, the English footballer Alf Common moved from Sunderland to Middlesbrough for a record fee of 1,000 GBP. In terms of today’s transfer fees, this sounds unrealistic. But based on the amount you could purchase with 1,000 GBP in 1905, this corresponds to about 114,367 GBP in 2017, which is still low, but seems more reasonable. To make this adjustment, we use price indexes.</p>
 <p>Using price indexes we can compare the fee of Alf Common to the fee of for example Kevin Keegan in 1977, when he moved from Liverpool to Hamburg for a fee of 500,000 GBP. The 500,000 GBP in 1977 corresponds to about 2,922,031 GBP in 2017. We can thus refer to the 1,000 GBP and 500,000 GBP as transfer fees in <em>nominal</em> terms and the 114,367 GBP and 2,922,031 GBP as <em>real</em> terms in the 2017 price level.</p>
@@ -514,11 +538,11 @@ Figure 8.2: Consumer Price Inflation for the EURO countries and the UK. {Source:
 \end{align}\]</span></p>
 <p>which is also known as the . When inflation exceeds the real interest rate, we face a negative real interest rate.</p>
 </div>
-<div id="the-phillips-curve" class="section level3 unnumbered" number="">
+<div id="the-phillips-curve" class="section level3 unnumbered">
 <h3>The Phillips Curve</h3>
 <p>The Phillips curve was introduced by William Phillips an economist from New Zealand. He studied the relationship between inflation and unemployment, a relationship that is visualized in the Phillips Curve. The original Phillips is a scatter plot of wage inflation and unemployment in the UK. The curve showed that periods with low unemployment rates also tended to be periods with high inflation rates, and periods with high unemployment rates also tend to be periods with low inflation. The (short-run) intuition behind this relationship is that when employment is high, the pressure on wages is high, and wage inflation is high. For details on the Phillips curve, see <span class="citation">(p. 646 in The CORE Team 2017)</span> .</p>
 <p>In 2008 Gregor <span class="citation">(Smith 2008)</span> published a paper, where he showed how the Phillips of Japan looks like Japan. His plot is shown in Figure <a href="prices.html#fig:pricejapan">8.3</a>, along with a picture from Google maps, of Japan. What do you think? Is this advanced chartjunk?</p>
-<div class="figure" style="text-align: center"><span id="fig:pricejapan"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pricejapan"></span>
 <img src="resources/chapter_prices/japan4.png" alt="The Phillips curve of Japan and a map of Japan. Source: The Map is from Google Maps, the Phillips curve is from citet{smith2008japan}. The unemployment rate is multiplied by minus 1. " width="50%" /><img src="resources/chapter_prices/Japan3.png" alt="The Phillips curve of Japan and a map of Japan. Source: The Map is from Google Maps, the Phillips curve is from citet{smith2008japan}. The unemployment rate is multiplied by minus 1. " width="50%" />
 <p class="caption">
 Figure 8.3: The Phillips curve of Japan and a map of Japan. Source: The Map is from Google Maps, the Phillips curve is from citet{smith2008japan}. The unemployment rate is multiplied by minus 1.
@@ -528,12 +552,12 @@ Figure 8.3: The Phillips curve of Japan and a map of Japan. Source: The Map is f
 </div>
 <div id="across-regions" class="section level2" number="8.5">
 <h2><span class="header-section-number">8.5</span> Across regions</h2>
-<div id="the-big-mac-index" class="section level3 unnumbered" number="">
+<div id="the-big-mac-index" class="section level3 unnumbered">
 <h3>The Big Mac index</h3>
 <p>Considering price levels is not only important when we compare changes over time, but also across countries. Imagine that you would like to compare the earnings of a typical worker in Ukraine to the earnings of a typical worker in Switzerland. But prices in Ukraine are very different to prices in Switzerland, and just comparing the earnings using the exchange rates would not reflect the differences in living standards. One illustration of the difference is the Big Mac Index, which has been published by the Economist since 1986. According to the 2017 version of the index, a Big Mac costs around 6.35 USD in Switzerland and 1.54 USD in Ukraine. The price level, as approximated with the Big Mac Index is therefore about four times higher in Switzerland compared to Ukraine. If the Big Mac price level is reflective of the overall costs, it would suggest that to obtain the same living standards in Switzerland as in Ukraine, you need about four times the income Switzerland compared to Ukraine.</p>
 <p>Several indexes have been produced to mimic the idea of the Big Mac Index (the IPod index, the Starbucks Latte index, etc.). However, these indexes have some obvious short-comings. The product is not the same across countries and the product is not representative of the overall costs.</p>
 </div>
-<div id="purchasing-power-parity" class="section level3 unnumbered" number="">
+<div id="purchasing-power-parity" class="section level3 unnumbered">
 <h3>Purchasing Power Parity</h3>
 <p>While the Big Mac Index provides a very simple approach to compare prices. A more rigorous way to compare nominal values across countries is by means of purchasing power parity (PPP). As a point of departure, let us consider the price of a Big Mac. In Switzerland the price is approximately 6.50 CHF and in the US the price is approximately 5.06 USD. This would suggest an exchange rate between US and Switzerland of:</p>
 <p><span class="math display">\[\begin{align}
@@ -564,7 +588,6 @@ Figure 8.3: The Phillips curve of Japan and a map of Japan. Source: The Map is f
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -583,6 +606,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -603,6 +627,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

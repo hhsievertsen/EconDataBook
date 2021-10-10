@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 13 Data visualization basics | Economic Data for UoB students</title>
   <meta name="description" content="Chapter 13 Data visualization basics | Economic Data for UoB students" />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 13 Data visualization basics | Economic Data for UoB students" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="describing-data.html"/>
 
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,10 +50,33 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -110,7 +134,7 @@
 <h1><span class="header-section-number">Chapter 13</span> Data visualization basics</h1>
 <div id="what-this-chapter-is-about-9" class="section level2" number="13.1">
 <h2><span class="header-section-number">13.1</span> What this chapter is about</h2>
-<p>This chapter provides a brief introduction to good data visualization. We first go through an example to illustrate that “How we show data matters”. We then describe principles for producing good data visualizations. The chapter is inspired by the following resources on data visualization.</p>
+<p>This chapter provides a brief introduction to good data visualization. We first go through an example to illustrate that “How we show data matters.” We then describe principles for producing good data visualizations. The chapter is inspired by the following resources on data visualization.</p>
 <ul>
 <li>“Show me the numbers” <span class="citation">(Few 2012)</span></li>
 <li>“Data visualization: a practical introduction” <span class="citation">(Healy 2018)</span></li>
@@ -121,9 +145,9 @@
 </div>
 <div id="how-we-show-data-matters" class="section level2" number="13.2">
 <h2><span class="header-section-number">13.2</span> How we show data matters</h2>
-<div id="illustration-the-anscombe-quartet" class="section level3 unnumbered" number="">
+<div id="illustration-the-anscombe-quartet" class="section level3 unnumbered">
 <h3>Illustration: The Anscombe quartet</h3>
-<p>Once we’ve obtained the data we can start working with the data. A crucial principle in working with data is the simple principle represented by a famous quote by Edward Tufte: “Above All Else Show the Data”. To illustrate why showing the data, and how we show the data is important, we can use an example from Edward Tufte’s book, known as the Anscombe’s quartet (Francis John Anscombe was an English statistician) <span class="citation">(Tufte 2001)</span>. Consider the four datasets shown in Table <a href="data-visualization-basics.html#tab:viz1">13.1</a>, what do you learn from this table (X1 and Y1 is one dataset, X2 and Y2 is another dataset, and so on)? Hard to day?</p>
+<p>Once we’ve obtained the data we can start working with the data. A crucial principle in working with data is the simple principle represented by a famous quote by Edward Tufte: “Above All Else Show the Data.” To illustrate why showing the data, and how we show the data is important, we can use an example from Edward Tufte’s book, known as the Anscombe’s quartet (Francis John Anscombe was an English statistician) <span class="citation">(Tufte 2001)</span>. Consider the four datasets shown in Table <a href="data-visualization-basics.html#tab:viz1">13.1</a>, what do you learn from this table (X1 and Y1 is one dataset, X2 and Y2 is another dataset, and so on)? Hard to day?</p>
 <p>It is difficult to tell anything about these datasets based on a table. This is one of the downsides of a table. A table is very useful for showing precise numbers, but once there are too many numbers we start to lose the overview (this table has 88 numbers!).</p>
 <table>
 <caption><span id="tab:viz1">Table 13.1: </span> Anscombe’s quartet: raw data. What do we learn from this table?</caption>
@@ -351,7 +375,7 @@
 </tbody>
 </table>
 <p>Finally, let’s look at the data using charts. Figure <a href="data-visualization-basics.html#fig:viz3">13.1</a> shows the same four datasets by means of scatter plots. By means of these scatter plots you immediately see the difference between the four datasets. We also note that the fitted line is the same in the four datasets (as suggested by the coefficients in Table <a href="data-visualization-basics.html#tab:viz2">13.2</a>, although the underlying relationship between the Y and the X variables are very different.</p>
-<div class="figure" style="text-align: center"><span id="fig:viz3"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:viz3"></span>
 <img src="resources/chapter_viz/ex1_1.png" alt="Scatter plots of Anscombe's quartet. The dashed line is fitted using Ordinary Least Squares. Upper left: Dataset 1. Upper right: Dataset 2. Lower left: Dataset 3. Lower right: Dataset 4." width="50%" /><img src="resources/chapter_viz/ex1_2.png" alt="Scatter plots of Anscombe's quartet. The dashed line is fitted using Ordinary Least Squares. Upper left: Dataset 1. Upper right: Dataset 2. Lower left: Dataset 3. Lower right: Dataset 4." width="50%" /><img src="resources/chapter_viz/ex1_3.png" alt="Scatter plots of Anscombe's quartet. The dashed line is fitted using Ordinary Least Squares. Upper left: Dataset 1. Upper right: Dataset 2. Lower left: Dataset 3. Lower right: Dataset 4." width="50%" /><img src="resources/chapter_viz/ex1_4.png" alt="Scatter plots of Anscombe's quartet. The dashed line is fitted using Ordinary Least Squares. Upper left: Dataset 1. Upper right: Dataset 2. Lower left: Dataset 3. Lower right: Dataset 4." width="50%" />
 <p class="caption">
 Figure 13.1: Scatter plots of Anscombe’s quartet. The dashed line is fitted using Ordinary Least Squares. Upper left: Dataset 1. Upper right: Dataset 2. Lower left: Dataset 3. Lower right: Dataset 4.
@@ -362,7 +386,7 @@ Figure 13.1: Scatter plots of Anscombe’s quartet. The dashed line is fitted us
 </div>
 <div id="tables-vs-charts" class="section level2" number="13.3">
 <h2><span class="header-section-number">13.3</span> Tables vs charts</h2>
-<div id="the-goal-of-the-visualization" class="section level3 unnumbered" number="">
+<div id="the-goal-of-the-visualization" class="section level3 unnumbered">
 <h3>The goal of the visualization</h3>
 <p>So we know that how we show data matters, and that the objective of the optimal data visualization method depends on the purpose of the visualization. Let us now start thinking about how we would like to show our data. At this point it is useful to take a step back and think about the how graphs and tables work:</p>
 <ul>
@@ -378,7 +402,7 @@ Figure 13.1: Scatter plots of Anscombe’s quartet. The dashed line is fitted us
 </ul>
 <p>In general a table is very useful if we want to show few very precise numbers (i.e. decimal points). A table also has the advantage of being able to combine several different types of values (as for example the statistics for the Anscombe example in Week 1).</p>
 </div>
-<div id="the-quantity-of-data" class="section level3 unnumbered" number="">
+<div id="the-quantity-of-data" class="section level3 unnumbered">
 <h3>The quantity of data</h3>
 <p>We might not a-priori have a view on whether we are more interested in patterns or specific values. Consider the four datasets in the Anscombe example. We are simply interested in comparing these datasets. The reason Table <a href="data-visualization-basics.html#tab:viz2">13.2</a> works poorly is that we are overloaded with information: eight columns with ten observations of values = eighty values. Comparing all these eighty values to each other takes time and is cognitive demanding, so this way of presenting data is not ideal.</p>
 <ul>
@@ -389,7 +413,7 @@ Figure 13.1: Scatter plots of Anscombe’s quartet. The dashed line is fitted us
 <div id="table-design" class="section level2" number="13.4">
 <h2><span class="header-section-number">13.4</span> Table design</h2>
 <p>In some cases we might have large tables with a lot of numbers that work well. Figure <a href="data-visualization-basics.html#fig:viz4">13.2</a> shows an example of a (famous) large table that works well.</p>
-<div class="figure" style="text-align: center"><span id="fig:viz4"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:viz4"></span>
 <img src="resources/chapter_viz/figecon.jpg" alt="An example of a table from the magazine 'The Economist'" width="90%" />
 <p class="caption">
 Figure 13.2: An example of a table from the magazine ‘The Economist’
@@ -397,24 +421,24 @@ Figure 13.2: An example of a table from the magazine ‘The Economist’
 </div>
 <p>So why does Figure <a href="data-visualization-basics.html#fig:viz4">13.2</a> work well? Because we use it to look up numbers, it uses good table design and it clearly directs the reader to specific information.
 We will return to the issue of table and graph design below. The main takeaway here is that when choosing between a table and a graph it is worth considering the amount of data to visualize and whether the purpose of the visualization is to visualize patterns or specific values.</p>
-<div id="table-structure" class="section level3 unnumbered" number="">
+<div id="table-structure" class="section level3 unnumbered">
 <h3>Table structure</h3>
 <p>A table is organized in rows and columns. While the table representation therefore by definition is two dimensional, the table can be highly complex. At least one of the dimensions is typically numerical. The other dimension(s) might be categorical or also numerical.</p>
-<div class="figure" style="text-align: center"><span id="fig:viz5"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:viz5"></span>
 <img src="resources/chapter_viz/tab1.png" alt="A table with categorical variable in rows and a numerical variable in columns" width="30%" />
 <p class="caption">
 Figure 13.3: A table with categorical variable in rows and a numerical variable in columns
 </p>
 </div>
 <p>The table shown in Figure <a href="data-visualization-basics.html#fig:viz5">13.3</a> is an example of a table where we have a categorical variable (products) and a numerical variable (value). We could easily add another categorical dimension to the table, by showing the value for different areas as in the table shown in Figure <a href="data-visualization-basics.html#fig:viz6">13.4</a> , where we have product (categorical), area (categorical) and value (numerical).</p>
-<div class="figure" style="text-align: center"><span id="fig:viz6"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:viz6"></span>
 <img src="resources/chapter_viz/tab2.png" alt="A table with one numerical variables and two categorical variables" width="60%" />
 <p class="caption">
 Figure 13.4: A table with one numerical variables and two categorical variables
 </p>
 </div>
-<p>We can make the table slightly more complex by adding another hierarchical dimension. In other words there is some specific ordering of the categorical variables: “A 2.2” is a sub-area of “Area 2”. We cannot just move “A 2.1” to “Area 1”. A hierarchical table structure gives insights on “conditionals”: For example, what is the average wage for a bus driver, conditional on being a woman?</p>
-<div class="figure" style="text-align: center"><span id="fig:viz7"></span>
+<p>We can make the table slightly more complex by adding another hierarchical dimension. In other words there is some specific ordering of the categorical variables: “A 2.2” is a sub-area of “Area 2.” We cannot just move “A 2.1” to “Area 1.” A hierarchical table structure gives insights on “conditionals”: For example, what is the average wage for a bus driver, conditional on being a woman?</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:viz7"></span>
 <img src="resources/chapter_viz/tab3.png" alt="A table with an hierarchical structure." width="70%" />
 <p class="caption">
 Figure 13.5: A table with an hierarchical structure.
@@ -422,14 +446,14 @@ Figure 13.5: A table with an hierarchical structure.
 </div>
 <p>Tables can be outlined in different ways to optimize space and readability. In a <em>unidirectional</em> approach categorical values are organized along one dimension. In a <em>bidirectional</em> table, categorical values are organized along both rows and columns. The table shown in Figure @(fig:viz7) is a bidirectional table. We have Product categories down the rows and areas across columns. This layout saves is slightly more space and ink efficient. Can you redesign the same table to be bidirectional? Why is the table not as efficient in terms of space and ink?</p>
 <p>To summarize, when designing a table it is worth first considering the dimensions in the data you would like to show. How many dimensions are there? Are they structured in a hierarchical order? Figure @(fig:viz8) provides two table examples. The tables represent the same underlying data. One of them is doing a good job, the other not. Why not?</p>
-<div class="figure" style="text-align: center"><span id="fig:viz8"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:viz8"></span>
 <img src="resources/chapter_viz/poor.png" alt="A poorly designed and structure table and a table with a good structure and layout." width="48%" /><img src="resources/chapter_viz/good.png" alt="A poorly designed and structure table and a table with a good structure and layout." width="48%" />
 <p class="caption">
 Figure 13.6: A poorly designed and structure table and a table with a good structure and layout.
 </p>
 </div>
 </div>
-<div id="table-layout-and-design" class="section level3 unnumbered" number="">
+<div id="table-layout-and-design" class="section level3 unnumbered">
 <h3>Table layout and design</h3>
 <p>It is clearly not only the structure that makes one of the tables in @(fig:viz8) good and the other one bad. The table on the left is clearly also better designed. Once we have organized our table in rows and columns, there are number of layout features that you can adjust to improve readability of the table. Below is short list of design aspect to consider when designing a table.</p>
 <ul>
@@ -442,12 +466,12 @@ Figure 13.6: A poorly designed and structure table and a table with a good struc
 </div>
 <div id="chart-design" class="section level2" number="13.5">
 <h2><span class="header-section-number">13.5</span> Chart design</h2>
-<div id="basic-chart-structure" class="section level3 unnumbered" number="">
+<div id="basic-chart-structure" class="section level3 unnumbered">
 <h3>Basic chart structure</h3>
 <p>While tables are organized in columns and rows, charts are typically organized in two to three axes. Most graphs have two axes: a horizontal axis (the x-axis) and a vertical axis (the y-axis). The number of data dimensions (i.e. variables) shown in a chart are limited by the the number of axes. With only two axes the graph can only represent two variables. The variable shown on the y-axis (for example unemployment) and the value shown on the x-values (for example time measured in quarters).</p>
 <p>As charts often visualize large quantities of information, it is therefore important to prioritize clarity and simplicity. Graphs with a third “depth” axis (z-axis) are therefore still relatively rare least in popular media. However, graphs with a second vertical axis (typically on the right) are not uncommon.</p>
 </div>
-<div id="how-charts-work" class="section level3 unnumbered" number="">
+<div id="how-charts-work" class="section level3 unnumbered">
 <h3>How charts work</h3>
 <p>As described, charts use visual objects to represent values. But not all charts use the same tool to visualize values. Generally speaking, we can divide the chart into two types by how they visualize values:</p>
 <ul>
@@ -459,16 +483,16 @@ Figure 13.6: A poorly designed and structure table and a table with a good struc
 </ul>
 <p>Why is this important to think about how charts (and tables) work? First of all, when using a specific chart type it is important to know how this type of chart represents values in the chart design. Cutting of the y-axes for a bar chart is therefore in principle often a poor idea, because the bar chart uses the size of the area to show the value of the variable. Secondly, when selecting a graph type it is important to think about how the values are represented.</p>
 </div>
-<div id="common-chart-types" class="section level3 unnumbered" number="">
+<div id="common-chart-types" class="section level3 unnumbered">
 <h3>Common chart types</h3>
 <p>There are my graph types that use combinations of the methods described above (position of symbols, shapes and areas) to visualize data. We will not cover all graph types, but focus on some general guiding principles. We will return to many of these graphs later on in the unit. But for now, we will focus on four common graph types. Figure <a href="data-visualization-basics.html#fig:viz9">13.7</a> shows a bar chart of the most popular data representation methods based on a small survey of three editions of the magazine The Economist. The Figure shows that line charts are used in almost every second data representation in these editions of The Economists.</p>
-<div class="figure" style="text-align: center"><span id="fig:viz9"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:viz9"></span>
 <img src="resources/chapter_viz/econhist.png" alt="Data representations in 'The Economist'. Data source: Own survey  of three volumes of The Economist." width="48%" />
 <p class="caption">
-Figure 13.7: Data representations in ‘The Economist’. Data source: Own survey of three volumes of The Economist.
+Figure 13.7: Data representations in ‘The Economist.’ Data source: Own survey of three volumes of The Economist.
 </p>
 </div>
-<div id="the-line-chart" class="section level4 unnumbered" number="">
+<div id="the-line-chart" class="section level4 unnumbered">
 <h4>The line chart</h4>
 <p>Why are line charts so popular? Let us first describe the line chart (for the case with two values):
 * The vertical position of the line represents the y-value.
@@ -478,14 +502,14 @@ Figure 13.7: Data representations in ‘The Economist’. Data source: Own surve
 * The line chart is typically used to show the relationship between two numerical variables.
 * The line chart is typically read from left to right, and gives the reader an interpretation of development.</p>
 The two last points are crucial. Connecting two categorical groups rarely makes any sense. Figure <a href="data-visualization-basics.html#fig:viz10">13.8</a> for example, shows the values used in <a href="data-visualization-basics.html#fig:viz9">13.7</a> using a line chart. With a line chart, we are naturally inclined to look at the change, from left to right, and less likely to focus on the group comparison (as with a bar chart). As there is no obvious ordering of the groups on the x-axis, the interpretation of a decline, from left-to-right is meaningless. In other words, a line chart is a powerful message if we want to illustrate a continuous change, for example over time).
-<div class="figure" style="text-align: center"><span id="fig:viz10"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:viz10"></span>
 <img src="resources/chapter_viz/econline.png" alt="Data representations in 'The Economist' using a line chart. Data source: Own survey  of three volumes of The Economist." width="48%" />
 <p class="caption">
 Figure 13.8: Data representations in ‘The Economist’ using a line chart. Data source: Own survey of three volumes of The Economist.
 </p>
 </div>
 </div>
-<div id="the-bar-chart" class="section level4 unnumbered" number="">
+<div id="the-bar-chart" class="section level4 unnumbered">
 <h4>The bar chart</h4>
 <p>Let us now consider the second most popular chart type, the bar chart. Let us make the same list we created for the line chart for the bar chart:</p>
 <ul>
@@ -496,10 +520,10 @@ Figure 13.8: Data representations in ‘The Economist’ using a line chart. Dat
 <li>can show several data series for the same categorical variable.</li>
 </ul>
 </div>
-<div id="maps" class="section level4 unnumbered" number="">
+<div id="maps" class="section level4 unnumbered">
 <h4>Maps</h4>
 <p>Showing data in maps can provide new insights and reveal patterns. For example that cholera deaths are clustered around pumps like in the map created by John Snow, as shown in Figure <a href="data-visualization-basics.html#fig:viz155">13.9</a>.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a></p>
-<div class="figure" style="text-align: center"><span id="fig:viz155"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:viz155"></span>
 <img src="resources/chapter_viz/Snow-cholera-map-1.jpg" alt="John Snow's map of Cholera deaths in central London. Each line represents a death.Each circle represents a water pump. Source: Wikipedia." width="48%" />
 <p class="caption">
 Figure 13.9: John Snow’s map of Cholera deaths in central London. Each line represents a death.Each circle represents a water pump. Source: Wikipedia.
@@ -513,14 +537,14 @@ Figure 13.9: John Snow’s map of Cholera deaths in central London. Each line re
 </ol>
 </div>
 </div>
-<div id="charts-to-avoid" class="section level3 unnumbered" number="">
+<div id="charts-to-avoid" class="section level3 unnumbered">
 <h3>Charts to avoid</h3>
 <p>Unfortunately, there exists a wide range of non-functional charts that are widely used. Chapter 12 in <span class="citation">(Few 2012)</span> provides a good discussion of charts that “are best forsaken”:</p>
-<div id="pie-charts" class="section level4 unnumbered" number="">
+<div id="pie-charts" class="section level4 unnumbered">
 <h4>Pie charts</h4>
-<p>Donut charts and pie charts are very popular chart types, but they very often inefficient ways of fractions. First of all, these charts should only be used when showing “part-of-a-whole”. Secondly, while donut charts and pie charts are “cute”, they are very inefficient, especially when we want to compare the size of the pie (or donut) pieces to each other or to pieces in other donuts.</p>
+<p>Donut charts and pie charts are very popular chart types, but they very often inefficient ways of fractions. First of all, these charts should only be used when showing “part-of-a-whole.” Secondly, while donut charts and pie charts are “cute,” they are very inefficient, especially when we want to compare the size of the pie (or donut) pieces to each other or to pieces in other donuts.</p>
 </div>
-<div id="charts-with-3d-effects" class="section level4 unnumbered" number="">
+<div id="charts-with-3d-effects" class="section level4 unnumbered">
 <h4>Charts with 3D effects</h4>
 <p>3D effects are very popular, but as a general advice: charts should never have more dimensions than the dimensions in the data. If you have two dimensions in your data, your chart should be two dimensional. If you have three dimensions in your data, the chart could potentially have 3 dimensions. 3D charts based on 3 variables are fascinating, but it can be challenging to interpret them.</p>
 <p>So should you completely avoid all charts listed in chapter 12 of <span class="citation">(Few 2012)</span> ? There is no chart police (yet), but the point of this discussion is that several chart types are inefficient and they often can be replaced by simple line or bar charts. This might seem boring and you might want to use various chart types to keep the readers attention, but remember the point by Cairo: They should be functional</p>
@@ -529,10 +553,10 @@ Figure 13.9: John Snow’s map of Cholera deaths in central London. Each line re
 </div>
 <div id="lies-junk-and-non-data-ink." class="section level2" number="13.6">
 <h2><span class="header-section-number">13.6</span> Lies, junk and non-data ink.</h2>
-<div id="tuftes-concepts-for-good-data-visualizations." class="section level3 unnumbered" number="">
+<div id="tuftes-concepts-for-good-data-visualizations." class="section level3 unnumbered">
 <h3>Tufte’s concepts for good data visualizations.</h3>
 <p>In his seminal work on data visualizations Edward Tufte introduced a number of a concepts for good (or bad) data visualizations. We will here briefly discuss the most important ones.</p>
-<div id="the-lie-factor" class="section level4 unnumbered" number="">
+<div id="the-lie-factor" class="section level4 unnumbered">
 <h4>The Lie Factor</h4>
 <p>Recall above that charts use visual tools to represent the value of the data point. But what if we make the bar in a bar chart slightly larger than it is supposed to be according to the value it represents? We are then distorting the visualization and misleading the reader. We can quantify the size of this <em>lie</em> by means of the the Lie Factor <span class="citation">(p. 57 in Tufte 2001)</span>.
 <span class="math display">\[\begin{align}
@@ -540,7 +564,7 @@ Figure 13.9: John Snow’s map of Cholera deaths in central London. Each line re
 \end{align}\]</span></p>
 <p>According to Tufte, Lie Factors below 0.95 or above 1.05 are signs of substantial distortion, that cannot be attributed to inaccuracies in the production of the chart.</p>
 </div>
-<div id="data-ink-ratio" class="section level4 unnumbered" number="">
+<div id="data-ink-ratio" class="section level4 unnumbered">
 <h4>Data-ink ratio</h4>
 <p>Edward R. Tufte’s quote “Above All Else Show the Data” <span class="citation">(Tufte 2001)</span> focuses on what we should show: the data. But the quote also implicitly hints at what we should not show (“above all else”): the non-data part. We can quantify we what we show in terms of the “ink” used (if it was printed on paper), and our objective should be to maximize the amount of data we show relative to the amount of ink we use. This concept, and the idea of the data-ink ratio can also be attributed to Tufte. We can formally think of the data-ink ratio as follows <span class="citation">(Tufte 2001)</span>:</p>
 <p><span class="math display">\[\begin{align}
@@ -562,35 +586,35 @@ Figure 13.9: John Snow’s map of Cholera deaths in central London. Each line re
 <li>Emphasize the most important data ink.</li>
 </ul>
 <p>Let’s try this in practice. Figure <a href="data-visualization-basics.html#fig:viz12">13.10</a> shows a bar chart that does a poor job in communicating the data.</p>
-<div class="figure" style="text-align: center"><span id="fig:viz12"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:viz12"></span>
 <img src="resources/chapter_viz/ex0_1.png" alt="A bar chart with a low data ink ratio" width="70%" />
 <p class="caption">
 Figure 13.10: A bar chart with a low data ink ratio
 </p>
 </div>
 <p>Let’s follow the instructions above to improve the chart in Figure <a href="data-visualization-basics.html#fig:viz12">13.10</a> by <em>removing unnecessary non-data ink</em>. We removed the background and borders. This is unnecessary ink that has nothing to do with the data. This gives us the chart shown in Figure <a href="data-visualization-basics.html#fig:viz13">13.11</a>.</p>
-<div class="figure" style="text-align: center"><span id="fig:viz13"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:viz13"></span>
 <img src="resources/chapter_viz/ex0_2.png" alt="The bar chart after removing the background and borders." width="70%" />
 <p class="caption">
 Figure 13.11: The bar chart after removing the background and borders.
 </p>
 </div>
 <p>Removing the background already improved the data-ink ration, but there is scope for more. We can also remove the 3D effect. This is unnecessary ink that has nothing to do with the data, and only makes the chart more difficult to read. We can also remove the glow and filling effects. The resulting chart is shown in Figure <a href="data-visualization-basics.html#fig:viz14">13.12</a>.</p>
-<div class="figure" style="text-align: center"><span id="fig:viz14"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:viz14"></span>
 <img src="resources/chapter_viz/ex0_4.png" alt="The bar chart after removing the 3D effects." width="70%" />
 <p class="caption">
 Figure 13.12: The bar chart after removing the 3D effects.
 </p>
 </div>
 <p>Compare Figure <a href="data-visualization-basics.html#fig:viz14">13.12</a> to Figure <a href="data-visualization-basics.html#fig:viz12">13.10</a>. The data-ink ratio is clearly improved. But there is scope for more. We can also remove the grid lines and the legend. Grid lines and tick marks can sometimes be helpful, but in this case I think they can be removed. We only show one data series here, so there is no need to show a legend explaining what refers to what.</p>
-<div class="figure" style="text-align: center"><span id="fig:viz15"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:viz15"></span>
 <img src="resources/chapter_viz/ex0_5.png" alt="The bar chart after removing the grid lines and the legend." width="70%" />
 <p class="caption">
 Figure 13.13: The bar chart after removing the grid lines and the legend.
 </p>
 </div>
-<p>The visualisation in Figure <a href="data-visualization-basics.html#fig:viz15">13.13</a> is alrady fairly good, but we can improve the data-ink ratio by following the second steps and " Enhance the ink that is directly related to data.“. We enhance the data by adding value labels. And because all the non-data ink is now removed. We can also increase the font size and thereby the readability of the actual data. We also added an axis title (”Unit“) as this is part of the data. The”final" chart is shown in Figure <a href="data-visualization-basics.html#fig:viz16">13.14</a>.</p>
-<div class="figure" style="text-align: center"><span id="fig:viz16"></span>
+<p>The visualisation in Figure <a href="data-visualization-basics.html#fig:viz15">13.13</a> is alrady fairly good, but we can improve the data-ink ratio by following the second steps and ” Enhance the ink that is directly related to data.”. We enhance the data by adding value labels. And because all the non-data ink is now removed. We can also increase the font size and thereby the readability of the actual data. We also added an axis title (“Unit”) as this is part of the data. The “final” chart is shown in Figure <a href="data-visualization-basics.html#fig:viz16">13.14</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:viz16"></span>
 <img src="resources/chapter_viz/ex0_6.png" alt="The bar chart after emphasizing the data." width="70%" />
 <p class="caption">
 Figure 13.14: The bar chart after emphasizing the data.
@@ -598,12 +622,12 @@ Figure 13.14: The bar chart after emphasizing the data.
 </div>
 <p>Compare Figure <a href="data-visualization-basics.html#fig:viz12">13.10</a> to Figure <a href="data-visualization-basics.html#fig:viz16">13.14</a> we quickly realize how much easier it is to learn what the data says in the latter chart. It might look more boring (I admit, Figure <a href="data-visualization-basics.html#fig:viz12">13.10</a> was quite ugly), but it is much more efficient. The chart is, however, not self-explanatory. Can you identify what is missing?</p>
 </div>
-<div id="chartjunk" class="section level4 unnumbered" number="">
+<div id="chartjunk" class="section level4 unnumbered">
 <h4>Chartjunk</h4>
 <p>Chartjunk captures all elements of a chart that are unrelated to the data information provided by the chart. By maximizing the data-ink ratio we can often minimize chart-junk. However, not all chartjunk is bad. In fact, in some (rare) examples chartjunk improves the readability of the chart and makes it more memorable.</p>
-<p>One of the most common examples of chart-junk is when the author includes graphical elements related to the topic of the chart: “If the chart is about students, then we want the chart to consist of students.” or “If the chart is about child births, let us include babys in the graph”. This very rarely works well. Charts are first and foremost meant to communicate quantitative information.</p>
+<p>One of the most common examples of chart-junk is when the author includes graphical elements related to the topic of the chart: “If the chart is about students, then we want the chart to consist of students.” or “If the chart is about child births, let us include babys in the graph.” This very rarely works well. Charts are first and foremost meant to communicate quantitative information.</p>
 </div>
-<div id="alberto-cairos-principles-of-good-data-visualizations" class="section level4 unnumbered" number="">
+<div id="alberto-cairos-principles-of-good-data-visualizations" class="section level4 unnumbered">
 <h4>Alberto Cairo’s principles of good data visualizations</h4>
 <p>The graphical journalist Alberto Cairo provides provides an excellent “summary” of what characterizes great data visualization. This summary is based on the book “The Truthful Art” by Alberto Cairo <span class="citation">(Cairo 2016)</span>. The summary consists of five qualities that great data visualization should satisfy. Great visualizations is:</p>
 <ol style="list-style-type: decimal">
@@ -677,63 +701,63 @@ The visualization affects how the reader thinks about the specific topic or rela
 <li>A cook-book for a good data visualization.</li>
 </ol>
 
-<div id="refs" class="references hanging-indent">
-<div id="ref-cairo">
-<p>Cairo, Alberto. 2016. <em>The Truthful Art: Data, Charts, and Maps for Communication</em>. New Riders.</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-cairo" class="csl-entry">
+Cairo, Alberto. 2016. <em>The Truthful Art: Data, Charts, and Maps for Communication</em>. New Riders.
 </div>
-<div id="ref-ppieu">
-<p>Eurostat. 2012. “Handbook on Industrial Producer Price Indices (Ppi).”</p>
+<div id="ref-ppieu" class="csl-entry">
+Eurostat. 2012. <span>“Handbook on Industrial Producer Price Indices (PPI).”</span>
 </div>
-<div id="ref-cpieu">
-<p>———. 2018. “HICP Methodology.”</p>
+<div id="ref-cpieu" class="csl-entry">
+———. 2018. <span>“HICP Methodology.”</span>
 </div>
-<div id="ref-few2012show">
-<p>Few, Stephen. 2012. “Show Me the Numbers.” <em>Analytics Pres</em>.</p>
+<div id="ref-few2012show" class="csl-entry">
+Few, Stephen. 2012. <span>“Show Me the Numbers.”</span> <em>Analytics Pres</em>.
 </div>
-<div id="ref-csr">
-<p>Gupta, Prithwis Das. 1993. “Standardization and Decomposition of Rates: A User’s Manual.” <em>U.S. Department of Commerce</em>.</p>
+<div id="ref-csr" class="csl-entry">
+Gupta, Prithwis Das. 1993. <span>“Standardization and Decomposition of Rates: A User’s Manual.”</span> <em><span>U.S. Department of Commerce</span></em>.
 </div>
-<div id="ref-healy2018data">
-<p>Healy, Kieran. 2018. <em>Data Visualization: A Practical Introduction</em>. Princeton University Press.</p>
+<div id="ref-healy2018data" class="csl-entry">
+Healy, Kieran. 2018. <em>Data Visualization: A Practical Introduction</em>. Princeton University Press.
 </div>
-<div id="ref-lacour">
-<p>Konnikova, Maria. n.d. “How a Gay-Marriage Study Went Wrong.” <em>The New Yorker</em>. <a href="https://www.newyorker.com/science/maria-konnikova/how-a-gay-marriage-study-went-wrong">https://www.newyorker.com/science/maria-konnikova/how-a-gay-marriage-study-went-wrong</a>.</p>
+<div id="ref-lacour" class="csl-entry">
+Konnikova, Maria. 2015, May 22. <span>“How a Gay-Marriage Study Went Wrong.”</span> <em><span>The New Yorker</span></em>. <a href="https://www.newyorker.com/science/maria-konnikova/how-a-gay-marriage-study-went-wrong">https://www.newyorker.com/science/maria-konnikova/how-a-gay-marriage-study-went-wrong</a>.
 </div>
-<div id="ref-kuznets1934national">
-<p>Kusnets, Simon. 1934. <em>National Income, 1929-1932</em>. Vol. 124. Washington: United States Government Printing Office.</p>
+<div id="ref-kuznets1934national" class="csl-entry">
+Kusnets, Simon. 1934. <em>National Income, 1929-1932</em>. Vol. 124. Washington: United States Government Printing Office.
 </div>
-<div id="ref-lacour2014contact">
-<p>LaCour, Michael J, and Donald P Green. 2014. “When Contact Changes Minds: An Experiment on Transmission of Support for Gay Equality.” <em>Science</em> 346 (6215): 1366–9.</p>
+<div id="ref-lacour2014contact" class="csl-entry">
+LaCour, Michael J, and Donald P Green. 2014. <span>“When Contact Changes Minds: An Experiment on Transmission of Support for Gay Equality.”</span> <em>Science</em> 346 (6215): 1366–69.
 </div>
-<div id="ref-ppp">
-<p>OECD &amp; Eurostat. 2012. “Eurostat-Oecd Methodological Manual on Purchasing Power Parities.”</p>
+<div id="ref-ppp" class="csl-entry">
+OECD &amp; Eurostat. 2012. <span>“Eurostat-OECD Methodological Manual on Purchasing Power Parities.”</span>
 </div>
-<div id="ref-cpions">
-<p>Office for National Statistics. 2014. “Consumer Price Indices - Technical Manual.” Office of Public Sector Information.</p>
+<div id="ref-cpions" class="csl-entry">
+Office for National Statistics. 2014. <span>“Consumer Price Indices - Technical Manual.”</span> Office of Public Sector Information.
 </div>
-<div id="ref-gdpons">
-<p>———. 2016. “Chain-Linking Methods Used Within the Uk National Accounts.” Office of Public Sector Information.</p>
+<div id="ref-gdpons" class="csl-entry">
+———. 2016. <span>“Chain-Linking Methods Used Within the UK National Accounts.”</span> Office of Public Sector Information.
 </div>
-<div id="ref-ppions">
-<p>———. 2018. “Quality and Methodology Information Producer Price Index.” Office of Public Sector Information.</p>
+<div id="ref-ppions" class="csl-entry">
+———. 2018. <span>“Quality and Methodology Information Producer Price Index.”</span> Office of Public Sector Information.
 </div>
-<div id="ref-smith2008japan">
-<p>Smith, Gregor W. 2008. “Japan’s Phillips Curve Looks Like Japan.” <em>Journal of Money, Credit and Banking</em> 40 (6): 1325–6.</p>
+<div id="ref-smith2008japan" class="csl-entry">
+Smith, Gregor W. 2008. <span>“Japan’s Phillips Curve Looks Like Japan.”</span> <em>Journal of Money, Credit and Banking</em> 40 (6): 1325–26.
 </div>
-<div id="ref-stiglitz2010report">
-<p>Stiglitz, Joseph E, Amartya Sen, Jean-Paul Fitoussi, and others. 2009. “Report by the Commission on the Measurement of Economic Performance and Social Progress.” <em>Paris: Commission on the Measurement of Economic Performance and Social Progress</em>.</p>
+<div id="ref-stiglitz2010report" class="csl-entry">
+Stiglitz, Joseph E, Amartya Sen, Jean-Paul Fitoussi, et al. 2009. <span>“Report by the Commission on the Measurement of Economic Performance and Social Progress.”</span> <em>Paris: Commission on the Measurement of Economic Performance and Social Progress</em>.
 </div>
-<div id="ref-core">
-<p>The CORE Team. 2017. <em>The Economy-Economics for a Changing World</em>. 1st ed. Oxford University Press, UK.</p>
+<div id="ref-core" class="csl-entry">
+The CORE Team. 2017. <em>The Economy-Economics for a Changing World</em>. 1st ed. Oxford University Press, UK.
 </div>
-<div id="ref-tufte2001visual">
-<p>Tufte, Edward R. 2001. <em>The Visual Display of Quantitative Information</em>. Vol. 2. Graphics press Cheshire, CT.</p>
+<div id="ref-tufte2001visual" class="csl-entry">
+Tufte, Edward R. 2001. <em>The Visual Display of Quantitative Information</em>. Vol. 2. Graphics press Cheshire, CT.
 </div>
-<div id="ref-wickham2014tidy">
-<p>Wickham, Hadley. 2014. “Tidy Data.” <em>Journal of Statistical Software</em> 59 (10): 1–23.</p>
+<div id="ref-wickham2014tidy" class="csl-entry">
+Wickham, Hadley. 2014. <span>“Tidy Data.”</span> <em>Journal of Statistical Software</em> 59 (10): 1–23.
 </div>
-<div id="ref-wilke2019fundamentals">
-<p>Wilke, Claus O. 2019. <em>Fundamentals of Data Visualization: A Primer on Making Informative and Compelling Figures</em>. O’Reilly Media.</p>
+<div id="ref-wilke2019fundamentals" class="csl-entry">
+Wilke, Claus O. 2019. <em>Fundamentals of Data Visualization: A Primer on Making Informative and Compelling Figures</em>. O’Reilly Media.
 </div>
 </div>
 </div>
@@ -765,7 +789,6 @@ The visualization affects how the reader thinks about the specific topic or rela
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -784,6 +807,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -804,6 +828,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
