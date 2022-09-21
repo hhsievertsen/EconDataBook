@@ -1,0 +1,26 @@
+h1:inequality Inequality
+h2:about-this-chapter About this chapter
+fig:in0 The distribution of income. Data is simulated.
+h3:intended-learning-outcomes Intended learning outcomes
+h2:inequality-dimensions Inequality dimensions
+h2:data-requirements Data requirements
+h3:macro-and-micro-level-data Macro and micro level data
+h4:macro-level-data Macro level data
+h4:micro-level-data Micro level data
+h3:net-and-gross-values Net and gross values
+h3:equivalenced-income Equivalenced income
+h2:income-shares Income shares
+fig:inx1 \\label{fig:figx} Income shares based on simulated data.
+fig:inx2  Income shares in the UK. Data source: World Inequality database
+h2:the-lorenz-curve-and-the-gini-coefficient The Lorenz curve and the Gini coefficient
+fig:inx3a \\label{fig:figx} Income shares based on simulated data.
+fig:poverty0 Lorenz curves for 3 different income distributions.
+h3:the-gini-coefficient The Gini coefficient
+fig:poverty1 The Lorenz curve and the Gini coefficient. The Gini coefficient is $A/(A+B)$.
+fig:poverty2 Approximating the Gini coefficient using the Lorenz curve Left: approximation of area A. Right: approximation of are B.
+fig:poverty3 Gini coefficients in 2016 for European countries. Source: Eurostat.
+h2:other-measures-of-inequality Other measures of inequality
+h4:ratios Ratios
+h4:the-wage-share The Wage share
+h2:further-readings Further readings
+

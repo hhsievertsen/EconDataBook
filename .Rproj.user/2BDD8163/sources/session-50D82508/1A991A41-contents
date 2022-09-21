@@ -1,0 +1,1234 @@
+---
+title: "Doing Economic Analysis"
+subtitle: " "
+author: "Hans Henrik Sievertsen"
+institute: "University of Bristol, School of Economics"
+date: "July 21, 2022"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightLines: true
+      countIncrementalSlides: false
+      
+      
+---
+# Plan for today
+
+
+
+```{r , include=FALSE}
+options(htmltools.dir.version = FALSE)
+
+# Add boxplot
+# Add suggested solutions
+# Add layout for question and highlight
+# Check layouts!
+# Check flow!
+
+# Install 
+#remotes::install_github('yihui/xaringan', upgrade = TRUE)
+# Moon reader
+#xaringan::inf_mr() 
+# Load libraries
+library("tidyverse")    # Data wrangling and stuff
+library("knitr")        # Inset R stuff
+library("xaringanthemer") # Layout
+library("modelsummary") # Layout
+
+# Layouts 
+style_mono_accent(
+  code_font_size = "0.7rem",
+  base_color = "#990000",
+  header_font_google = google_font("Josefin Sans"),
+  text_font_google   = google_font("Montserrat", "300", "300i"),
+  code_font_google   = google_font("Fira Mono"),
+    text_bold_color ="#000000",
+
+)
+# data for examples
+N<-100
+T<-12
+exdata<-tibble(yvariable=rnorm(N*T),zvariable=rnorm(N*T),xvariable=rep(1:12,N),level=round(runif(N*T)*10),groupvariable=c(rep("Treated",12*50),rep("Control",12*50)))%>%
+    mutate(yvariable=ifelse(groupvariable=="Treated",
+                            ifelse(xvariable>5,yvariable+6,yvariable+3),yvariable))
+                            
+#ggplot(ed,aes(x=xvariable,y=yvariable, color=groupvariable))+geom_point()
+
+```
+
+
+<style>
+.remark-slide-number{
+  display:none;
+}
+.red { 
+color: red; 
+  font-weight: bold;
+  }
+  
+.question { 
+color: green; 
+  font-weight: bold;
+  }
+  
+.pull-left{
+}
+.pull-right{
+
+}
+.remark-code, .remark-inline-code{
+font-size:12pt;
+width:90%;
+}
+</style>
+
+
+<h4>Plan</h4>
+
+- Introduction
+- Part 1: A first look at the data with R
+- Part 2: Correlation vs. causation
+- Part 3: Difference-in-Differences
+- Part 4: Regressions
+
+<br><br>
+
+
+---
+# Practicalities
+
+
+- This is a hands-on session. 
+
+- Please ask questions!
+
+- You can access the slides here: [hhsievertsen.net/dewr](http://www.hhsievertsen.net/dewr).
+
+- You should have access to R(studio).
+
+  - If it is not working on the computer you are sitting at, you can use:  [hhsievertsen.shinyapps.io/dewr/](https://hhsievertsen.shinyapps.io/dewr/).
+
+- We will be using an example dataset, which is available here: [hhsievertsen.net/analysisdata.csv](http://www.hhsievertsen.net/analysisdata.csv)  (you don't need to download it now).
+
+- Action points for you (questions, tasks) are .question[highlighted in green].
+
+Let's get started!
+
+---
+class: inverse, center, middle
+
+# Introduction
+
+    
+
+
+
+    
+---
+# Using data to study economic questions
+
+.red[**How economics used to be**]
+- Limited data
+- Theories based on assumptions about how the world looks
+
+  <blockquote><em>"..Ask five economists and you'll get five different answers - six if one went to Harvard."</em>
+   (Edgar Fiedler)
+  </blockquote>
+
+<br>
+
+--
+
+.red[**Economics today**]
+- Rich and large datasets 
+- Theories based on what we learn from data (and a few assumptions)
+
+
+
+    
+---
+# How do we learn from data?
+
+
+1. **Ask a good question**
+2. Find data
+3. Use tools (software)
+4. Economics and statistics: econometrics
+
+
+<br>
+
+--
+
+**What is a good question?**
+
+- It is relevant.
+- It is specific.
+- It is falsifiable.
+
+--
+<br>
+
+**Bad:** *Are summer schools good?*
+
+--
+
+.question[Question to you: Why is this not a good question?]
+
+
+**Better:** *"Does attending a summer school cause higher test scores?"*
+
+
+
+
+
+---
+# How do we learn from data?
+
+
+1. Good question &#10004;
+2. **Data**
+3. Tools (software)
+4. Economics and statistics: econometrics
+
+<br><br>
+
+--
+
+
+<blockquote><em>' “Data! Data! Data!" he cried impatiently. "I can't make bricks without clay.”
+'</em>
+  .right[<cite>Sherlock Holmes (Sir Arthur Conan Doyle)</cite>]
+</blockquote>
+
+<br><br>
+
+- We can get data from surveys (questionnaires) or use automatically collected data (for example tax records, google search patterns)
+--
+
+<br>
+
+
+---
+# Setting  for today
+
+
+**I got  data for you today!** *(For confidentiality reasons, this data is fictitious).*
+
+
+
+
+
+.red[**Background**]
+
+- In the summer break between year 5 and year 6, (roughly corresponding to age 10) there is an optional summer school.
+- The summer school is free, but enrollment requires that parents (or the child) sign up for the school.
+
+.red[**The data**]
+
+- *person_id*: child identifier
+- *school_id*: school identifier
+- *female*: 1 if child is female, 0 otherwise
+- *parental_schooling*: parents' average years of school 
+- *parental_income*: parents' income
+- *year*: school year (grades 2 to 10)
+- *test_score*: result from standardised assessment 
+- *summerschool*: "Did go" if child attended summer school, "Did not go" if the child didn't attend.
+
+
+---
+# How do we learn from data?
+
+1. Good question &#10004;
+2. Data &#10004;
+3. **Tools (software)** We will use .red[**R**] to study the data.
+4. Economics and statistics: econometrics
+
+--
+
+
+.pull-left[
+
+**Microsoft Excel**
+
+<img src="excel_intro.gif" width="300">
+]
+
+
+
+.pull-right[
+
+**R**
+
+<img src="r_intro.gif" width="300">
+
+]
+
+.question[Question to you: What is the difference and why does the difference matter? ]
+
+---
+# How do we learn from data?
+
+
+1. Good question &#10004;
+2. Data &#10004;
+3. Tools (software) &#10004;
+4. **Economics and statistics: econometrics**
+
+
+
+.pull-left[
+- Economics: Consider human behaviour
+- Statistics: Analyse data
+- Combination of economics and statistics: econometrics
+
+
+]
+
+--
+
+.pull-right[
+.red[Economics is the]
+<blockquote><em>"..study of mankind in the ordinary business of life"</em>
+.right[<cite>Alfred Marshall</cite>]
+</blockquote>
+
+]
+
+    
+
+
+    
+---
+class: inverse, center, middle
+
+# Part 1: A first look at the data using R
+
+    
+    
+
+
+---
+# Plan for this part
+
+1. Opening R for the first time
+
+2. Use R to learn about the data:
+
+  - Calculate statistics that give a summary of our data (means, medians, etc)
+  - Create charts that show relationships in the data
+  
+3. Use R to answer our question: "Does attending a summer school cause higher test scores?"
+
+
+
+
+---
+#Opening R for the first time
+
+.red[**Open RStudio**] (it is like a studio for using R)
+
+<img src="r0.png" width="500">
+
+
+
+
+---
+# Getting started with R
+
+.red[**The R environment**] 
+
+<img src="r1.png" width="700">
+
+
+
+---
+# Getting started with R
+
+.red[**Install the tidyverse library**]  (a library of useful tools!)
+
+<img src="r2.png" width="600">
+
+
+
+.question[write "install.packages("tidyverse")" and press the enter button.]
+
+---
+# Getting started with R
+
+.red[**It should now look like this**]
+
+<img src="r3.png" width="600">
+
+
+.question[Now, do the same with the package "modelsummary"]
+
+
+---
+# Getting started with R
+
+.red[**Create our first code**] (and load the data)
+
+(this is just like opening the data in Excel)
+
+<img src="r4.png" width="600">
+
+- *Hint 1: lines that start with a "#" are comments.* 
+- *Hint 2: we execute the instructions by selecting all lines and clicking "run".*
+
+
+
+
+---
+# Let's learn some R
+
+From now on I'll just show you code examples like this one
+
+```{r ,message=FALSE, warnings=FALSE}
+# Load the library
+library("tidyverse")
+# Load the data
+read_csv("http://www.hhsievertsen.net/analysisdata.csv")
+```
+
+---
+# Let's learn some R
+
+We can give the dataset a name
+
+```{r ,message=FALSE, warnings=FALSE}
+# Load the library
+library("tidyverse")
+# Load the data and give it the name "mydata"
+mydata=read_csv("http://www.hhsievertsen.net/analysisdata.csv")
+# And we can then view dataset like before with "print(mydata)"
+print(mydata)
+```
+
+
+---
+# Our first chart
+
+- `ggplot()` creates an empty chart element.
+
+- `aes()` tells R the variables to use on the axes. 
+
+- `+geom_point()` tells R to add points to the chart.
+
+```{r ,message=FALSE, warnings=FALSE,fig.height=2.5}
+# create a scatter plot of yvariable and xvariable 
+ggplot(exdata,aes(x=xvariable,y=yvariable))+
+  geom_point()
+```
+
+We can translate this from "exdata" to "mydata"...
+
+
+
+---
+# Now with the summer school data
+
+- `ggplot()` creates an empty chart element.
+
+- `aes()` tells R the variables to use on the axes. 
+
+- `+geom_point()` tells R to add points to the chart.
+
+
+```{r,message=FALSE, warnings=FALSE,fig.height=2.5}
+# Load the library
+library("tidyverse")
+# Load the data and give it the name "mydata"
+mydata=read_csv("http://www.hhsievertsen.net/analysisdata.csv")
+# create a scatter plot of yvariable and xvariable 
+ggplot(mydata,aes(x=test_score,y=parental_earnings))+
+  geom_point()
+```
+
+
+---
+name:p1o
+# Your turn!
+
+.question[Your task: Try R tools to learn about what the data tells us about our research question.]
+
+
+- Calculate summary statistics: [show](#p1sumstat)
+and an ([alternative](#p1sumstat1) )
+- Compare summary statistics across groups: [show](#p1sumgroup) and an  [alternative](#p1sumgroup)
+- Use specific variables and observations only:[show](#p1filterselect)
+- Create a histogram: [show](#p1histograms)
+- Show estimated densities: [show](#p1densities)
+- Create bar charts showing values by groups: [show](#p1bars)
+- Create scatter plots: [show](#p1scatter)
+- Create line charts: [show](#p1line)
+- Create charts on aggregate data:   [show](#p1line)
+- Create charts for two (or more) groups: [show](#p1scatter)
+- Create separate charts for two (or more) groups: [show](#p12facet)
+- Polish the charts: [show](#p1polish)
+
+- Insert tables in presentation: [show](#figpres)
+- Insert charts in presentation: [show](#tabpres)
+
+Note: This is not easy! Please ask for help.
+
+
+---
+name:p1sumstat
+# R: averages, medians, etc
+
+We call statistics such as means and medians as .red[*summary statistics*] because they give us a summary of the data.
+
+```{r ,  message=FALSE, warnings=FALSE}
+# Calculate summary statistics for each variable
+summary(exdata)
+```
+<br>
+[<-Go back to overview.](#p1o)
+
+
+---
+name:p1sumstat1
+# R: Alternative summary statistics table
+
+```{r , message=FALSE, warnings=FALSE}
+# create table
+datasummary_skim(data = exdata)
+```
+
+-  *Hint: you can also use "output=..." to export this table, or alternatively, you can click "Export" and "Copy to Clipboard" and then paste it it into your document. *
+
+<br>
+[<-Go back to overview.](#p1o)
+
+---
+name:p1sumgroup
+# R: compare summary statistics across groups 
+
+Compare means and standard deviations across groups defined by variable *groupvariable*:
+
+```{r ,  message=FALSE, warnings=FALSE}
+# load library "modelsummary" to use tools from that library
+library("modelsummary")
+# use the function datasummary_balance() from modelsummary to compare 
+# summary statistics across groups
+datasummary_balance(~groupvariable,data = exdata)
+```
+
+*Hint: I assume that you still have library("tidyverse") in your code!*
+<br>
+[<-Go back to overview.](#p1o)
+
+
+
+---
+name:p1sumgroup1
+# R: Alternative comparison across groups
+
+```{r ,  message=FALSE, warnings=FALSE}
+# create table
+datasummary(zvariable+yvariable~groupvariable*(Mean+SD+P50),
+            data = exdata)
+```
+
+- *Hint: you can also use "output=..." to export this table, or alternatively, 
+        you can click "Export" and "Copy to Clipboard" and then paste it it into your document. *
+
+
+<br>
+[<-Go back to overview.](#p1o)
+
+
+---
+name:filterselect
+
+# R: Using specific values and observations only
+
+We are now only interested in variable *zvariable* and only for *level=2* 
+
+```{r ,  message=FALSE, warnings=FALSE}
+# filter only the observations of interest and save it under a new name exdata1
+exdata1<-filter(exdata,level==2)
+# select only the variables of interest and overwrite exdata1
+exdata1<-select(exdata1,zvariable,groupvariable)
+# create a table of summary statistics
+datasummary_balance(~groupvariable,data = exdata1)
+```
+
+-  *Hint: I assume that you still have library("tidyverse") and library("modelsummary") in your code. *
+
+<br>
+[<-Go back to overview.](#p1o)
+
+
+---
+name:histograms
+# R: Show histograms
+
+Show distribution of the variable *yvariable* and use different fill colour for the different groups defined by *groupvariable*.
+
+```{r ,  message=FALSE, warnings=FALSE,fig.height=5}
+# create chart
+ggplot(exdata,aes(x=yvariable,fill=groupvariable))+
+    geom_histogram()
+```
+
+<br>
+[<-Go back to overview.](#p1o)
+
+
+
+---
+name:densities
+# R: Density distributions
+
+- We now estimate and compare densities across groups (and make them transparent with alpha)
+
+```{r ,  message=FALSE, warnings=FALSE,fig.height=4.5}
+# create chart
+ggplot(exdata,aes(x=yvariable,fill=groupvariable),color=groupvariable)+
+    geom_density(alpha=0.5)
+```
+
+<br>
+[<-Go back to overview.](#p1o)
+
+
+
+---
+name:polish
+# R: Polish the chart
+
+Add title, change the layout, etc
+
+```{r ,  message=FALSE, warnings=FALSE,fig.height=4.5}
+# create chart
+ggplot(exdata,aes(x=yvariable,fill=groupvariable))+
+    geom_histogram()+
+    theme_classic()+
+    labs(title="My first chart",x="X title", 
+         y="Y title", fill="Groups")
+```
+
+
+<br>
+[<-Go back to overview.](#p1o)
+
+
+---
+name:p1bars
+# R: Bar charts of aggregate values
+
+We now first group the data by the variable *level*, calculate means by that variable, and then show the values using bars.
+
+```{r ,  message=FALSE, warnings=FALSE,fig.height=4}
+# group data by level variable
+exdata2<-group_by(exdata,level)
+# calculate average value of y by level
+exdata2<-summarise(exdata2,newyvariable=mean(yvariable))
+# create bar chart
+ggplot(exdata2,aes(x=level,y=newyvariable))+
+    geom_bar(stat="identity")
+```
+
+<br>
+[<-Go back to overview.](#p1o)
+
+---
+name:p1scatter
+# R: Create scatter plot
+
+- And now a scatter plot, but separate scatter plots by *groupvariable* using different colour.
+
+```{r ,  message=FALSE, warnings=FALSE,fig.height=4}
+# create scatter plot
+ggplot(exdata,aes(x=zvariable,y=yvariable, color=groupvariable))+
+    geom_point()
+```
+
+*Hint: if you want to create separate charts by the level variable you might want to use as.factor(level) instead of just level!*
+
+<br>
+[<-Go back to overview.](#p1o)
+
+---
+name:p12facet
+# R: Two figures next to each other
+
+- And now a scatter plot, but separate scatter plots by *groupvariable* next to each other. 
+
+```{r ,  message=FALSE, warnings=FALSE,fig.height=4}
+# create scatter plot
+ggplot(exdata,aes(x=zvariable,y=yvariable))+
+    geom_point()+
+    facet_wrap(~groupvariable)
+```
+
+
+<br>
+[<-Go back to overview.](#p1o)
+
+---
+name:p1line
+# R: Aggregate line charts
+
+We now first group the data by the variables *grouplevel* and *xvariable*, calculate means,  then show the values using a line chart bars. 
+
+```{r ,  message=FALSE, warnings=FALSE,fig.height=4}
+# group data by groupvariable and xvariable
+exdata3<-group_by(exdata,groupvariable,xvariable)
+# calculate average value of y by level
+exdata3<-summarise(exdata3,newyvariable=mean(yvariable))
+# create bar chart
+ggplot(exdata3,aes(x=xvariable,y=newyvariable,color=groupvariable))+
+  geom_line()
+```
+
+
+<br>
+[<-Go back to overview.](#p1o)
+
+
+---
+name:tabpres
+# R: save table to word
+
+```{r , eval=F, message=FALSE, warnings=FALSE}
+# create table
+datasummary_balance(~groupvariable,data = exdata,
+     output="C:/Users/hs17922/Documents/mytable.docx")
+```
+
+<img src="rtoppttable.gif" width="700">
+
+<br>
+[<-Go back to overview.](#p1o)
+
+---
+name:figpres
+# R: Insert chart in presentation
+
+And now export it to your power point presentation
+
+```{r ,eval=F,  message=FALSE, warnings=FALSE,fig.height=5}
+# create chart
+ggplot(exdata,aes(x=yvariable,fill=groupvariable))+
+  geom_histogram()+
+  theme_classic()+
+  labs(title="My first chart",x="X title", y="Y title", fill="Groups")
+```
+
+<img src="rtopptchart.gif" width="700">
+
+<br>
+[<-Go back to overview.](#p1o)
+
+
+
+---
+# Part 1: Recap
+
+
+
+- What have we learned  from the data about our research question?
+
+
+
+
+
+---
+class: inverse, center, middle
+
+# Part 2: Correlation vs Causation
+
+---
+
+# Correlation vs causation
+
+
+
+
+- Correlation: "a connection or relationship between two or more facts, numbers, etc." (Cambridge Dictionary)
+
+- Causation: "the process of causing something to happen or exist" (Cambridge Dictionary)
+
+--
+
+<img src="causation.png" width="450">
+
+
+---
+
+# Your turn!
+
+.question[Your task: Use the R tools from the first part to study whether we should be concerned about distinguishing between correlation and causation for our research question.]
+
+
+
+
+
+---
+# Part 2: Recap
+
+
+
+- What have we learned from the data about correlation vs causation for our research question?
+
+
+
+
+
+
+
+---
+class: inverse, center, middle
+
+# Part 3: Difference-in-differences
+
+
+
+---
+# We can compare outcomes over time
+
+- We can look at the change in our outcomes (for example test scores), before and after the treatment (for example year 5 and year 6) for everyone who gets treated (attends the summer school).
+
+```{r ,message=FALSE, warnings=FALSE,fig.height=2.5,echo=F}
+did1<-read_csv("did1.csv")%>%filter(t%in%c(2012,2013),treated==1)%>%
+    mutate(time=ifelse(after==0,"Before","After"),time=factor(time, levels=c("Before","After")), g=ifelse(treated==0,"Control"," Treated"))
+ggplot(did1,aes(x=time,y=y,color=g,group=g))+
+     geom_line()+
+     geom_point()+
+  theme_bw()+ labs(x="",color=" ")+
+  theme(legend.position =c(0.2,0.8))+ylim(0,16)
+
+```
+.question[Question to you: Why is this not informative about the causal effect of the treatment?]
+
+
+---
+# Challenge: we don't know the "counter factual"
+
+- But what would have happened in absence of treatment?
+- We do not know!
+
+```{r ,message=FALSE, warnings=FALSE,fig.height=2.5,echo=F}
+did1<-read_csv("did1.csv")%>%filter(t%in%c(2012,2013),treated==1)%>%
+    mutate(time=ifelse(after==0,"Before","After"),time=factor(time, levels=c("Before","After")), g=ifelse(treated==0,"Control"," Treated"),type="Actual")
+
+did1a<-did1%>%mutate(type="Without treatment scenario 1",y=ifelse(after==1,y-5,y))
+did1b<-did1%>%mutate(type="Without treatment scenario 2",y=ifelse(after==1,y+3,y))
+  
+ggplot(rbind(did1,did1a),aes(x=time,y=y,color=type,group=type))+
+     geom_line()+
+     geom_point()+
+  theme_bw()+ labs(x="",color=" ")+
+  theme(legend.position =c(0.2,0.8))+ylim(0,16)
+
+```
+
+
+---
+# Challenge: we don't know the "counter factual"
+
+- But what would have happened in absence of treatment?
+- We do not know!
+
+```{r ,message=FALSE, warnings=FALSE,fig.height=2.5,echo=F}
+did1<-read_csv("did1.csv")%>%filter(t%in%c(2012,2013),treated==1)%>%
+    mutate(time=ifelse(after==0,"Before","After"),time=factor(time, levels=c("Before","After")), g=ifelse(treated==0,"Control"," Treated"),type="Actual")
+
+did1a<-did1%>%mutate(type="Without treatment scenario 1",y=ifelse(after==1,y-5,y))
+did1b<-did1%>%mutate(type="Without treatment scenario 2",y=ifelse(after==1,y+3,y))
+  
+ggplot(rbind(did1,did1a,did1b),aes(x=time,y=y,color=type,group=type))+
+     geom_line()+
+     geom_point()+
+  theme_bw()+ labs(x="",color=" ")+
+  theme(legend.position =c(0.2,0.8))+ylim(0,16)
+
+```
+
+
+---
+# But what about the non-treated individuals?
+
+- we can look at their change over time...
+
+
+```{r ,message=FALSE, warnings=FALSE,fig.height=2.5,echo=F}
+did1<-read_csv("did1.csv")%>%filter(t%in%c(2012,2013))%>%
+    mutate(time=ifelse(after==0,"Before","After"),time=factor(time, levels=c("Before","After")), g=ifelse(treated==0,"Control"," Treated"))
+ggplot(did1,aes(x=time,y=y,color=g,group=g))+
+     geom_line()+
+     geom_point()+
+  theme_bw()+ labs(x="",color=" ")+
+  theme(legend.position =c(0.2,0.8))+ylim(0,14)
+
+```
+
+
+---
+# But what about the non-treated individuals?
+
+- and use their change over time to guess what would have happened to the treatment group
+
+
+```{r ,message=FALSE, warnings=FALSE,fig.height=2.5,echo=F}
+did1<-read_csv("did1.csv")%>%filter(t%in%c(2012,2013))%>%
+    mutate(time=ifelse(after==0,"Before","After"),time=factor(time, levels=c("Before","After")), g=ifelse(treated==0,"Control"," Treated"),type="Actual")
+
+did1a<-did1%>%mutate(y=ifelse(treated==0,y+2.015,y))
+ggplot()+
+     geom_line(did1,mapping=aes(x=time,y=y,color=g,group=g))+
+     geom_point(did1,mapping=aes(x=time,y=y,color=g,group=g))+
+  geom_line(did1a,mapping=aes(x=time,y=y,color=g,group=g),lty=2)+
+  theme_bw()+ labs(x="",color=" ")+
+  theme(legend.position =c(0.2,0.8))+ylim(0,14)
+
+```
+
+
+---
+# But what about the non-treated individuals?
+
+- to get an estimate of the treatment effect!
+
+```{r ,message=FALSE, warnings=FALSE,fig.height=2.5,echo=F}
+did1<-read_csv("did1.csv")%>%filter(t%in%c(2012,2013))%>%
+    mutate(time=ifelse(after==0,"Before","After"),time=factor(time, levels=c("Before","After")), g=ifelse(treated==0,"Control"," Treated"),type="Actual")
+
+did1a<-did1%>%mutate(y=ifelse(treated==0,y+2.015,y))
+ggplot()+
+     geom_line(did1,mapping=aes(x=time,y=y,color=g,group=g))+
+     geom_point(did1,mapping=aes(x=time,y=y,color=g,group=g))+
+  geom_line(did1a,mapping=aes(x=time,y=y,color=g,group=g),lty=2)+
+  geom_line(tibble(x=factor(c("After","After"),levels=c("Before","After"),
+                            ),y=c(7.203,12.16)),mapping=aes(x=x,y=y),lty=3,color="black")+
+  theme_bw()+ labs(x="",color=" ")+
+  theme(legend.position =c(0.2,0.8))+ylim(0,14)+
+  geom_text(tibble(x=factor(c("After"),levels=c("Before","After"),
+                            ),y=c(10),label="Treatment effect"),mapping=aes(x=x,y=y,label=label),nudge_x=0.25)
+
+```
+
+---
+# Difference-in-differences
+
+So what did we just do:
+
+- Difference 1: After-Before for treated individuals
+- Difference 2: After-Before for **untreated** individuals
+- Difference-in-Differences: Difference 1- Difference 2
+
+--
+
+**How does that work**
+
+- Difference 1: Gives us the change in outcome for those affected by the treatment
+- From that change we need to *remove the change that would have happened anyway*. We use the untreated for that: We therefore subtract the change over time for the untreated individuals. 
+
+--
+
+.question[Question to you: Why does it work and what are we assuming?]
+
+
+---
+# The common trends assumption!
+
+- For the method to be valid, we need to assume that the untreated group is a good guess for how the treated would have evolved without treatment.
+- We say that we need to **assume common trends**: In absence of treatment, the treatment group would have had the same trend as the control group.
+- This is called the **identifying assumption.**
+- We cannot test that! 
+- But we can look at what happened at other periods!
+
+
+
+
+
+---
+# Trends example 1:
+
+
+```{r ,message=FALSE, warnings=FALSE,fig.height=2.5,echo=F}
+did1<-read_csv("did1.csv")%>%
+    mutate(g=ifelse(treated==0,"Control"," Treated"))
+did1a<-read_csv("did1.csv")%>%
+    mutate(g=ifelse(treated==0,"Control"," Treated"),y=y+2.015)%>%filter(treated==0)
+
+ggplot()+
+     geom_line(did1,mapping=aes(x=t,y=y,color=g,group=g))+
+     geom_point(did1,mapping=aes(x=t,y=y,color=g,group=g))+
+  theme_bw()+ labs(x="",color=" ")+
+  theme(legend.position =c(0.2,0.8))+ylim(0,14)+geom_vline(xintercept=2012.5)
+
+```
+
+
+
+---
+# Trends example 1:
+
+
+```{r ,message=FALSE, warnings=FALSE,fig.height=2.5,echo=F}
+did1<-read_csv("did2.csv")%>%
+    mutate(g=ifelse(treated==0,"Control"," Treated"))
+did1a<-read_csv("did2.csv")%>%
+    mutate(g=ifelse(treated==0,"Control"," Treated"),y=y+3.54)%>%filter(treated==0)
+
+ggplot()+
+     geom_line(did1,mapping=aes(x=t,y=y,color=g,group=g))+
+     geom_point(did1,mapping=aes(x=t,y=y,color=g,group=g))+
+  theme_bw()+ labs(x="",color=" ")+
+  theme(legend.position =c(0.2,0.8))+ylim(0,14)+geom_vline(xintercept=2012.5)
+
+```
+
+
+---
+# Difference-in-Differences: Your turn
+
+.question[Your turn: Your task is to]
+
+- Calculate the Difference-in-Differences estimate
+- Assess the common trend assumption
+
+using the tools from part 1.
+
+
+
+
+---
+# Part 3: Recap 
+
+
+- What is the Difference-in-Difference estimate
+- Do you think the common trends assumption is justified?
+
+
+
+
+---
+class: inverse, center, middle
+
+# Part 4: Regressions analysis
+
+
+---
+# The relationship between two variables
+
+
+- Let's describe the relationship between two variables
+
+--
+
+
+```{r ,message=FALSE, warnings=FALSE,fig.height=2.5,echo=F}
+
+ggplot(mydata,aes(x=test_score,y=log(parental_earnings)))+
+     geom_point(alpha=0.1,size=0.1)+
+     theme_bw()+
+     labs(x="x",y="y")
+
+```
+
+
+---
+# Assume linaerity
+
+
+- Let's assume the relationship is linear
+
+$$y=\beta_0+\beta_1x+e$$
+
+--
+
+
+```{r ,message=FALSE, warnings=FALSE,fig.height=2.5,echo=F}
+
+ggplot(mydata,aes(x=test_score,y=log(parental_earnings)))+
+     geom_point(alpha=0.1,size=0.1)+
+     geom_smooth(method="lm",se=F)+
+     theme_bw()+
+     labs(x="x",y="y")
+
+```
+
+.question[Question to you: what are $\beta_0$,$\beta_1$, and $u$?]
+
+
+
+---
+# How to find the line ?
+
+- Many methods.
+- Most popular: Ordinary Least Squares
+
+<img src="ols1.png" width="700">
+
+
+
+
+---
+# How to find the line ?
+
+- Many methods.
+- Most popular: Ordinary Least Squares
+
+<img src="ols2.png" width="700">
+
+
+
+
+
+---
+# How to find the line ?
+
+- Many methods.
+- Most popular: Ordinary Least Squares
+
+<img src="ols3.png" width="700">
+
+
+
+---
+# What is the advantage?
+
+- Easy to extend to more variables:
+
+
+$$y=\beta_0+\beta_1x+\beta_2z+e$$
+- Meaning: we can study the relationship between $x$ and $y$  "holding z" constant!
+- We get measures of how "uncertainty"
+
+
+
+```{r ,message=FALSE, warnings=FALSE,fig.height=2.5,echo=F}
+
+ggplot(mydata,aes(x=test_score,y=log(parental_earnings)))+
+     geom_point(alpha=0.1,size=0.1)+
+     geom_smooth(method="lm")+
+     theme_bw()+
+     labs(x="x",y="y")
+
+```
+
+---
+# How does that link to all the differences?
+
+- We can estimate the change from Before to After: $Treated \times After$
+- Controlling for changes over time:  $After$
+- Controlling for difference between treatment and control:  $Treated$
+
+$$y=\beta_0+\beta_1 Treated+\beta_2 After+\beta_3 Treated \times After+e$$
+
+
+---
+# Show it: Illustration
+
+Mean comparisons:
+
+```{r ,message=FALSE, warnings=FALSE,fig.height=2.5,echo=F}
+# Load data
+did1<-read_csv("did1.csv")
+# Pre Treated
+predata<-filter(did1,treated==1,after==0)
+predata<-select(predata,y)
+pretreated<-colMeans(predata)
+# Pre Control
+predata<-filter(did1,treated==0,after==0)
+predata<-select(predata,y)
+precontrol<-colMeans(predata)
+# Post Treated
+predata<-filter(did1,treated==1,after==1)
+predata<-select(predata,y)
+posttreated<-colMeans(predata)
+# Post Control
+predata<-filter(did1,treated==0,after==1)
+predata<-select(predata,y)
+postcontrol<-colMeans(predata)
+
+```
+```{r ,message=FALSE, warnings=FALSE,fig.height=2.5}
+# Difference before and after: Treated
+Difference1<-posttreated-pretreated
+# Difference before and after: Control
+Difference2<-postcontrol-precontrol
+# Difference in Differences
+DiD<-Difference1-Difference2
+print(DiD)
+```
+
+
+
+---
+# Show it: Illustration
+
+And as a regression:
+
+```{r ,message=FALSE, warnings=FALSE,fig.height=2.5,echo=F}
+exdata=did1
+```
+
+```{r ,message=FALSE, warnings=FALSE,fig.height=2.5,echo=T}
+# Regression
+lm(y~after+treated+afterXtreated,data=exdata)
+
+```
+
+
+
+
+---
+# Show it: A nice looking table
+
+```{r ,message=FALSE, warnings=FALSE,fig.height=2.5,echo=F}
+exdata<-did1%>%mutate(controlvariable=rnorm(34))
+```
+
+```{r ,message=FALSE, warnings=FALSE,fig.height=2.5,echo=T}
+# Save regression result as object lm1
+lm1<-lm(y~after+treated+afterXtreated,data=exdata)
+# Also control for the variable "controlvariable" and save as object lm2
+lm2<-lm(y~after+treated+afterXtreated+controlvariable,data=exdata)
+# Create a table
+modelsummary(list(lm1,lm2))
+```
+
+
+
+---
+# Difference-in-Differences: Your turn
+
+.question[Your turn: Your task is to]
+
+- Calculate the Difference-in-Differences estimate using regressions
+
+- You can use the code I just showed you. Do you get the same result?
+
+- What happens if you control for parental income, parental schooling, and gender?
+
+
+
+
+---
+# Part 4: Recap 
+
+
+- Regression analysis allows us to study the relationship between two variables
+- Holding other factors constant! 
+- What have we learned about our research question?
+
+
+
+
+
+---
+# Conclusion
+
+- Part 1: A first look at the data with R
+- Part 2: Correlation vs. causation
+- Part 3: Difference-in-Differences
+- Part 4: Regressions
+
+

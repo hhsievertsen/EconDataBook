@@ -1,0 +1,19 @@
+h1:part-i-working-with-economic-data Part I: Working with Economic Data
+h1:po People
+h2:what-this-chapter-is-about What this chapter is about
+h2:population-stocks-and-flows Population stocks and flows
+h3:what-are-flow-and-stock-variables What are flow and stock variables?
+fig:baththub A bathtub with water illustrating flows and stocks
+h2:quantifying-fertility-trends Quantifying fertility trends
+h3:definitions Definitions
+h3:data-requirements Data requirements
+fig:death1 Fertility rates for the United Kingdom. Data source: Eurostat. Note: Only births of women aged 15-45 are included.
+h3:relating-the-fertility-measures-to-each-other Relating the fertility measures to each other
+h3:decomposing-the-development-in-childbirths Decomposing the development in childbirths
+h2:calculating-life-expectancy Calculating life expectancy
+h3:life-tables Life tables
+h3:data-requirements-1 Data requirements
+h3:creating-life-tables Creating life tables
+fig:death2 Life expectancy by age in years (left) and survival probabilities (right). Data source: Eurostat. 
+h2:further-readings Further readings
+

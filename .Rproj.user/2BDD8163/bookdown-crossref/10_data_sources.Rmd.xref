@@ -1,0 +1,36 @@
+h1:part-ii-data-sources-and-tools Part II: Data sources and tools
+h1:where-data-comes-from Where data comes from
+h2:what-this-chapter-is-about What this chapter is about
+h3:intended-learning-outcomes Intended learning outcomes
+h2:data-source-types Data source types
+h3:overview Overview
+h3:simulated-data Simulated data
+fig:source0 Simulating data in Excel.
+h3:sample-surveys Sample surveys
+fig:source1 An example of a sample survey using an online questionnaire
+h3:census-survey Census survey
+fig:source2 An example of a household census. The 1870 US Census Schedule. Source: US Census
+h3:register-data Register data
+h3:comparison-of-data-sources Comparison of data sources
+h2:economic-data-sources Economic data sources
+h3:data-from-statistical-offices Data from Statistical Offices
+h3:downloading-data-from-statistical-offices Downloading data from Statistical Offices
+h3:central-banks Central banks
+h4:bank-of-england Bank of England
+h4:the-us-fed The US FED
+h3:international-organizations International organizations
+h4:the-imf The IMF
+h4:the-oecd The OECD
+h4:eurostat Eurostat
+h4:the-un The UN
+h4:the-world-bank The World Bank
+h3:topic-specific-databases Topic specific databases
+h4:our-world-in-data Our World in Data
+h4:gapminder Gapminder
+h4:the-world-inequality-database The World Inequality Database
+h3:publicly-available-data-an-overview Publicly available data: An overview
+h4:downloading-datasets Downloading datasets
+h4:selecting-the-appropriate-source Selecting the appropriate source
+h3:using-apis Using APIs
+h2:summary Summary
+

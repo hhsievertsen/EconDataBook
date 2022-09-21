@@ -1,0 +1,44 @@
+h1:data-visualization-basics Data visualization basics
+h2:what-this-chapter-is-about What this chapter is about
+h2:how-we-show-data-matters How we show data matters
+h3:illustration-the-anscombe-quartet Illustration: The Anscombe quartet
+fig:viz3 scatterplots of Anscombe
+h2:tables-vs-charts Tables vs charts
+h3:the-goal-of-the-visualization The goal of the visualization
+h3:the-quantity-of-data The quantity of data
+h2:table-design Table design
+fig:viz4 An example of a table from the magazine 
+h3:table-structure Table structure
+fig:viz5 A table with a categorical variable in rows and a numerical variable in columns
+fig:viz6 A table with one numerical variable and two categorical variables
+fig:viz7 A table with a hierarchical structure.
+fig:viz8 A poorly designed and structured table and a table with a good structure and layout.
+h3:table-layout-and-design Table layout and design
+h2:chart-design Chart design
+h3:basic-chart-structure Basic chart structure
+h3:how-charts-work How charts work
+h3:common-chart-types Common chart types
+fig:viz9 Data representations in 
+h4:the-line-chart The line chart
+fig:viz10 Data representations in 
+h4:the-bar-chart The bar chart
+h4:maps Maps
+fig:viz155 John Snow
+h3:charts-to-avoid Charts to avoid
+h4:pie-charts Pie charts
+h4:charts-with-3d-effects Charts with 3D effects
+h2:lies-junk-and-non-data-ink. Lies, junk and non-data ink.
+h3:tuftes-concepts-for-good-data-visualizations. Tufte’s concepts for good data visualizations.
+h4:the-lie-factor The Lie Factor
+h4:data-ink-ratio Data-ink ratio
+fig:viz12 A bar chart with a low data ink ratio
+fig:viz13 The bar chart after removing the background and borders.
+fig:viz14 The bar chart after removing the 3D effects.
+fig:viz15 The bar chart after removing the grid lines and the legend.
+fig:viz16 The bar chart after emphasizing the data.
+h4:chartjunk Chartjunk
+h4:alberto-cairos-principles-of-good-data-visualizations Alberto Cairo’s principles of good data visualizations
+h2:the-self-explanatory-data-visualization The self-explanatory data visualization
+h2:a-cookbook-for-good-data-visualizations A cookbook for good data visualizations
+h2:summary Summary
+

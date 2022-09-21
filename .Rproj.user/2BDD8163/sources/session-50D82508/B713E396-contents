@@ -1,0 +1,1630 @@
+---
+title: "Doing Economic Analysis"
+subtitle: " "
+author: "Hans Henrik Sievertsen"
+institute: "University of Bristol, School of Economics"
+date: "July 22, 2021"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    lib_dir: libs
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      
+      
+---
+# Plan for today
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+library("tidyverse")
+library("xaringanthemer")
+style_mono_accent(
+  code_font_size = "0.7rem",
+  base_color = "#990000",
+  header_font_google = google_font("Josefin Sans"),
+  text_font_google   = google_font("Montserrat", "300", "300i"),
+  code_font_google   = google_font("Fira Mono"),
+    text_bold_color ="#000000",
+)
+library("knitr")
+
+schooldata<-read_csv("schooldata.csv")
+schooldata_updated<-read_csv("schooldata_updated.csv")
+
+# data for examples
+N<-100
+T<-12
+ed<-tibble(yvariable=rnorm(N*T),xvariable=rep(1:12,N),groupvariable=c(rep("Treated",12*50),rep("Control",12*50)))%>%
+    mutate(yvariable=ifelse(groupvariable=="Treated",
+                            ifelse(xvariable>5,yvariable+6,yvariable+3),yvariable))
+                            
+#ggplot(ed,aes(x=xvariable,y=yvariable, color=groupvariable))+geom_point()
+
+```
+
+
+<style>
+.remark-slide-number{
+  display:none;
+}
+</style>
+
+
+.pull-left[
+
+
+
+- A taste of an economic **lecture**.
+- A taste of **what economics is about**.
+
+
+]
+
+
+.pull-right[
+Economics is the
+<blockquote><em>"..study of mankind in the ordinary business of life"</em>
+.right[<cite>Alfred Marshall</cite>]
+</blockquote>
+
+]
+
+<br>
+
+### I currently use economics to study
+
+<style>
+.threecolumn {
+width:80%;
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+   grid-gap: 5px;
+   text-align: center;
+   margin:auto;
+}
+.container {
+  margin:auto;
+   text-align: right;
+}
+</style>
+
+
+<div class="container">
+ <div class="threecolumn">
+
+    <div>
+      <center>
+    <b>Child health in Nepal</b><br><img style="width:75%" src="children-1504836_1920.jpg" alt="">
+      </center>
+      &nbsp;&nbsp;
+    </div>
+    <div>
+    <center>
+     <b>Access to schools</b><br>
+     <img style="width:85%" src="school-bus-4406479_1920.jpg" alt="">&nbsp;&nbsp; 
+    </div>
+      </center>
+       <div>
+      <center>
+       <b>Inequality</b><br>
+    <img style="width:85%" src="inequality-4074203_1920.jpg" alt="">    
+    </center>
+    </div>
+ 
+  </div>
+  </div>
+
+ <center>
+---
+# The news: increasing school segregation
+
+
+
+<br><br>
+
+
+--
+<img style="width:33%" src="fig1.png" alt="">
+--
+<img style="width:33%" src="fig2.png" alt="">
+--
+<img style="width:33%" src="fig3.png" alt="">
+
+
+---
+class: inverse, 
+
+# Doing economic analysis
+
+<br><br><br>
+
+### 1. Does the **data** confirm the stories?
+
+### 2. **What** are the consequences of segregation?
+
+### 3. **Why** is school segregation increasing?
+
+### 4. **How** can policy makers affect school segregation?
+
+---
+class: inverse, center, middle
+
+# 1. Does the **data** confirm the stories?
+
+
+---
+
+# What is **segregation**?
+
+dictionary definition: *"Social processes that result in certain individuals or social groups being kept apart with little or no interaction between them"* (Oxford Reference)
+
+
+- Dimension: race, gender, socio-economic background, attainment, etc.
+
+- Quantification: how do we know it is increasing?
+
+
+--
+.pull-left[
+
+**Scenario 1**
+
+<img style="width:80%" src="fig4.png" alt="">
+
+
+]
+
+
+.pull-right[
+
+
+**Scenario 2**
+
+<img style="width:80%" src="fig5.png" alt="">
+
+
+]
+
+#### Question: Where is segregation by gender higher? (Girls have long hair or wear a dress)
+Go to www.menti.com and use the code 7910 4670.
+
+
+---
+# Measuring segregation
+
+.pull-left[
+
+
+#### Measure 1 
+
+- what share of students that would have to move to make each school have the same student shares?
+
+
+<img style="width:100%" src="fig4.png" alt="">
+
+
+]
+
+
+.pull-right[
+
+
+#### Measure 2: 
+
+- how well can we predict the school you attend based on your background?
+<br><br>
+
+<img style="width:100%" src="fig5.png" alt="">
+
+
+]
+
+### We will use Measure 2.
+
+---
+# Looking at the data
+
+<div style="width:80%;"> 
+<blockquote><em>"..I can't make bricks without clay!"</em>
+.right[<cite>Sherlock Holmes (Sir Arthur Conan Doyle)</cite>]
+</blockquote>
+</div>
+
+
+--
+
+
+<br><br>
+
+- We need data!
+
+
+
+```{r , echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+tabl <- "
+| Student ID          | School        | Prior attainment| . . .   | Gender |
+|:---------------:|:-------------:|:------:|:------:|:------:|
+| 124156        | A | High |....|Female|
+| 351533        | B      |   Low |....|Female|
+| ...        | ...      |   ... |....|...|
+| 324351        | A      |   High |....|Male|
+"
+cat(tabl) # output the table in a format good for HTML/PDF/docx conversion
+```
+
+
+
+- This dataset contains confidential information, so I cannot share it with you.
+
+- But I can share a version where I "aggregated" the data.
+
+
+
+---
+
+# The actual data
+
+
+- Segregation by primary school attainment in Danish school districts
+
+- We use the programming language **R to analyse the data**
+
+.pull-left[
+
+```{r , eval=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+# show the data
+schooldata
+
+```
+
+
+
+]
+
+.pull-right[
+
+Let's do this on [www.rtaster.com](http://www.rtaster.com)
+
+(you can also try it after the session!)
+
+]
+
+
+
+---
+
+# The actual data
+
+
+- Segregation by primary school attainment in Danish school districts
+
+- We use the programming language **R to analyse the data**
+
+.pull-left[
+
+```{r , eval=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+# show the data
+schooldata
+
+```
+
+
+
+
+
+]
+
+.pull-right[
+
+
+```{r table2, echo=FALSE, message=FALSE, warnings=FALSE,}
+# show the data
+schooldata
+```
+
+
+]
+
+
+
+---
+
+# A plot of school segregation in Denmark
+
+
+- Let's show the data graphically
+
+.pull-left[
+
+```{r , eval=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+# create a scatter plot of the data
+ggplot(data=schooldata,aes(x=year,y=measure2))+
+  geom_point()
+```
+
+
+
+]
+
+
+
+
+.pull-right[
+
+
+Let's do this on [www.rtaster.com](http://www.rtaster.com)
+
+(you can also try it after the session!)
+
+
+
+]
+
+
+
+
+---
+
+# A plot of school segregation in Denmark
+
+
+
+- Let's show the data graphically
+
+.pull-left[
+
+```{r , eval=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+# create a scatter plot of the data
+ggplot(data=schooldata,aes(x=year,y=measure2))+
+  geom_point()
+```
+
+
+]
+
+
+
+
+.pull-right[
+
+
+```{r , echo=FALSE, fig.width=6,fig.height=4.5,message=FALSE, warnings=FALSE, results='asis'}
+#create plot
+ggplot(data=schooldata,aes(x=year,y=measure2))+
+  geom_point()
+```
+
+]
+
+
+
+---
+
+# Adding a trend line
+
+
+
+.pull-left[
+
+- **Trend lines** are useful to emphasize the trend in the data.
+
+- But **where do we place the line**?
+
+]
+
+
+.pull-right[
+
+
+```{r , echo=FALSE, fig.width=6,fig.height=4.5,message=FALSE, warnings=FALSE, results='asis'}
+# create a plot
+ggplot(data=schooldata,aes(x=year,y=measure2))+geom_point()
+```
+
+]
+
+
+---
+# Maths comes in handy
+
+- We use a bit of matrix algeba to find the **intercept** and **slope** of the line
+
+
+$$\beta=(X'X)^{-1}X'y$$
+- This is called **Ordinary Least Squares**
+
+(Don't worry about how this works!)
+
+.pull-left[
+
+```{r , eval=FALSE,  fig.width=6,fig.height=4.5,message=FALSE, warnings=FALSE, results='asis'}
+#create fitted line
+X<-as.matrix(cbind(1,schooldata["year"]))
+y<-as.matrix(schooldata["measure2"])
+beta=solve(t(X)%*%X)%*%t(X)%*%y
+schooldata["fittedline"]<-X%*%beta
+
+#create a plot of the data
+ggplot(data=schooldata,aes(x=year,y=measure2))+
+  geom_point()+
+  geom_line(aes(x=year,y=fittedline))
+  
+
+
+
+```
+
+
+
+]
+
+
+
+
+.pull-right[
+
+
+Let's do this on [www.rtaster.com](http://www.rtaster.com)
+
+(you can also try it after the session!)
+
+]
+
+
+
+---
+# Maths comes in handy
+
+- We use a bit of matrix algeba to find the **intercept** and **slope** of the line
+
+
+$$\beta=(X'X)^{-1}X'y$$
+- This is called **Ordinary Least Squares**
+
+(Don't worry about how this works!)
+
+.pull-left[
+
+```{r , eval=FALSE,  fig.width=6,fig.height=4.5,message=FALSE, warnings=FALSE, results='asis'}
+#create fitted line
+X<-as.matrix(cbind(1,schooldata["year"]))
+y<-as.matrix(schooldata["measure2"])
+beta=solve(t(X)%*%X)%*%t(X)%*%y
+schooldata["fittedline"]<-X%*%beta
+
+#create a plot of the data
+ggplot(data=schooldata,aes(x=year,y=measure2))+
+  geom_point()+
+  geom_line(aes(x=year,y=fittedline))
+  
+```
+
+
+
+]
+
+
+
+
+.pull-right[
+
+
+```{r , echo=FALSE, fig.width=6,fig.height=4.5, message=FALSE, warnings=FALSE, results='asis'}
+#find line
+X<-as.matrix(cbind(1,schooldata["year"]))
+y<-as.matrix(schooldata["measure2"])
+beta=solve(t(X)%*%X)%*%t(X)%*%y
+schooldata["fittedline"]<-X%*%beta
+#create a plot of the data
+ggplot(data=schooldata,aes(x=year,y=measure2))+
+  geom_point()+
+  geom_line(aes(x=year,y=fittedline),color="red")
+  
+```
+]
+
+
+
+
+---
+
+# Polish the chart!
+
+- Our chart is not aesthetically pleasing. Let's change that!
+
+- We can use R's built-in function to find the fitted line!
+
+.pull-left[
+
+```{r , eval=FALSE,  fig.width=6,fig.height=6,message=FALSE, warnings=FALSE, results='asis'}
+
+#create a plot of the data
+ggplot(data=schooldata,aes(x=year,y=measure2))+
+  geom_smooth(method="lm",color="black")+
+  geom_point(shape=1,alpha=0.5,color="red", size=3)+
+  theme_minimal()+
+  labs(title="School segregation in Denmark", 
+       x="Year",y="Segregation",
+       caption="Own calculations based on data from 
+       the Danish Ministry for Education")
+
+  
+```
+
+
+
+]
+
+
+
+.pull-right[
+
+Let's do this on [www.rtaster.com](http://www.rtaster.com)
+
+(you can also try it after the session!)
+
+]
+
+
+
+
+
+
+
+---
+
+# Polish the chart!
+
+- Our chart is not aesthetically pleasing. Let's change that!
+
+- We can use R's built-in function to find the fitted line!
+
+.pull-left[
+
+```{r , eval=FALSE,  fig.width=6,fig.height=6,message=FALSE, warnings=FALSE, results='asis'}
+
+#create a plot of the data
+ggplot(data=schooldata,aes(x=year,y=measure2))+
+  geom_smooth(method="lm",color="black")+
+  geom_point(shape=1,alpha=0.5,color="red", size=3)+
+  theme_minimal()+
+  labs(title="School segregation in Denmark", 
+       x="Year",y="Segregation",
+       caption="Own calculations based on data from 
+       the Danish Ministry for Education")
+
+  
+```
+
+
+
+]
+
+
+
+.pull-right[
+
+
+```{r , echo=FALSE, fig.width=6,fig.height=4.5, message=FALSE, warnings=FALSE, results='asis'}
+#create a plot of the data
+ggplot(data=schooldata,aes(x=year,y=measure2))+
+  geom_smooth(method="lm",color="black")+
+  geom_point(shape=1,alpha=0.5,color="red", size=3)+
+  theme_minimal()+
+  labs(title="School segregation in Denmark", 
+       x="Year",y="Segregation",
+       caption="Own calculations based on data from 
+       the Danish Ministry for Education")
+  
+```
+]
+
+
+
+
+---
+# We've got mail!
+
+
+<blockquote><em>Hi, here is an updated dataset that includes 2011 data"</em>
+.right[<cite>The Ministry of Education</cite>]
+</blockquote>
+
+- *Do we have to redo everything we did?* 
+
+--
+
+- **No, we simply tell R to use the new data**
+
+
+
+
+.pull-left[
+
+```{r , eval=FALSE,  fig.width=6,fig.height=6,message=FALSE, warnings=FALSE, results='asis'}
+#create a plot of the data
+ggplot(data=schooldata_updated,aes(x=year,y=measure2))+
+  geom_smooth(method="lm",color="black")+
+  geom_point(shape=1,alpha=0.5,color="red", size=3)+
+  theme_minimal()+
+  labs(title="School segregation in Denmark", 
+       x="Year",y="Segregation",
+       caption="Own calculations based on data from 
+       the Danish Ministry for Education")
+
+  
+```
+
+
+]
+
+
+
+.pull-right[
+
+
+
+Let's do this on [www.rtaster.com](http://www.rtaster.com)
+
+(you can also try it after the session!)
+
+]
+
+---
+# We've got mail!
+
+
+<blockquote><em>Hi, here is an updated dataset that includes 2011 data"</em>
+.right[<cite>The Ministry of Education</cite>]
+</blockquote>
+
+- *Do we have to redo everything we did?* 
+
+
+- **No, we simply tell R to use the new data**
+
+
+
+
+.pull-left[
+
+```{r , eval=FALSE,  fig.width=6,fig.height=6,message=FALSE, warnings=FALSE, results='asis'}
+#create a plot of the data
+ggplot(data=schooldata_updated,aes(x=year,y=measure2))+
+  geom_smooth(method="lm",color="black")+
+  geom_point(shape=1,alpha=0.5,color="red", size=3)+
+  theme_minimal()+
+  labs(title="School segregation in Denmark", 
+       x="Year",y="Segregation",
+       caption="Own calculations based on data from 
+       the Danish Ministry for Education")
+
+  
+```
+
+
+]
+
+
+
+.pull-right[
+
+
+```{r , echo=FALSE, fig.width=6,fig.height=4.5, message=FALSE, warnings=FALSE, results='asis'}
+#create a plot of the data
+ggplot(data=schooldata_updated,aes(x=year,y=measure2))+
+  geom_smooth(method="lm",color="black")+
+  geom_point(shape=1,alpha=0.5,color="red", size=3)+
+  theme_minimal()+
+  labs(title="School segregation in Denmark", 
+       x="Year",y="Segregation",
+       caption="Own calculations based on data from 
+       the Danish Ministry for Education")  
+```
+]
+
+---
+class: inverse, center, middle
+
+# 1. Does the **data** confirm the stories?
+### **Answer:** Yes!
+
+
+
+---
+class: inverse, center, middle
+
+# 2. **What** are the consequences of segregation?
+
+---
+# Why should we worry about segregation?
+
+
+- Economists have shown that individuals who went to school with peers from disadvantaged families are less likely to discriminate later in life.
+
+  $\Rightarrow$  Segregation might increase discrimination.
+
+- Economists have shown that who we go to school with and where we go to school affects our earnings later in life.
+
+  $\Rightarrow$  Segregation might increase inequality.
+
+  
+- Economists have shown that our peers in school affect our views and preferences. 
+
+  $\Rightarrow$  Segregation might lead to polarization. 
+  
+
+---
+class: inverse, center, middle
+
+# 2. **What** are the consequences of segregation?
+### **Answer:** Segregation might affect discrimination, income inequality, and polarization.
+
+---
+class: inverse, center, middle
+
+# 3. **Why** is school segregation increasing?
+
+
+
+
+
+
+---
+# Why could school segregation increase over time?
+
+1. Increased residential segregation: 
+
+  - We live in different areas and therefore attend different schools.
+  
+2. Changes in taste
+
+  - We prefer to go to school with similar people and this is increasing over time.
+  
+3. Changes in the way students are allocated to schools
+
+--
+  -  **School funding reform in Denmark in 2007**
+
+
+**Background**
+
+1. **Before reform:** funding based on needs. If a school needed new chairs, the principal would ask politicians for funding.
+2. **After reform:** funding based on activity $\rightarrow$ More students enrolled $\rightarrow$ more funding.
+
+* The reform only affected high competition areas.
+
+
+
+---
+
+## School funding reform in Denmark in 2007
+
+
+**Economic theory**
+
+- 2 two student types: A and B. 
+- They both give the same funding to the school, $P$. 
+- But students of type A is more costly, $Cost_A>Cost_B$.
+
+$$School\text{ }Budget=P\times [N_A+N_B]-[Cost_A\times N_A+Cost_B\times N_B]$$
+
+$$\frac{\partial School\text{ }Budget}{\partial N_A}=P-Cost_A$$
+$$\frac{\partial School\text{ }Budget}{\partial N_B}=P-Cost_B$$
+--
+
+- Schools have an incentive to attract "easy students"  (type $B$).
+- **Prediction:** Reform might cause popular schools to mainly enroll type $B$ students $\rightarrow$  increased *segregation*. 
+
+
+
+---
+## Let us look at the data again!
+
+
+
+- How did segregation change after 2007 **in high competition areas**?
+
+.pull-left[
+
+```{r , eval=FALSE,  fig.width=6,fig.height=6,message=FALSE, warnings=FALSE, results='asis'}
+#keep only high competition areas
+schooldata<-schooldata_updated%>%filter(competition=="High")
+#create a plot of the data
+ggplot(data=schooldata,aes(x=year,y=measure2))+
+  geom_point(shape=1,alpha=0.5,color="black")+
+  theme_minimal()+
+  geom_vline(xintercept=2007)+
+  labs(title="School segregation in Denmark", 
+       x="Year",y="Segregation",
+       caption="Own calculations based on data from 
+       the Danish Ministry for Education")
+
+```
+
+
+
+]
+
+.pull-right[
+
+
+Let's do this on [www.rtaster.com](http://www.rtaster.com)
+
+(you can also try it after the session!)
+
+]
+
+
+---
+## Let us look at the data again!
+
+
+
+- How did segregation change after 2007 **in high competition areas**?
+
+.pull-left[
+
+```{r , eval=FALSE,  fig.width=6,fig.height=6,message=FALSE, warnings=FALSE, results='asis'}
+#keep only high competition areas
+schooldata<-schooldata_updated%>%filter(competition=="High")
+#create a plot of the data
+ggplot(data=schooldata,aes(x=year,y=measure2))+
+  geom_point(shape=1,alpha=0.5,color="black")+
+  theme_minimal()+
+  geom_vline(xintercept=2007)+
+  labs(title="School segregation in Denmark", 
+       x="Year",y="Segregation",
+       caption="Own calculations based on data from 
+       the Danish Ministry for Education")
+
+  
+```
+
+
+
+]
+
+.pull-right[
+
+```{r , echo=FALSE,  fig.width=6,fig.height=4.5,message=FALSE, warnings=FALSE, results='asis'}
+#keep only high competition areas
+schooldata<-schooldata_updated%>%filter(competition=="High")
+#create a plot of the data
+ggplot(data=schooldata,aes(x=year,y=measure2))+
+  geom_point(shape=1,alpha=0.5,color="black",size=5)+
+  theme_minimal()+
+  geom_vline(xintercept=2007)+
+  labs(title="School segregation in Denmark", 
+       x="Year",y="Segregation",
+       caption="Own calculations based on data from 
+       the Danish Ministry for Education")
+
+  
+```
+
+
+]
+
+
+
+
+  
+---
+
+# It looks like something happened in 2007!
+
+
+
+- Let's compare segregation before and after
+
+.pull-left[
+
+```{r , eval=FALSE,  fig.width=6,fig.height=6,message=FALSE, warnings=FALSE, }
+#keep only high competition areas
+schooldata<-schooldata_updated%>%
+            filter(competition=="High")%>%
+            mutate(period=ifelse(year>2006,"After 2007"," Before 2007"))
+  
+#create table with means before and after
+schooldata%>%
+        group_by(period)%>%
+        summarise(measure2=mean(measure2))
+```
+
+
+]
+
+
+.pull-right[
+
+
+Let's do this on [www.rtaster.com](http://www.rtaster.com)
+
+(you can also try it after the session!)
+
+]
+
+
+
+
+
+  
+
+  
+---
+
+# It looks like something happened in 2007!
+
+
+
+- Let's compare segregation before and after
+
+.pull-left[
+
+```{r , eval=FALSE,  fig.width=6,fig.height=6,message=FALSE, warnings=FALSE, }
+#keep only high competition areas
+schooldata<-schooldata_updated%>%
+            filter(competition=="High")%>%
+            mutate(period=ifelse(year>2006,"After 2007"," Before 2007"))
+  
+#create table with means before and after
+schooldata%>%
+        group_by(period)%>%
+        summarise(measure2=mean(measure2))
+```
+
+
+]
+
+
+.pull-right[
+
+
+```{r , echo=FALSE, fig.width=6,fig.height=4.5, message=FALSE, warnings=FALSE,}
+#keep only high competition areas
+schooldata<-schooldata_updated%>%
+            filter(competition=="High")%>%
+            mutate(period=ifelse(year>2006,"After 2007"," Before 2007"))
+  
+#create table with means before and after
+schooldata%>%
+        group_by(period)%>%
+        summarise(measure2=mean(measure2))
+  
+```
+]
+
+
+
+- **Segregation more than doubled after the reform in 2007!** 
+- It increased by 0.55-0.021=0.034 units!
+
+
+
+
+  
+---
+
+# But was it the reform that caused the increase?
+
+
+
+
+.pull-left[
+
+#### You said
+
+- *"The amount of segregation was on the rise before the reform, so how can we know that it wouldn't have carried on rising and been the same as it is now even with the reform."*
+
+- *"there could've been other factors that contributed to segregation."*
+
+- *"We're unaware of any other changes which occurred in 2007, some of these changes could have influenced the segregation levels to change meaning it may not have directly been the reform."*
+
+
+]
+
+
+.pull-right[
+
+```{r , echo=FALSE, fig.width=6,fig.height=4.5, message=FALSE, warnings=FALSE, results='asis'}
+#keep only high competition areas
+schooldata<-schooldata_updated%>%filter(competition=="High")
+#calcualte averages
+schooldata_agg<-schooldata%>%group_by(year)%>%
+                summarise(measure2=mean(measure2))
+#create a plot of the data
+ggplot(data=schooldata_agg,aes(x=year,y=measure2))+
+  geom_line(size=1)+
+  geom_point()+
+  geom_point(data=schooldata,mapping=aes(x=year,y=measure2),
+            shape=1,alpha=0.5,color="black")+
+  theme_minimal()+
+  geom_vline(xintercept=2007)+
+  labs(title="School segregation in Denmark", 
+       x="Year",y="Segregation",
+       caption="Own calculations based on data from 
+       the Danish Ministry for Education")
+
+  
+```
+
+]
+
+--
+
+$\Rightarrow$ **We have to get an idea of how the segregation would have been developed in absence of the reform**.
+
+
+---
+# Can we use the low competition school districts?
+
+You said:
+
+- *"The data acts a control to eliminate other factors that may have influenced the original data"*.
+
+
+
+.pull-left[
+
+```{r , error=TRUE,  fig.width=6,fig.height=6,message=FALSE, warnings=FALSE, results='asis'}
+
+#create a plot of the data
+ggplot(data=schooldata_updated,aes(x=year,y=     ,
+                               color=competition))+
+  geom_line(size=1)+geom_point()+
+  theme_minimal()+
+  geom_vline(xintercept=2007)+
+  theme(legend.position = "top")+
+  labs(title="School segregation in Denmark", 
+       x="Year",y="Segregation",
+       caption="Own calculations based on data from 
+       the Danish Ministry for Education")
+
+
+  
+```
+
+
+]
+
+ 
+.pull-right[
+
+
+#### Question: Where is the error in the code?
+Go to www.menti.com and use the code 7910 4670.
+
+
+]
+
+
+
+
+---
+# Can we use the low competition school districts?
+
+You said:
+
+- *"The data acts a control to eliminate other factors that may have influenced the original data"*.
+
+
+
+.pull-left[
+
+```{r , eval=FALSE,  fig.width=6,fig.height=6,message=FALSE, warnings=FALSE, results='asis'}
+
+#create a plot of the data
+ggplot(data=schooldata_updated,aes(x=year,y=measure2,
+                               color=competition))+
+  geom_line(size=1)+geom_point()+
+  theme_minimal()+
+  geom_vline(xintercept=2007)+
+  theme(legend.position = "top")+
+  labs(title="School segregation in Denmark", 
+       x="Year",y="Segregation",
+       caption="Own calculations based on data from 
+       the Danish Ministry for Education")
+
+
+  
+```
+
+
+]
+
+
+.pull-right[
+
+
+```{r , echo=FALSE, fig.width=6,fig.height=4.5, message=FALSE, warnings=FALSE, results='asis'}
+
+#create a plot of the data
+ggplot(data=schooldata_updated,aes(x=year,y=measure2,
+                               color=competition))+
+  geom_line(size=1)+geom_point()+
+  theme_minimal()+
+  geom_vline(xintercept=2007)+
+  theme(legend.position = "top")+
+  labs(title="School segregation in Denmark", 
+       x="Year",y="Segregation",
+       caption="Own calculations based on data from 
+       the Danish Ministry for Education")
+  
+```
+]
+
+
+
+---
+# The difference-in-differences approach
+
+What happened over time?
+
+<style>
+.pull-left {
+  float: left;
+  width: 57%;
+}
+.pull-right {
+  float: right;
+  width: 37%;
+}
+</style>
+
+.pull-left[
+<br>
+
+**(1) In high competition areas**: Reform + All other changes.
+
+**(2) In low competition areas**: All other changes.
+
+
+**(1)-(2)**=Reform+All other changes-All other changes=**Reform**
+
+
+]
+
+
+.pull-right[
+
+
+```{r , echo=FALSE, fig.width=6,fig.height=4.5, message=FALSE, warnings=FALSE, results='asis'}
+#calculate averages
+schooldata_agg<-schooldata_updated%>%
+                group_by(year,competition)%>%
+                summarise(measure2=mean(measure2))
+#create a plot of the data
+ggplot(data=schooldata_agg,aes(x=year,y=measure2,color=competition))+
+  geom_line(size=1)+
+  geom_point()+
+  theme_minimal()+
+  geom_vline(xintercept=2007)+
+  theme(legend.position = "top")+
+  labs(title="School segregation in Denmark", 
+       x="Year",y="Segregation",
+       caption="Own calculations based on data from 
+       the Danish Ministry for Education")
+  
+```
+]
+
+<br>
+
+### $\Rightarrow$ This is  the **Difference-in-Differences** method!
+
+
+
+<style>
+.pull-left {
+  float: left;
+  width: 47%;
+}
+.pull-right {
+  float: right;
+  width: 47%;
+}
+</style>
+
+
+---
+# Can we get some numbers of on this?
+
+
+- So how much did the segregation increase because of the reform?
+
+.pull-left[
+
+```{r , eval=FALSE,  fig.width=6,fig.height=6,message=FALSE, warnings=FALSE, results='asis'}
+#load the data
+schooldata<-schooldata_updated
+# calculate means
+mean_after_high<-colMeans(schooldata%>%
+  filter(competition=="High",year>2006)
+  %>%select(measure2))
+mean_before_high<-colMeans(schooldata%>%
+  filter(competition=="High",year<2007)
+  %>%select(measure2))
+
+mean_after_low<-colMeans(schooldata%>%
+   filter(competition=="Low",year>2006)
+   %>%select(measure2))
+mean_before_low<-colMeans(schooldata%>%
+   filter(competition=="Low",year<2007)
+   %>%select(measure2))
+# calculate differences
+dif_low=mean_after_low-mean_before_low
+dif_high=mean_after_high-mean_before_high
+dif_in_dif<-dif_high-dif_low
+# Print results
+print(paste("Difference high competition districts:",dif_high,""))
+print(paste("Difference low competition districts:",dif_low))
+print(paste("Difference-in-Differences:",dif_in_dif))
+
+
+  
+```
+
+
+]
+
+
+.pull-right[
+
+
+Let's do this on [www.rtaster.com](http://www.rtaster.com)
+
+(you can also try it after the session!)
+
+]
+
+
+
+
+
+
+---
+# Can we get some numbers of on this?
+
+
+- So how much did the segregation increase because of the reform?
+
+.pull-left[
+
+```{r , eval=FALSE,  fig.width=6,fig.height=6,message=FALSE, warnings=FALSE, results='asis'}
+#load the data
+schooldata<-schooldata_updated
+# calculate means
+mean_after_high<-colMeans(schooldata%>%
+  filter(competition=="High",year>2006)
+  %>%select(measure2))
+mean_before_high<-colMeans(schooldata%>%
+  filter(competition=="High",year<2007)
+  %>%select(measure2))
+
+mean_after_low<-colMeans(schooldata%>%
+   filter(competition=="Low",year>2006)
+   %>%select(measure2))
+mean_before_low<-colMeans(schooldata%>%
+   filter(competition=="Low",year<2007)
+   %>%select(measure2))
+# calculate differences
+dif_low=mean_after_low-mean_before_low
+dif_high=mean_after_high-mean_before_high
+dif_in_dif<-dif_high-dif_low
+# Print results
+print(paste("Difference high competition districts:",dif_high,""))
+print(paste("Difference low competition districts:",dif_low))
+print(paste("Difference-in-Differences:",dif_in_dif))
+
+  
+```
+
+
+]
+
+
+.pull-right[
+
+
+```{r , echo=FALSE, fig.width=6,fig.height=4.5, message=FALSE, warnings=FALSE}
+#load the data
+schooldata<-schooldata_updated
+# calculate means
+mean_after_high<-colMeans(schooldata%>%
+  filter(competition=="High",year>2006)
+  %>%select(measure2))
+mean_before_high<-colMeans(schooldata%>%
+  filter(competition=="High",year<2007)
+  %>%select(measure2))
+
+mean_after_low<-colMeans(schooldata%>%
+   filter(competition=="Low",year>2006)
+   %>%select(measure2))
+mean_before_low<-colMeans(schooldata%>%
+   filter(competition=="Low",year<2007)
+   %>%select(measure2))
+# caulcate differences
+dif_low=mean_after_low-mean_before_low
+dif_high=mean_after_high-mean_before_high
+dif_in_dif<-dif_high-dif_low
+# Print results
+print(paste("Difference high competition districts:",dif_high,""))
+print(paste("Difference low competition districts:",dif_low))
+print(paste("Difference-in-Differences:",dif_in_dif))
+
+```
+
+
+<br>
+ $\Rightarrow$ **Conclusion** segregation increased by 0.031551 because of the reform. Most of you got this right! **Well done**!
+
+ **Assuming** that high competition regions would have developed as low competition regions in absence of the reform!
+
+]
+
+
+
+---
+# The regression approach
+
+- We can also use the Ordinary Least Squares method again! 
+- We estimate the following equation:
+
+$$segregation=\beta_0+\beta_1After2006+\beta_2 High+\beta_3  After2006\times High+e$$
+
+
+.pull-left[
+
+```{r , eval=FALSE,  fig.width=6,fig.height=6,message=FALSE, warnings=FALSE, results='asis'}
+#create new variables
+schooldata<-schooldata_updated%>%
+      mutate(after=ifelse(year>2006,1,0),
+             high=ifelse(competition=="High",1,0),
+             afterXhigh=after*high)
+# estimate equation
+summary(lm(measure2~after+high+afterXhigh,
+           data=schooldata))
+
+  
+```
+
+
+
+]
+
+
+.pull-right[
+
+
+Let's do this on [www.rtaster.com](http://www.rtaster.com)
+
+(You can also do try it after the session!)
+
+
+]
+
+
+
+
+
+---
+# The regression approach
+
+- We can also use the Ordinary Least Squares method again! 
+- We estimate the following equation:
+
+$$segregation=\beta_0+\beta_1After2006+\beta_2 High+\beta_3  After2006\times High+e$$
+
+
+.pull-left[
+
+```{r , eval=FALSE,  fig.width=6,fig.height=6,message=FALSE, warnings=FALSE, results='asis'}
+#create new variables
+schooldata<-schooldata_updated%>%
+      mutate(after=ifelse(year>2006,1,0),
+             high=ifelse(competition=="High",1,0),
+             afterXhigh=after*high)
+# estimate equation
+summary(lm(measure2~after+high+afterXhigh,
+           data=schooldata))
+
+  
+```
+
+
+]
+
+
+.pull-right[
+
+
+```{r , echo=FALSE, fig.width=6,fig.height=4.5, message=FALSE, warnings=FALSE}
+
+#create new variables
+schooldata<-schooldata_updated%>%
+            mutate(after=ifelse(year>2006,1,0),
+                   high=ifelse(competition=="High",1,0),
+                   afterXhigh=after*high)
+# estimate equation
+summary(lm(measure2~after+high+afterXhigh,data=schooldata))
+
+  
+```
+]
+
+
+
+
+---
+class: inverse, center, middle
+
+# 3. **Why** is school segregation increasing?
+### **Answer:** Our *Difference-in-Differences* estimate suggests that a school funding reform caused an increase in segregation. 
+
+
+---
+class: inverse, center, middle
+
+# 4.  **How** can policy makers affect school segregation?
+
+---
+# Can we improve the assignment of students to schools?
+
+1. Whether to change the assignment of students to schools is a political decision. 
+
+2. But we  - **economists** - can help designing systems to achieve the assignments the politicians want. 
+
+$\Rightarrow$ This is called mechanism design.
+
+
+
+
+
+.pull-left[
+
+<blockquote><em>"for the theory of stable allocations and the practice of market design."</em>
+.right[<cite>Nobel Prize in Economics in 2012:</cite>]
+</blockquote>
+ 
+
+ 
+ 
+]
+.pull-right[
+
+<style>
+.twocol {
+width:90%;
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   grid-gap: 5px;
+   text-align: center;
+   margin:auto;
+}
+.container {
+  margin:auto;
+   text-align: right;
+}
+</style>
+
+
+<div class="container">
+ <div class="twocol">
+
+    <div>
+      <center>
+    <img style="width:45%" src="shapley-15180-portrait-mini-2x.jpg" alt=""><br>
+    <b>Lloyd S. Shapley</b>
+      </center>
+    </div>
+    <div>
+    <center>
+     <img style="width:45%" src="roth-15181-portrait-mini-2x.jpg" alt=""><br>
+          <b>Alvin E. Roth</b>
+    </div>
+      </center>
+       <div>
+    </div>
+ 
+  </div>
+  </div>
+
+ <center>
+]
+
+
+
+- #### In 2011 the Danish Government introduced such a matching algorithm for Danish high schools. 
+ #### ... and segregation stopped increasing. 
+
+
+
+---
+class: inverse, center, middle
+
+# 4.  **How** can policy makers affect school segregation?
+
+### **Answer:** For example through assignment mechanisms.
+
+
+---
+#  Doing economic analysis
+
+- **Data** give economists facts about the world.
+
+- **Mathematics and Statistics** give economists tools to **develop theoretical predictions** and **analyse the data**.
+
+- **Programming** helps economists do this more **efficiently**
+
+- To answer questions that affect people!
+
+
+### I currently use these tools to study
+
+<style>
+.threecolumn {
+width:80%;
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+   grid-gap: 5px;
+   text-align: center;
+   margin:auto;
+}
+.container {
+  margin:auto;
+   text-align: right;
+}
+</style>
+
+
+<div class="container">
+ <div class="threecolumn">
+
+    <div>
+      <center>
+    <b>Child health in Nepal</b><br><img style="width:75%" src="children-1504836_1920.jpg" alt="">
+      </center>
+      &nbsp;&nbsp;
+    </div>
+    <div>
+    <center>
+     <b>Access to schools</b><br>
+     <img style="width:85%" src="school-bus-4406479_1920.jpg" alt="">&nbsp;&nbsp; 
+    </div>
+      </center>
+       <div>
+      <center>
+       <b>Inequality</b><br>
+    <img style="width:85%" src="inequality-4074203_1920.jpg" alt="">    
+    </center>
+    </div>
+ 
+  </div>
+  </div>
+
+ <center>
+
+---
+
+#  Doing economic analysis
+
+- **Data** give economists facts about the world.
+
+- **Mathematics and Statistics** give economists tools to **develop theoretical predictions** and **analyse the data**.
+
+- **Programming** helps economists do this more **efficiently**
+
+- To answer questions that affect people!
+
+
+### In Bristol we teach and use  these tools.
+
+```{r, echo=FALSE, out.width="70%", fig.cap=" "}
+knitr::include_graphics("bristol.jpg")
+```

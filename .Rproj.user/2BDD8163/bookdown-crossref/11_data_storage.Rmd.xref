@@ -1,0 +1,30 @@
+h1:how-data-is-stored How data is stored
+h2:what-this-chapter-is-about What this chapter is about
+h3:intended-learning-outcomes Intended learning outcomes
+h2:how-computers-work How computers work
+h3:or-0 1 or 0
+fig:store1 How Computers Compute (Science Out Loud S2 Ep5). Source: MITK12Videos
+h3:from-0-and-1-to-interpretable-content. From 0 and 1 to interpretable content.
+h3:from-signals-to-bits-and-bytes. From signals to bits and bytes.
+h3:a-never-ending-confusion-1000-or-1024 A never ending confusion 1000 or 1024?
+h3:how-fast-is-your-internet-connection How fast is your Internet connection?
+h2:encoding Encoding
+h3:how-encoding-and-decoding-works How encoding and decoding works
+h3:where-does-the-big-table-come-from Where does the big table come from?
+h3:there-are-many-codebooks.-what-a-mess There are many codebooks. What a mess!
+h3:encoding-and-decoding-what-you-should-know-and-do Encoding and decoding: What you should know and do?
+fig:store3 Screenshot from the New York Times website on January 7 2019.Left: Western (Windows 1252) encoding. Right: Unicode UTF-8 encoding.
+h3:the-unicode-encoding-scheme The unicode encoding scheme
+h4:utf-8-utf-16-utf-32 UTF-8, UTF-16, UTF-32
+h3:if-encoding-and-decoding-go-wrong-what-can-you-do If encoding and decoding go wrong, what can you do?
+h3:encoding-what-you-shouldnt-do Encoding: What you shouldn’t do!
+h2:estimating-file-size-and-memory-use Estimating file size and memory use
+h3:variable-types Variable types
+h3:file-size File size
+h3:what-happens-if-we-use-the-wrong-variable-format What happens if we use the wrong variable format?
+h3:estimates-are-estimates Estimates are estimates
+h2:the-tidy-data-principles The tidy data principles
+fig:store4 A messy dataset.
+fig:store5 A tidy dataset.
+h2:summary Summary
+

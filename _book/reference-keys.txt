@@ -1,5 +1,5 @@
 fig:fig1
-tab:tab1
+fig:fig2
 fig:baththub
 fig:death1
 tab:deathtx
@@ -80,7 +80,7 @@ quantifying-fertility-trends
 definitions
 data-requirements
 relating-the-fertility-measures-to-each-other
-decomposing-the-development-in-life-births
+decomposing-the-development-in-childbirths
 calculating-life-expectancy
 life-tables
 data-requirements-1
@@ -88,9 +88,9 @@ creating-life-tables
 further-readings
 the-labour-market
 what-this-chapter-is-about-1
-from-population-data-to-the-labor-market
+from-population-data-to-the-labour-market
 the-labour-force
-out-of-the-labor-force
+out-of-the-labour-force
 labour-demand
 supply-meets-demand
 further-readings-1
@@ -105,14 +105,14 @@ gdp---why-3-approaches
 gross-national-income-gni
 what-we-use-gdp-for
 further-readings-2
-limits-to-gdp-alternative-measures
+wellbeing
 about-this-chapter
 intended-learning-outcomes-1
 the-limits-of-gdp
-what-is-well-being
-gdp-and-well-being
-how-to-measure-well-being-quality-of-life
-measuring-well-being-in-practice
+what-is-wellbeing
+gdp-and-wellbeing
+how-to-measure-wellbeing-quality-of-life
+measuring-wellbeing-in-practice
 further-readings-3
 inequality
 about-this-chapter-1
@@ -133,7 +133,7 @@ further-readings-5
 prices
 what-this-chapter-is-about-4
 price-indexes---in-theory
-the-laspeyre-index
+the-laspeyres-index
 the-paasche-price-index
 the-fisher-price-index
 the-lowe-price-index
@@ -180,5 +180,5 @@ table-design
 chart-design
 lies-junk-and-non-data-ink.
 the-self-explanatory-data-visualization
-a-cook-book-for-good-data-visualizations
+a-cookbook-for-good-data-visualizations
 summary-3

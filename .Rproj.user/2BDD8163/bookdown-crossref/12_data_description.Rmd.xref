@@ -1,0 +1,37 @@
+h1:describing-data Describing Data
+h2:what-this-chapter-is-about What this chapter is about
+h3:intended-learning-outcomes Intended learning outcomes
+h2:the-objective-guide-the-reader The objective: Guide the reader
+h4:support-charts-and-tables Support charts and tables
+fig:desc1 Unemployment in the UK. Source: The UK Office for National Statistics
+h3:how-to-guide-the-reader How to guide the reader
+h4:example-1 Example 1
+h4:example-2 Example 2:
+h4:explaining-charts-dont-take-the-reader-on-a-roller-coaster-ride Explaining charts: Don’t take the reader on a roller coaster ride!
+h4:explaining-tables Explaining tables
+h2:describing-differences Describing differences
+h3:differences-in-absolute-terms Differences in absolute terms
+fig:desc2 Unemployment in the UK from 2006 to 2018. Source: The ONS with value labels. Source: The UK Office for National Statistics
+h3:relative-differences Relative differences
+h3:percentage-point-vs-percent Percentage point vs percent
+h2:calculating-compound-growth-rates Calculating compound growth rates
+fig:desc3 The development of the Bitcoin price, and imputed price using average daily price increases. Data source: [coindesk.com](https://www.coindesk.com/price/)
+h3:using-indexes Using indexes
+h2:decomposing-changes Decomposing changes
+h2:removing-noise Removing noise
+fig:desc4 Monthly unemployment in the United Kingdom. Source: OECD, Short-Term Labour Market Statistics, Harmonised Unemployment rate. Not seasonally adjusted. Y-Axis truncated at 4 percent.
+h3:moving-averages Moving averages
+fig:desc5 Monthly unemployment in the United Kingdom. Source: OECD, Short-Term Labour Market Statistics, Harmonised Unemployment rate.  Y-Axis truncated at 4 percent.
+h3:seasonally-adjustment Seasonally adjustment
+h4:decomposing-a-series Decomposing a series
+h4:step-1-identify-the-trend-level Step 1: Identify the trend level
+h4:step-2-subtract-the-trend-level-from-the-raw-series-to-obtain-a-series-containing-the-seasonal-and-irregular-components. Step 2: Subtract the trend level from the raw series to obtain a series containing the seasonal and irregular components.
+fig:desc6 The residual series: The raw unemployment rate minus the five month moving average. November and December are marked with red. Green crosses show the three period moving average of the December residual. Source: OECD, Short-Term Labour Market Statistics, Harmonised Unemployment rate.
+h4:step-3-apply-the-moving-for-each-reoccurring-period-to-obtain-estimates-of-the-seasonal-component-of-that-period. Step 3: Apply the moving for each reoccurring period to obtain estimates of the seasonal component of that period.
+h4:step-4-subtract-the-seasonal-components-from-the-raw-data-to-obtain-a-first-estimate-of-the-seasonally-adjusted-series. Step 4: Subtract the seasonal components from the raw data to obtain a first estimate of the seasonally adjusted series.
+h4:step-5-repeat Step 5: Repeat!
+h4:the-resulting-seasonally-adjusted-series The resulting seasonally adjusted series
+fig:desc7 Monthly unemployment in the United Kingdom. Source: OECD, Short-Term Labour Market Statistics, Harmonised Unemployment rate.  Y-Axis truncated at 4 percent.
+h2:data-processing Data processing
+h2:summary Summary
+

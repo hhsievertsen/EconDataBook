@@ -1,0 +1,726 @@
+{
+    "sources": [
+        {
+            "author": [
+                {
+                    "family": "Kusnets",
+                    "given": "Simon"
+                }
+            ],
+            "id": "kuznets1934national",
+            "issued": {
+                "date-parts": [
+                    [
+                        1934
+                    ]
+                ]
+            },
+            "publisher": "United States Government Printing Office",
+            "publisher-place": "Washington",
+            "title": "National income, 1929-1932",
+            "type": "book",
+            "volume": "124"
+        },
+        {
+            "author": [
+                {
+                    "family": "Walkenbach",
+                    "given": "John"
+                }
+            ],
+            "id": "bible",
+            "issued": {
+                "date-parts": [
+                    [
+                        2015
+                    ]
+                ]
+            },
+            "publisher": "Wiley",
+            "title": "Excel 2016 bible",
+            "type": "book"
+        },
+        {
+            "author": [
+                {
+                    "family": "Gupta",
+                    "given": "Prithwis Das"
+                }
+            ],
+            "container-title": "U.S. Department of Commerce",
+            "id": "csr",
+            "issued": {
+                "date-parts": [
+                    [
+                        1993
+                    ]
+                ]
+            },
+            "title": "Standardization and decomposition of rates: A user’s manual",
+            "title-short": "Standardization and decomposition of rates",
+            "type": ""
+        },
+        {
+            "author": [
+                {
+                    "literal": "The CORE Team"
+                }
+            ],
+            "edition": "1",
+            "id": "core",
+            "issued": {
+                "date-parts": [
+                    [
+                        2017
+                    ]
+                ]
+            },
+            "publisher": "Oxford University Press, UK",
+            "title": "The economy-economics for a changing world",
+            "type": "book"
+        },
+        {
+            "author": [
+                {
+                    "family": "Wickham",
+                    "given": "Hadley"
+                }
+            ],
+            "container-title": "Journal of Statistical Software",
+            "id": "wickham2014tidy",
+            "issue": "10",
+            "issued": {
+                "date-parts": [
+                    [
+                        2014
+                    ]
+                ]
+            },
+            "page": "1-23",
+            "publisher": "Foundation for Open Access Statistics",
+            "title": "Tidy data",
+            "type": "article-journal",
+            "volume": "59"
+        },
+        {
+            "author": [
+                {
+                    "family": "Wilke",
+                    "given": "Claus O"
+                }
+            ],
+            "id": "wilke2019fundamentals",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019
+                    ]
+                ]
+            },
+            "publisher": "O’Reilly Media",
+            "title": "Fundamentals of data visualization: A primer on making informative and compelling figures",
+            "title-short": "Fundamentals of data visualization",
+            "type": "book"
+        },
+        {
+            "author": [
+                {
+                    "family": "LaCour",
+                    "given": "Michael J"
+                },
+                {
+                    "family": "Green",
+                    "given": "Donald P"
+                }
+            ],
+            "container-title": "Science",
+            "id": "lacour2014contact",
+            "issue": "6215",
+            "issued": {
+                "date-parts": [
+                    [
+                        2014
+                    ]
+                ]
+            },
+            "page": "1366-1369",
+            "publisher": "American Association for the Advancement of Science",
+            "title": "When contact changes minds: An experiment on transmission of support for gay equality",
+            "title-short": "When contact changes minds",
+            "type": "article-journal",
+            "volume": "346"
+        },
+        {
+            "URL": "https://www.newyorker.com/science/maria-konnikova/how-a-gay-marriage-study-went-wrong",
+            "author": [
+                {
+                    "family": "Konnikova",
+                    "given": "Maria"
+                }
+            ],
+            "container-title": "The New Yorker",
+            "id": "lacour",
+            "issued": {
+                "date-parts": []
+            },
+            "title": "How a gay-marriage study went wrong",
+            "type": ""
+        },
+        {
+            "author": [
+                {
+                    "family": "Cairo",
+                    "given": "Alberto"
+                }
+            ],
+            "id": "cairo",
+            "issued": {
+                "date-parts": [
+                    [
+                        2016
+                    ]
+                ]
+            },
+            "publisher": "New Riders",
+            "title": "The truthful art: Data, charts, and maps for communication",
+            "title-short": "The truthful art",
+            "type": "book"
+        },
+        {
+            "author": [
+                {
+                    "literal": "Piere Cahuc and André Zylberberg"
+                }
+            ],
+            "edition": "1",
+            "id": "zyb",
+            "issued": {
+                "date-parts": [
+                    [
+                        2004
+                    ]
+                ]
+            },
+            "publisher": "MIT Press",
+            "title": "Labor Economics",
+            "type": "book"
+        },
+        {
+            "author": [
+                {
+                    "literal": "Office for National Statistics"
+                }
+            ],
+            "id": "gdpons",
+            "issued": {
+                "date-parts": [
+                    [
+                        2016
+                    ]
+                ]
+            },
+            "publisher": "Office of Public Sector Information",
+            "title": "Chain-linking methods used within the UK national accounts",
+            "type": "report"
+        },
+        {
+            "author": [
+                {
+                    "family": "Healy",
+                    "given": "Kieran"
+                }
+            ],
+            "id": "healy2018data",
+            "issued": {
+                "date-parts": [
+                    [
+                        2018
+                    ]
+                ]
+            },
+            "publisher": "Princeton University Press",
+            "title": "Data visualization: A practical introduction",
+            "title-short": "Data visualization",
+            "type": "book"
+        },
+        {
+            "author": [
+                {
+                    "family": "Few",
+                    "given": "Stephen"
+                }
+            ],
+            "container-title": "Analytics Pres",
+            "id": "few2012show",
+            "issued": {
+                "date-parts": [
+                    [
+                        2012
+                    ]
+                ]
+            },
+            "title": "Show me the numbers",
+            "type": "article-journal"
+        },
+        {
+            "author": [
+                {
+                    "family": "Tufte",
+                    "given": "Edward R"
+                }
+            ],
+            "id": "tufte2001visual",
+            "issued": {
+                "date-parts": [
+                    [
+                        2001
+                    ]
+                ]
+            },
+            "publisher": "Graphics press Cheshire, CT",
+            "title": "The visual display of quantitative information",
+            "type": "book",
+            "volume": "2"
+        },
+        {
+            "author": [
+                {
+                    "family": "Smith",
+                    "given": "Gregor W"
+                }
+            ],
+            "container-title": "Journal of Money, Credit and Banking",
+            "id": "smith2008japan",
+            "issue": "6",
+            "issued": {
+                "date-parts": [
+                    [
+                        2008
+                    ]
+                ]
+            },
+            "page": "1325-1326",
+            "publisher": "Wiley Online Library",
+            "title": "Japan’s phillips curve looks like japan",
+            "type": "article-journal",
+            "volume": "40"
+        },
+        {
+            "author": [
+                {
+                    "literal": "UK Office for National Statistics"
+                }
+            ],
+            "container-title": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/methodologies/aguidetolabourmarketstatistics",
+            "id": "ons",
+            "issued": {
+                "date-parts": []
+            },
+            "title": "Methodology: A guide to labour market statistics",
+            "title-short": "Methodology",
+            "type": ""
+        },
+        {
+            "author": [
+                {
+                    "literal": "The European Commission - Eurostat"
+                }
+            ],
+            "id": "esa2010",
+            "issued": {
+                "date-parts": [
+                    [
+                        2013
+                    ]
+                ]
+            },
+            "title": "European system of accounts - ESA 2010",
+            "type": "report"
+        },
+        {
+            "author": [
+                {
+                    "family": "Stiglitz",
+                    "given": "Joseph E"
+                },
+                {
+                    "family": "Sen",
+                    "given": "Amartya"
+                },
+                {
+                    "family": "Fitoussi",
+                    "given": "Jean-Paul"
+                },
+                {
+                    "literal": "others"
+                }
+            ],
+            "container-title": "Paris: Commission on the Measurement of Economic Performance and Social Progress",
+            "id": "stiglitz2010report",
+            "issued": {
+                "date-parts": [
+                    [
+                        2009
+                    ]
+                ]
+            },
+            "title": "Report by the commission on the measurement of economic performance and social progress",
+            "type": "article-journal"
+        },
+        {
+            "author": [
+                {
+                    "literal": "OECD & Eurostat"
+                }
+            ],
+            "id": "ppp",
+            "issued": {
+                "date-parts": [
+                    [
+                        2012
+                    ]
+                ]
+            },
+            "title": "Eurostat-OECD methodological manual on purchasing power parities",
+            "type": "report"
+        },
+        {
+            "author": [
+                {
+                    "literal": "Office for National Statistics"
+                }
+            ],
+            "id": "cpions",
+            "issued": {
+                "date-parts": [
+                    [
+                        2014
+                    ]
+                ]
+            },
+            "publisher": "Office of Public Sector Information",
+            "title": "Consumer price indices - technical manual",
+            "type": "report"
+        },
+        {
+            "author": [
+                {
+                    "literal": "Eurostat"
+                }
+            ],
+            "id": "cpieu",
+            "issued": {
+                "date-parts": [
+                    [
+                        2018
+                    ]
+                ]
+            },
+            "title": "HICP methodology",
+            "type": "report"
+        },
+        {
+            "author": [
+                {
+                    "literal": "Office for National Statistics"
+                }
+            ],
+            "id": "ppions",
+            "issued": {
+                "date-parts": [
+                    [
+                        2018
+                    ]
+                ]
+            },
+            "publisher": "Office of Public Sector Information",
+            "title": "Quality and methodology information producer price index",
+            "type": "report"
+        },
+        {
+            "author": [
+                {
+                    "literal": "Eurostat"
+                }
+            ],
+            "id": "ppieu",
+            "issued": {
+                "date-parts": [
+                    [
+                        2012
+                    ]
+                ]
+            },
+            "title": "Handbook on industrial producer price indices (PPI)",
+            "type": "report"
+        },
+        {
+            "URL": "https://www.R-project.org/",
+            "author": [
+                {
+                    "literal": "R Core Team"
+                }
+            ],
+            "id": "R-base",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022
+                    ]
+                ]
+            },
+            "publisher": "R Foundation for Statistical Computing",
+            "publisher-place": "Vienna, Austria",
+            "title": "R: A language and environment for statistical computing",
+            "title-short": "R",
+            "type": "book"
+        },
+        {
+            "URL": "https://CRAN.R-project.org/package=bookdown",
+            "author": [
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                }
+            ],
+            "id": "R-bookdown",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022
+                    ]
+                ]
+            },
+            "note": "R package version 0.29",
+            "title": "Bookdown: Authoring books and technical documents with r markdown",
+            "title-short": "Bookdown",
+            "type": "book"
+        },
+        {
+            "URL": "https://yihui.org/knitr/",
+            "author": [
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                }
+            ],
+            "id": "R-knitr",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022
+                    ]
+                ]
+            },
+            "note": "R package version 1.39",
+            "title": "Knitr: A general-purpose package for dynamic report generation in r",
+            "title-short": "Knitr",
+            "type": "book"
+        },
+        {
+            "URL": "https://CRAN.R-project.org/package=rmarkdown",
+            "author": [
+                {
+                    "family": "Allaire",
+                    "given": "JJ"
+                },
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                },
+                {
+                    "family": "McPherson",
+                    "given": "Jonathan"
+                },
+                {
+                    "family": "Luraschi",
+                    "given": "Javier"
+                },
+                {
+                    "family": "Ushey",
+                    "given": "Kevin"
+                },
+                {
+                    "family": "Atkins",
+                    "given": "Aron"
+                },
+                {
+                    "family": "Wickham",
+                    "given": "Hadley"
+                },
+                {
+                    "family": "Cheng",
+                    "given": "Joe"
+                },
+                {
+                    "family": "Chang",
+                    "given": "Winston"
+                },
+                {
+                    "family": "Iannone",
+                    "given": "Richard"
+                }
+            ],
+            "id": "R-rmarkdown",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022
+                    ]
+                ]
+            },
+            "note": "R package version 2.14",
+            "title": "Rmarkdown: Dynamic documents for r",
+            "title-short": "Rmarkdown",
+            "type": "book"
+        },
+        {
+            "URL": "https://bookdown.org/yihui/bookdown",
+            "author": [
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                }
+            ],
+            "id": "bookdown2016",
+            "issued": {
+                "date-parts": [
+                    [
+                        2016
+                    ]
+                ]
+            },
+            "note": "ISBN 978-1138700109",
+            "publisher": "Chapman; Hall/CRC",
+            "publisher-place": "Boca Raton, Florida",
+            "title": "Bookdown: Authoring books and technical documents with R markdown",
+            "title-short": "Bookdown",
+            "type": "book"
+        },
+        {
+            "URL": "https://yihui.org/knitr/",
+            "author": [
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                }
+            ],
+            "edition": "2nd",
+            "id": "knitr2015",
+            "issued": {
+                "date-parts": [
+                    [
+                        2015
+                    ]
+                ]
+            },
+            "note": "ISBN 978-1498716963",
+            "publisher": "Chapman; Hall/CRC",
+            "publisher-place": "Boca Raton, Florida",
+            "title": "Dynamic documents with R and knitr",
+            "type": "book"
+        },
+        {
+            "URL": "http://www.crcpress.com/product/isbn/9781466561595",
+            "author": [
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                }
+            ],
+            "container-title": "Implementing reproducible computational research",
+            "editor": [
+                {
+                    "family": "Stodden",
+                    "given": "Victoria"
+                },
+                {
+                    "family": "Leisch",
+                    "given": "Friedrich"
+                },
+                {
+                    "family": "Peng",
+                    "given": "Roger D."
+                }
+            ],
+            "id": "knitr2014",
+            "issued": {
+                "date-parts": [
+                    [
+                        2014
+                    ]
+                ]
+            },
+            "note": "ISBN 978-1466561595",
+            "publisher": "Chapman; Hall/CRC",
+            "title": "Knitr: A comprehensive tool for reproducible research in R",
+            "title-short": "Knitr",
+            "type": "chapter"
+        },
+        {
+            "URL": "https://bookdown.org/yihui/rmarkdown",
+            "author": [
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                },
+                {
+                    "family": "Allaire",
+                    "given": "J. J."
+                },
+                {
+                    "family": "Grolemund",
+                    "given": "Garrett"
+                }
+            ],
+            "id": "rmarkdown2018",
+            "issued": {
+                "date-parts": [
+                    [
+                        2018
+                    ]
+                ]
+            },
+            "note": "ISBN 9781138359338",
+            "publisher": "Chapman; Hall/CRC",
+            "publisher-place": "Boca Raton, Florida",
+            "title": "R markdown: The definitive guide",
+            "title-short": "R markdown",
+            "type": "book"
+        },
+        {
+            "URL": "https://bookdown.org/yihui/rmarkdown-cookbook",
+            "author": [
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                },
+                {
+                    "family": "Dervieux",
+                    "given": "Christophe"
+                },
+                {
+                    "family": "Riederer",
+                    "given": "Emily"
+                }
+            ],
+            "id": "rmarkdown2020",
+            "issued": {
+                "date-parts": [
+                    [
+                        2020
+                    ]
+                ]
+            },
+            "note": "ISBN 9780367563837",
+            "publisher": "Chapman; Hall/CRC",
+            "publisher-place": "Boca Raton, Florida",
+            "title": "R markdown cookbook",
+            "type": "book"
+        }
+    ],
+    "project_biblios": [
+        "book.bib",
+        "packages.bib"
+    ]
+}

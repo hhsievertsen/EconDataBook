@@ -1,0 +1,31 @@
+h1:prices Prices
+h2:what-this-chapter-is-about What this chapter is about
+h3:intended-learning-outcomes Intended learning outcomes
+h2:price-indexes---in-theory Price indexes - in theory
+h3:the-objective The objective
+h3:a-simple-index A simple index
+h3:the-laspeyres-index The Laspeyres Index
+h3:the-paasche-price-index The Paasche Price Index
+h3:the-fisher-price-index The Fisher Price Index
+h3:the-lowe-price-index The Lowe Price Index
+h3:other-indexes Other indexes
+h3:chain-linked-vs.-unchained-indexes Chain-linked vs. unchained indexes
+h3:summary-on-price-indexes Summary on price indexes
+h3:weigths Weigths
+h2:price-indexes---in-practice Price indexes - in practice
+h3:consumer-price-indexes Consumer Price Indexes
+fig:pricefig1 The Consumer Price Index (HICP) for the EURO countries and the UK. Source: Eurostat. Notes: The index is constructed such that the 2015 average is 100.
+h3:producer-price-index-import-price-index-and-export-price-index Producer Price Index, Import Price Index and Export Price Index
+h3:other-indexes-1 Other indexes
+h2:across-time Across time
+h3:inflation Inflation
+fig:pricefig2 Consumer Price Inflation for the EURO countries and the UK. {Source: Eurostat. Notes: The inflation relates to 12 month changes.}
+h3:real-vs.-nominal-values Real vs. nominal values
+h3:the-real-interest-rate The real interest rate
+h3:the-phillips-curve The Phillips Curve
+fig:pricejapan The Phillips curve of Japan and a map of Japan. Source: The Map is from Google Maps, the Phillips curve is from citet{smith2008japan}. The unemployment rate is multiplied by minus 1. 
+h2:across-regions Across regions
+h3:the-big-mac-index The Big Mac index
+h3:purchasing-power-parity Purchasing Power Parity
+h2:further-readings Further readings
+
