@@ -240,10 +240,42 @@ Table: (\#tab:deatht) Ingredients of life tables.
 |(7) | $T_x$   | Cumulative person-years of life             | $\sum_{end}^x{L_x}$|
 |(8) | $e_x$   | Average  years of life remaining at age $x$ | $T_x/I_x$|
 
+### The simple approach
+
+Before we turn to the ingredients of Table \@ref(tab:deatht) it is useful first to consider a simplified version.
+
+We consider the life expectancy of mice (mice unfortunately have shorter lives than humans and they are therefore better suited for an example). You have the following data. This year 50 percent of all mice between age 0 and 1 died. 60 percent off all mice aged between 1 and 2 died. And all mice between 2 and 3 died. 
+
+Let's create a simplified life table based on these statistics. We ignore $_nq_n$ to make it simpler and consider an initial cohort of 10 mice.  The table below shows a life table based on this information.
+
+- Initially we have 10 mice. That is why the I column is 10 in row $0-1y$. We know that 50 percent of mice in this age group died this year, so $m_x$ is 0.5. That implies that 5 out of the 10 mice will die in this period, that is why $ndx$ is 5. Looking at the next row, I is now 5 because out of the initial 10 mice, 5 died in the first year. 60 percent of the 5 mice die between before they turn 2, so we know that 3 of them will die in this age interval.  We continue like this to fill out the first four columns,
+
+In column $L$ we enter the life years lived in this interval. So for the age group $0-1y$ we know that 5 of the mice will survive this year so they will live five years in total (each mouse will live 1 year). For the remaining five mice we assume that they will die evenly throughout the year, meaning that they on average will live 0.5 year. So in total these five mice will live 2.5years, bringing the total up to 7.5years. We do the same in the next two rows.
+
+Finally, in column $T$ we add up how many live years there are left at this point. Starting for age group $2-3y$, there are two mice who both will die. We assume that they die on average in the middle of the year, so they both can expect to live 0.5 years. 0.5 years times two mice gives 1 year. We do the same in row $1-2y$ but here we also add the years left after they turn 2, so in total 4.5 and so on.
+
+Finally in the last column we divide the total life years left by the number of mice at the beginning of that period, to get the average life years left for one mouse. As a result, the life expectancy at birth is 1.2y.
+
+
+Table: (\#tab:micelife)  Our mice life table
+
+|age &nbsp;&nbsp;&nbsp; |Ix  &nbsp;&nbsp;&nbsp;  |$m_x$ &nbsp;&nbsp;&nbsp;  |ndx  &nbsp;&nbsp;&nbsp; |L &nbsp;&nbsp;&nbsp;  |T &nbsp;&nbsp;&nbsp;  |e &nbsp;&nbsp;&nbsp;  |
+|--------|--------|--------|--------|--------|--------|--------|
+|0-1y|10|0.5|5|7.5|12|1.2
+|1-2y|5|0.6|3|3.5|4.5|0.9
+|2-3y|2|1|2|1|1|0.5|
+
+What was the simplifying step? 
+
+- We ignored that not everyone is born on the same day.
+- We ignored that the likelihood of dying is not the same every day. At birth you are much more likely to die within the first 48hours than in the remaining year. 
+
+Incorporating these two extensions is what makes the "real" life table more complex. However, the intuition is the same. 
+
 
 ### Data requirements
 
-For each age group we require data on the  number of people in that group and the number of people who died in that group. Once we have these two variables we can construct the other variables. We can get such data from statstical agencies like Eurostat or the Office for National Statistics.
+For each age group we require data on the  number of people in that group and the number of people who died in that group. Once we have these two variables we can construct the other variables. We can get such data from statistical agencies like Eurostat or the Office for National Statistics.
 
 ### Creating life tables 
  

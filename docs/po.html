@@ -446,20 +446,92 @@ Figure 2.2: Fertility rates for the United Kingdom. Data source: Eurostat. Note:
 </tbody>
 </table></div>
 </div>
-<div id="data-requirements-1" class="section level3" number="2.4.2">
+<div id="the-simple-approach" class="section level3" number="2.4.2">
 <h3>
-<span class="header-section-number">2.4.2</span> Data requirements<a class="anchor" aria-label="anchor" href="#data-requirements-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.4.2</span> The simple approach<a class="anchor" aria-label="anchor" href="#the-simple-approach"><i class="fas fa-link"></i></a>
 </h3>
-<p>For each age group we require data on the number of people in that group and the number of people who died in that group. Once we have these two variables we can construct the other variables. We can get such data from statstical agencies like Eurostat or the Office for National Statistics.</p>
+<p>Before we turn to the ingredients of Table <a href="po.html#tab:deatht">2.2</a> it is useful first to consider a simplified version.</p>
+<p>We consider the life expectancy of mice (mice unfortunately have shorter lives than humans and they are therefore better suited for an example). You have the following data. This year 50 percent of all mice between age 0 and 1 died. 60 percent off all mice aged between 1 and 2 died. And all mice between 2 and 3 died.</p>
+<p>Let’s create a simplified life table based on these statistics. We ignore <span class="math inline">\(_nq_n\)</span> to make it simpler and consider an initial cohort of 10 mice. The table below shows a life table based on this information.</p>
+<ul>
+<li>Initially we have 10 mice. That is why the I column is 10 in row <span class="math inline">\(0-1y\)</span>. We know that 50 percent of mice in this age group died this year, so <span class="math inline">\(m_x\)</span> is 0.5. That implies that 5 out of the 10 mice will die in this period, that is why <span class="math inline">\(ndx\)</span> is 5. Looking at the next row, I is now 5 because out of the initial 10 mice, 5 died in the first year. 60 percent of the 5 mice die between before they turn 2, so we know that 3 of them will die in this age interval. We continue like this to fill out the first four columns,</li>
+</ul>
+<p>In column <span class="math inline">\(L\)</span> we enter the life years lived in this interval. So for the age group <span class="math inline">\(0-1y\)</span> we know that 5 of the mice will survive this year so they will live five years in total (each mouse will live 1 year). For the remaining five mice we assume that they will die evenly throughout the year, meaning that they on average will live 0.5 year. So in total these five mice will live 2.5years, bringing the total up to 7.5years. We do the same in the next two rows.</p>
+<p>Finally, in column <span class="math inline">\(T\)</span> we add up how many live years there are left at this point. Starting for age group <span class="math inline">\(2-3y\)</span>, there are two mice who both will die. We assume that they die on average in the middle of the year, so they both can expect to live 0.5 years. 0.5 years times two mice gives 1 year. We do the same in row <span class="math inline">\(1-2y\)</span> but here we also add the years left after they turn 2, so in total 4.5 and so on.</p>
+<p>Finally in the last column we divide the total life years left by the number of mice at the beginning of that period, to get the average life years left for one mouse. As a result, the life expectancy at birth is 1.2y.</p>
+<div class="inline-table"><table style="width:100%;" class="table table-sm">
+<caption>
+<span id="tab:micelife">Table 2.3: </span> Our mice life table</caption>
+<colgroup>
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+</colgroup>
+<thead><tr class="header">
+<th>age    </th>
+<th>Ix    </th>
+<th>
+<span class="math inline">\(m_x\)</span>    </th>
+<th>ndx    </th>
+<th>L    </th>
+<th>T    </th>
+<th>e    </th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>0-1y</td>
+<td>10</td>
+<td>0.5</td>
+<td>5</td>
+<td>7.5</td>
+<td>12</td>
+<td>1.2</td>
+</tr>
+<tr class="even">
+<td>1-2y</td>
+<td>5</td>
+<td>0.6</td>
+<td>3</td>
+<td>3.5</td>
+<td>4.5</td>
+<td>0.9</td>
+</tr>
+<tr class="odd">
+<td>2-3y</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>0.5</td>
+</tr>
+</tbody>
+</table></div>
+<p>What was the simplifying step?</p>
+<ul>
+<li>We ignored that not everyone is born on the same day.</li>
+<li>We ignored that the likelihood of dying is not the same every day. At birth you are much more likely to die within the first 48hours than in the remaining year.</li>
+</ul>
+<p>Incorporating these two extensions is what makes the “real” life table more complex. However, the intuition is the same.</p>
 </div>
-<div id="creating-life-tables" class="section level3" number="2.4.3">
+<div id="data-requirements-1" class="section level3" number="2.4.3">
 <h3>
-<span class="header-section-number">2.4.3</span> Creating life tables<a class="anchor" aria-label="anchor" href="#creating-life-tables"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.4.3</span> Data requirements<a class="anchor" aria-label="anchor" href="#data-requirements-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>For each age group we require data on the number of people in that group and the number of people who died in that group. Once we have these two variables we can construct the other variables. We can get such data from statistical agencies like Eurostat or the Office for National Statistics.</p>
+</div>
+<div id="creating-life-tables" class="section level3" number="2.4.4">
+<h3>
+<span class="header-section-number">2.4.4</span> Creating life tables<a class="anchor" aria-label="anchor" href="#creating-life-tables"><i class="fas fa-link"></i></a>
 </h3>
 <p>The first variable we construct is the age specific death rate, followed by the probability of dying within the age group interval. We then construct a synthetic population that has a size of 100,000 individuals at the beginning of the first period. In each period we calculate the number of people who survive this period and who die within this period. We can then use these estimates to calculate the number of life years lived in this period, and sum over these live years. At the end, we divide the number of life years left in any given period by the number of people getting to this period to obtain the estimated life expectancy.</p>
 <div class="inline-table"><table class="table table-sm">
 <caption>
-<span id="tab:deatht2">Table 2.3: </span> Life table for the United Kingdom. Data source: Eurostat.</caption>
+<span id="tab:deatht2">Table 2.4: </span> Life table for the United Kingdom. Data source: Eurostat.</caption>
 <thead><tr class="header">
 <th>age</th>
 <th>mx</th>
@@ -543,7 +615,7 @@ Figure 2.2: Fertility rates for the United Kingdom. Data source: Eurostat. Note:
 </tr>
 </tbody>
 </table></div>
-<p>Table <a href="po.html#tab:deatht">2.2</a> shows a subset of a life table for the United Kingdom using data from Eurostat and the recipe outlined in Table <a href="po.html#tab:deatht2">2.3</a>. The table shows that the life expectancy at birth is 81 years. Conditional surviving to age 99, the life expectancy is 0.125 years. However,the life expectancy at higher ages is highly influenced by the assumption that all individuals die at a given age. In this case it is by age 100 years. In Figure <a href="po.html#fig:death2">2.3</a> we plot the variable <span class="math inline">\(e_x\)</span> against <span class="math inline">\(x\)</span> from the life table and life.</p>
+<p>Table <a href="po.html#tab:deatht">2.2</a> shows a subset of a life table for the United Kingdom using data from Eurostat and the recipe outlined in Table <a href="po.html#tab:deatht2">2.4</a>. The table shows that the life expectancy at birth is 81 years. Conditional surviving to age 99, the life expectancy is 0.125 years. However,the life expectancy at higher ages is highly influenced by the assumption that all individuals die at a given age. In this case it is by age 100 years. In Figure <a href="po.html#fig:death2">2.3</a> we plot the variable <span class="math inline">\(e_x\)</span> against <span class="math inline">\(x\)</span> from the life table and life.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:death2"></span>
 <img src="resources/chapter_people/fig11.png" alt="Life expectancy by age in years (left) and survival probabilities (right). Data source: Eurostat. " width="90%"><p class="caption">
@@ -585,8 +657,9 @@ Figure 2.3: Life expectancy by age in years (left) and survival probabilities (r
 <li>
 <a class="nav-link" href="#calculating-life-expectancy"><span class="header-section-number">2.4</span> Calculating life expectancy</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#life-tables"><span class="header-section-number">2.4.1</span> Life tables</a></li>
-<li><a class="nav-link" href="#data-requirements-1"><span class="header-section-number">2.4.2</span> Data requirements</a></li>
-<li><a class="nav-link" href="#creating-life-tables"><span class="header-section-number">2.4.3</span> Creating life tables</a></li>
+<li><a class="nav-link" href="#the-simple-approach"><span class="header-section-number">2.4.2</span> The simple approach</a></li>
+<li><a class="nav-link" href="#data-requirements-1"><span class="header-section-number">2.4.3</span> Data requirements</a></li>
+<li><a class="nav-link" href="#creating-life-tables"><span class="header-section-number">2.4.4</span> Creating life tables</a></li>
 </ul>
 </li>
 <li><a class="nav-link" href="#further-readings"><span class="header-section-number">2.5</span> Further readings</a></li>
@@ -606,7 +679,7 @@ Figure 2.3: Life expectancy by age in years (left) and survival probabilities (r
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introduction to Economic Data</strong>" was written by Hans Henrik Sievertsen. It was last built on 2022-09-21.</p>
+    <p>"<strong>Introduction to Economic Data</strong>" was written by Hans Henrik Sievertsen. It was last built on 2022-10-03.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

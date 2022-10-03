@@ -4,6 +4,7 @@ fig:baththub
 fig:death1
 tab:deathtx
 tab:deatht
+tab:micelife
 tab:deatht2
 fig:death2
 fig:labour1
@@ -83,6 +84,7 @@ relating-the-fertility-measures-to-each-other
 decomposing-the-development-in-childbirths
 calculating-life-expectancy
 life-tables
+the-simple-approach
 data-requirements-1
 creating-life-tables
 further-readings
