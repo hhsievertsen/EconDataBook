@@ -1,7 +1,7 @@
 --- 
 title: "Introduction to Economic Data"
 author: "Hans Henrik Sievertsen"
-date: "2022-10-03"
+date: "2022-11-08"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography:  [book.bib, packages.bib]
@@ -22,5 +22,5 @@ Please let me know if you find mistakes, find a section unclear, or if you have 
 Thanks,
 Hans 
 <br> 
-<br><br> Last updated on Monday, October 03, 2022
+<br><br> Last updated on Tuesday, November 08, 2022
 <br>

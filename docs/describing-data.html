@@ -258,7 +258,7 @@ Figure 12.2: Unemployment in the UK from 2006 to 2018. Source: The ONS with valu
 <h2>
 <span class="header-section-number">12.4</span> Calculating compound growth rates<a class="anchor" aria-label="anchor" href="#calculating-compound-growth-rates"><i class="fas fa-link"></i></a>
 </h2>
-<p>Another common mistake is ignoring the compound growth rate. Let’s illustrate the mistake by an extreme example. The price of a Bitcoin increased from 781 USD to 19,343 USD from December 16 2016 to December 16 2017. This is an increase of about 2,400 percent. What is the daily increase then? Let us take a very wrong approach: we just divide the total relative change by the number of days: <span class="math inline">\(2,400percent/365days\approx 6.5\)</span> percent/day? So the first day the price is 781 USD, the next day the price would then be <span class="math inline">\(781\times1.067=831\)</span> USD, the following day the price would be <span class="math inline">\(831\times1.067=885\)</span> and so on. If we continue like that, the price of Bitcoins would be above 20,000 USD by the end of February, and by the end of December the price would be 78,38,759,397,922 USD. This is clearly wrong. Figure <a href="describing-data.html#fig:desc3">12.3</a> illustrates how wrong.</p>
+<p>Another common mistake is ignoring the compound growth rate. Let’s illustrate the mistake by an extreme example. The price of a Bitcoin increased from 781 USD to 19,343 USD from December 16 2016 to December 16 2017. This is an increase of about 2,400 percent. What is the daily increase then? Let us take a very wrong approach: we just divide the total relative change by the number of days: <span class="math inline">\(2,400percent/365days\approx 6.5\)</span> percent/day? So the first day the price is 781 USD, the next day the price would then be <span class="math inline">\(781\times1.065=831\)</span> USD, the following day the price would be <span class="math inline">\(831\times1.065=885\)</span> and so on. If we continue like that, the price of Bitcoins would be above 20,000 USD by the end of February, and by the end of December the price would be 78,38,759,397,922 USD. This is clearly wrong. Figure <a href="describing-data.html#fig:desc3">12.3</a> illustrates how wrong.</p>
 <p>What went wrong is that we’ve ignored that on the third day the growth rate is applied to the initial value plus the increase in value from day one to day two (the compound growth). If we instead applied the initial increase in absolute terms 365 times we would actually end up with the right value: <span class="math inline">\((831-781)\times 365 \approx 18,562\)</span> which exactly corresponds to the increase (18,562+781=19,434 USD).</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:desc3"></span>
@@ -520,7 +520,7 @@ Figure 12.7: Monthly unemployment in the United Kingdom. Source: OECD, Short-Ter
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>Introduction to Economic Data</strong>" was written by Hans Henrik Sievertsen. It was last built on 2022-10-03.</p>
+    <p>"<strong>Introduction to Economic Data</strong>" was written by Hans Henrik Sievertsen. It was last built on 2022-11-08.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
